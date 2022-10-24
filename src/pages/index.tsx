@@ -30,6 +30,8 @@ export default function Dashboard() {
     <div>
       <Head>
         <title>Aro Project</title>
+        <meta name="description" content="Instituto Aro" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Disclosure as="nav" className="">
