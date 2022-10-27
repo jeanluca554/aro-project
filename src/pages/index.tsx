@@ -40,11 +40,9 @@ export default function Dashboard() {
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex items-center justify-between pt-7">
                 <div className="flex-shrink-0 ">
-                  <Image
-                    src="/../public/logo.svg"
+                  <img
+                    src="/logo.svg"
                     alt="LogoAro"
-                    width={125}
-                    height={40}
                   />
                 </div>
                 <div className="flex items-center ">
