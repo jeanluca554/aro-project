@@ -41,13 +41,13 @@ export default function Dashboard() {
               <div className="flex items-center justify-between pt-7">
                 <div className="flex-shrink-0 ">
                   <Image
-                    src="/../public/aro-logo.svg"
+                    src="/../public/logo.svg"
                     alt="LogoAro"
-                    width={55}
+                    width={125}
                     height={40}
                   />
                 </div>
-                <div className="flex items-center ml-auto">
+                <div className="flex items-center ">
 
                   <div className="hidden md:block">
                     <div className="ml-10 flex items-baseline space-x-4 ">
