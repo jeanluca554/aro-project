@@ -195,7 +195,7 @@ export default function Dashboard() {
             </div>
             <div className='flex flex-col items-center sm:w-2/3 sm:mt-20'>
               <h1 className='font-semibold text-4xl text-center text-gray-800 sm:font-bold sm:text-5xl sm:text-left' >
-                Consultoria e Formação de <a className='text-orange-600'>Profissionais</a> nas Principais <a className='text-orange-600'>Áreas</a>
+                Consultoria e Formação de <a className='text-orange-600'>Profissionais</a> nas Principais<a className='text-orange-600'> Áreas</a>
               </h1>
 
               <p className='mt-4 font-normal text-sm text-center sm:mt-10 text-gray-500 sm:font-normal sm:text-base sm:text-left'>
