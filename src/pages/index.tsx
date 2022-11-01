@@ -191,7 +191,7 @@ export default function Dashboard() {
 
           <div className='max-w-md sm:max-w-none lg:max-w-5xl mx-auto pt-12 px-6 py-6 lg:px-8 sm:flex sm:flex-row sm:mt-0'>
             <div className='sm:w-3/5 pb-12 sm:pt-10'>
-              <img src="teaching2.svg" alt="" />
+              <img src="success_factors.svg" alt="" />
             </div>
             <div className='flex flex-col items-center sm:w-2/3 sm:mt-0 sm:pl-5'>
               <h1 className='font-semibold text-4xl text-center text-gray-800 sm:font-bold sm:text-5xl sm:text-left' >
@@ -207,10 +207,8 @@ export default function Dashboard() {
                 </button>
               </Link>
             </div>
-
           </div>
         </div>
-
       </main >
     </div >
   )
