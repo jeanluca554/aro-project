@@ -201,7 +201,7 @@ export default function Dashboard() {
               <p className='mt-4 font-normal text-sm text-center sm:mt-10 text-gray-500 sm:font-normal sm:text-base sm:text-left'>
                 Prestamos serviços nos ramos da formação de profissionais e consultoria nas áreas do Direito Educacional, Direito Administrativo, bem como nas Áreas Esportivas e Culturais
               </p>
-              <Link href={'https://web.whatsapp.com/send?phone=5512996867080&text=Olá%20Instituto%20Aro!'}>
+              <Link href={'https://wa.me/send?phone=5512996867080&text=Olá%20Instituto%20Aro!'}>
                 <button className='mx-auto mr-auto mt-10 mb-14 bg-orange-600 text-white font-medium text-lg py-3 px-6 rounded focus:outline-none hover:bg-orange-400 transition duration-500 sm:ml-0'>
                   Entre em contato
                 </button>
