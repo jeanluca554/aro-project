@@ -10,12 +10,24 @@ import {
   LocationMarkerIcon,
   CheckCircleIcon,
   CurrencyDollarIcon,
-  IdentificationIcon,
+  MailIcon,
   TicketIcon,
-  CreditCardIcon
+  CreditCardIcon,
+  AcademicCapIcon,
+  ScaleIcon,
+  PhoneIcon,
+  UserGroupIcon
+
 } from '@heroicons/react/outline'
+
+import { FaWhatsapp, FaInstagram, FaFacebook } from "react-icons/fa"
 import Image from 'next/image';
 import Link from 'next/link';
+import Card from '../components/card';
+import AreaCard from '../components/areaCard';
+import ContactCard from '../components/contactCard';
+
+const test = 'ScaleIcon';
 
 const navigation = ['Início', 'Sobre Nós', 'Contato'];
 // const navigation = ['Home', 'About Us', 'Services'];
@@ -187,25 +199,159 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
-        <div className='bg-orange-50'>
 
-          <div className='max-w-md sm:max-w-none lg:max-w-5xl mx-auto pt-12 px-6 py-6 lg:px-8 sm:flex sm:flex-row sm:mt-0'>
-            <div className='sm:w-3/5 pb-12 sm:pt-10'>
-              <img src="teaching2.svg" alt="" />
+        <div className='bg-orange-50'>
+          <div className='max-w-md md:max-w-none md:max-w-5xl mx-auto pt-12 px-6 py-6 lg:px-8 md:flex md:flex-row md:mt-0'>
+            <div className='md:w-3/5 pb-12 md:pt-12'>
+              <img src="success_factors.svg" alt="" />
             </div>
-            <div className='flex flex-col items-center sm:w-2/3 sm:mt-0 sm:pl-5'>
-              <h1 className='font-semibold text-4xl text-center text-gray-800 sm:font-bold sm:text-5xl sm:text-left' >
+            <div className='flex flex-col items-center md:w-2/3 md:mt-0 md:pl-5'>
+              <p className=' font-normal text-base text-orange-500 md:mr-auto'>Sobre nós </p>
+              <h1 className='pt-5 font-semibold text-4xl text-center text-gray-800 md:font-bold md:text-5xl md:text-left md:pt-4' >
                 Consultoria e Formação de <a className='text-orange-600'>Profissionais</a> nas Principais<a className='text-orange-600'> Áreas</a>
               </h1>
 
-              <p className='mt-4 font-normal text-sm text-center sm:mt-10 text-gray-500 sm:font-normal sm:text-base sm:text-left'>
+              <p className='mt-4 font-normal text-sm text-center md:mt-10 text-gray-500 md:font-normal md:text-base md:text-left'>
                 Prestamos serviços nos ramos da formação de profissionais e consultoria nas áreas do Direito Educacional, Direito Administrativo, bem como nas Áreas Esportivas e Culturais
               </p>
-              <Link href={'https://wa.me/send?phone=5512996867080&text=Olá%20Instituto%20Aro!'}>
-                <button className='mx-auto mr-auto mt-10 mb-14 bg-orange-600 text-white font-medium text-lg py-3 px-6 rounded focus:outline-none hover:bg-orange-400 transition duration-500 sm:ml-0'>
+              <a href={'https://wa.me/5512996867080?text=Olá%20Instituto%20Aro!'} target='_blank'>
+                <button className='mx-auto mr-auto mt-10 mb-14 bg-orange-600 text-white font-medium text-lg py-3 px-6 rounded focus:outline-none hover:bg-orange-400 transition duration-500 sm:ml-0 md:mb-40'>
                   Entre em contato
                 </button>
-              </Link>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className=' px-6 pt-6 mb-12 lg:px-8 space-y-9 lg:max-w-5xl md:flex md:flex-row md:space-y-0 md:space-x-9  md:mx-auto md:-mt-24'>
+          <AreaCard
+            nameArea='Âmbito Jurídico'
+            icon={<ScaleIcon className='w-8 h-8  text-white ' />}
+            description='Levamos informação e orientação, além de disseminar os direitos fundamentais previstos na Constituição Federal de 1988 aos profissionais atuantes dos setores públicos e privados, bem como assegurar que sua atuação seja desenvolvida com êxito.'
+          />
+
+          <AreaCard
+            nameArea='Âmbito Educacional'
+            icon={<AcademicCapIcon className='w-8 h-8  text-white ' />}
+            description='Atuamos diretamente no cotidiano de trabalho dos profissionais da Educação, o que permite conhecer essa realidade e planejar o trabalho de forma conectada às necessidades reais das escolas e demais instituições.'
+          />
+        </div>
+
+        <div className='bg-white'>
+          <div className='max-w-md mx-auto pt-12 px-6 py-6 md:max-w-5xl '>
+            <div className='flex flex-col items-center '>
+              <hr className='border-orange-400 w-10' />
+              <p className=' font-normal text-base text-orange-500 '>Nossos Consultores</p>
+              <hr className='border-orange-400 w-10' />
+              <h1 className='pt-5 font-semibold text-4xl text-center text-gray-800 md:font-bold md:text-5xl md:pt-5' >
+                Consultores que levam <a className='text-orange-600'>Formação </a>e <a className='text-orange-600'>Orientação </a>a você
+              </h1>
+
+              <p className='mt-4 font-normal text-sm text-center text-gray-500 md:max-w-4xl md:font-normal md:text-base md:mt-10'>
+                Levamos informação e orientação, além de disseminar os direitos fundamentais previstos na Constituição Federal de 1988 aos profissionais atuantes dos setores públicos e privados, bem como assegurar que sua atuação seja desenvolvida com êxito.
+              </p>
+
+            </div>
+          </div>
+
+          <div className='px-6 pt-6 mb-12 space-y-9 mx-auto md:flex md:flex-row md:space-y-0 md:space-x-9 md:max-w-5xl'>
+
+            <Card
+              nameConsultant='Marcio Alvarenga'
+              description='Advogado criminalista com 20 anos de experiência profissional, Professor Universitário Titular, Mestre em Direito Público, Especialista em Direito Penal e Processual Penal, Especialista em Docência do Ensino Superior, Extensão em Tribunal do Júri pela Escola Superior de Advocacia.'
+              image='marcio-consultor.jpg'
+            />
+
+            <Card
+              nameConsultant='Isabela Rocha'
+              description='Formada em Pedagogia, pós graduada em Psicopedagogia Clínica e Institucional e Direito Educacional, MBA pela Universidade de São Paulo em Gestão Escolar, graduanda em Direito pela Faculdade Santa Cecília. '
+              image='isabela-consultora.jpg'
+            />
+
+            <Card
+              nameConsultant='Fabiola Zoffoli'
+              description='Formada em Letras, pós graduada em Didática do Ensino Superior e Alfabetização e Letramento, mestranda em Linguística Aplicada pela Universidade de Taubaté e graduanda em Direito pela Faculdade Santa Cecília.'
+              image='fabiola-consultora.jpg'
+            />
+          </div>
+        </div>
+
+        <div className='bg-orange-50'>
+          <div className='max-w-md mx-auto pt-12 px-6 py-6 md:max-w-5xl '>
+            <div className='flex flex-col items-center '>
+              <hr className='border-orange-400 w-10' />
+              <p className=' font-normal text-base text-orange-500 '>Fale com a gente</p>
+              <hr className='border-orange-400 w-10' />
+              <h1 className='pt-5 font-semibold text-4xl text-center text-gray-800 md:font-bold md:text-5xl md:pt-5' >
+                Sinta-se <a className='text-orange-600'>Livre </a>para <a className='text-orange-600'>Entrar em Contato </a>Conosco
+              </h1>
+
+            </div>
+          </div>
+
+          <div className='px-6 pt-6 pb-12 space-y-9 mx-auto md:flex md:flex-row md:space-y-0 md:space-x-9 md:max-w-5xl'>
+            <div className=' md:w-1/3'>
+              <a href="mailto:instituto@gmail.com.br" >
+                <ContactCard
+                  titleOrange='E-mail'
+                  titleGray='Deixe um e-mail'
+                  icon={<MailIcon className='w-8 h-8  text-white ' />}
+                  info='institutoaro@gmail.com'
+                />
+              </a>
+            </div>
+
+            <div className=' md:w-1/3'>
+              <a href="tel:12996867080">
+                <ContactCard
+                  titleOrange='Telefone'
+                  titleGray='Faça uma ligação'
+                  icon={<PhoneIcon className='w-8 h-8  text-white ' />}
+                  info='(12)99686-7080'
+                />
+              </a>
+            </div>
+
+            <div className=' md:w-1/3'>
+              <a href={'https://wa.me/5512996867080?text=Olá%20Instituto%20Aro!'} target='_blank'>
+                <ContactCard
+                  titleOrange='Whatsapp'
+                  titleGray='Mande mensagem'
+                  icon={<FaWhatsapp className='w-8 h-8  text-white ' />}
+                  info='(12)99686-7080'
+                />
+              </a>
+            </div>
+
+          </div>
+          <div className='flex pb-10'>
+            <div className='flex mx-auto space-x-4 '>
+              <a href="https://www.instagram.com/institutoaroconsultoria/" target='_blank'>
+                <FaInstagram className='w-8 h-8  text-orange-600 ' />
+              </a>
+
+              <a href="https://wa.me/5512996867080?text=Olá%20Instituto%20Aro!" target='_blank'>
+                <FaWhatsapp className='w-8 h-8  text-orange-600 ' />
+              </a>
+
+              <a href="https://www.facebook.com/people/Aro-Institucional/100085932366282/" target='_blank'>
+                <FaFacebook className='w-8 h-8  text-orange-600' />
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className='bg-orange-500'>
+          <div className='mx-auto px-6 py-4 flex items-center space-x-9 max-w-5xl'>
+            <div className='mr-auto'>
+              <img
+                src="/logo-white.svg"
+                alt="LogoAro"
+                width={145}
+                height={42}
+              />
+            </div>
+            <div className=' text-sm text-center text-white'>
+              Copyright © - Instituto Aro - 2022
             </div>
           </div>
         </div>
