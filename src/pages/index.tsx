@@ -237,7 +237,7 @@ export default function Dashboard() {
           />
         </div>
 
-        <div className='bg-white'>
+        {/*<div className='bg-white'>
           <div className='max-w-md mx-auto pt-12 px-6 py-6 md:max-w-5xl '>
             <div className='flex flex-col items-center '>
               <hr className='border-orange-400 w-10' />
@@ -274,9 +274,9 @@ export default function Dashboard() {
               image='fabiola-consultora.jpg'
             />
           </div>
-        </div>
+                  </div>*/}
 
-        <div className='bg-orange-50'>
+        <div className='bg-white'>
           <div className='max-w-md mx-auto pt-12 px-6 py-6 md:max-w-5xl '>
             <div className='flex flex-col items-center '>
               <hr className='border-orange-400 w-10' />
