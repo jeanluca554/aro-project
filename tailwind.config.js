@@ -23,6 +23,9 @@ module.exports = {
           900: '#7c2d12',
         },
       },
+      boxShadow: {
+        '3xl': '0 -3px 30px -8px rgba(0, 0, 0, 0.25)',
+      }
 
     },
     variants: {
