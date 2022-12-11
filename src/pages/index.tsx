@@ -291,12 +291,12 @@ export default function Dashboard() {
 
           <div className='px-6 pt-6 pb-12 space-y-9 mx-auto md:flex md:flex-row md:space-y-0 md:space-x-9 md:max-w-5xl'>
             <div className=' md:w-1/3'>
-              <a href="mailto:instituto@gmail.com.br" >
+              <a href="mailto:institutoaroconsultoria@gmail.com" >
                 <ContactCard
                   titleOrange='E-mail'
                   titleGray='Deixe um e-mail'
                   icon={<MailIcon className='w-8 h-8  text-white ' />}
-                  info='institutoaro@gmail.com'
+                  info='institutoaroconsultoria@gmail.com'
                 />
               </a>
             </div>
@@ -307,7 +307,7 @@ export default function Dashboard() {
                   titleOrange='Telefone'
                   titleGray='Faça uma ligação'
                   icon={<PhoneIcon className='w-8 h-8  text-white ' />}
-                  info='(12)99686-7080'
+                  info='(12) 99686-7080'
                 />
               </a>
             </div>
@@ -318,7 +318,7 @@ export default function Dashboard() {
                   titleOrange='Whatsapp'
                   titleGray='Mande mensagem'
                   icon={<FaWhatsapp className='w-8 h-8  text-white ' />}
-                  info='(12)99686-7080'
+                  info='(12) 99686-7080'
                 />
               </a>
             </div>
