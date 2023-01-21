@@ -157,21 +157,20 @@ export default function Dashboard() {
                 <div className='text-sm '>
 
                   <span className='flex items-center my-2'>
-                    <CalendarIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />10 e 11 de Dezembro
+                    <CalendarIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />24 e 25 de Fevereiro
                   </span>
                   <span className='flex items-center my-2'>
-                    <MapIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Em Campos do Jordão-SP
+                    <MapIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Em Lorena-SP
                   </span>
-                  <span className='flex items-center my-2'>
+                  {/* <span className='flex items-center my-2'>
                     <LocationMarkerIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Auditório Hotel Platanus
-                  </span>
+                  </span> */}
                   <span className='flex items-center my-2'>
                     <CheckCircleIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />
                     <a>Curso com certificação de  <strong className='text-orange-600'>20h</strong></a>
                   </span>
                   <Link href={'https://forms.gle/ty8bVWVCreRMpCjf7'}>
                     <button className='flex items-center bg-orange-600 my-8 mx-auto font-medium text-xs py-2 px-4 rounded text-white focus:outline-none hover:bg-orange-400 transition duration-500'><TicketIcon className="h-6 w-6 mr-2 " aria-hidden="true" />Quero me inscrever</button>
-
                   </Link>
                   <span className='flex items-center my-2 font-medium text-base'>
                     <CurrencyDollarIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Investimento:
