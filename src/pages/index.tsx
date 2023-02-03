@@ -1,6 +1,16 @@
-import { Fragment } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import Head from 'next/head'
+
 import { Disclosure, Menu, Transition } from '@headlessui/react'
+import { FaWhatsapp, FaInstagram, FaFacebook } from "react-icons/fa"
+import Image from 'next/image';
+import Link from 'next/link';
+import AreaCard from '../components/areaCard';
+import ContactCard from '../components/contactCard';
+import NavItem from '../components/NavItem'
+import MenuItem from '../components/MenuItem';
+import Consultants from '../components/Consultants';
+
 import {
   SunIcon,
   MenuIcon,
@@ -18,39 +28,54 @@ import {
   PhoneIcon,
   UserGroupIcon
 
-} from '@heroicons/react/outline'
+} from '@heroicons/react/outline';
 
-import { FaWhatsapp, FaInstagram, FaFacebook } from "react-icons/fa"
-import Image from 'next/image';
-import Link from 'next/link';
-import Card from '../components/card';
-import AreaCard from '../components/areaCard';
-import ContactCard from '../components/contactCard';
 
-const test = 'ScaleIcon';
 
-const navigation = ['Início', 'Sobre Nós', 'Contato'];
-// const navigation = ['Home', 'About Us', 'Services'];
-const profile = ['Your Profile', 'Settings'];
+export default function Home() {
+  const [currentSection, setCurrentSection] = useState('home');
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
+  {/*Scroll Sections active link*/ }
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['home', 'about', 'contact'];
+      let currentSection = 'home';
 
-export default function Dashboard() {
+
+      sections.forEach(section => {
+        const sectionEl = document.querySelector<HTMLElement>(`#${section}`);
+
+        if (
+          sectionEl !== null && sectionEl.offsetTop <= window.pageYOffset + (sectionEl.offsetHeight / 2)
+        ) {
+          currentSection = section;
+        }
+      });
+
+      setCurrentSection(currentSection);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+
   return (
     <div>
       <Head>
-        <title>Aro Project</title>
+        <title>Instituto Aro</title>
         <meta name="description" content="Instituto Aro" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Disclosure as="nav" className="">
         {({ open }) => (
-          <>
-            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="flex items-center justify-between pt-7">
+          <div className="fixed w-full top-0 left-0 z-100 bg-white">
+            <div className=" max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 ">
+              <div className="flex items-center justify-between py-7">
                 <div className="flex-shrink-0 ">
                   <img
                     src="/logo.svg"
@@ -61,38 +86,38 @@ export default function Dashboard() {
 
                   <div className="hidden md:block">
                     <div className="ml-10 flex items-baseline space-x-4 ">
-                      {navigation.map((item, itemIdx) =>
-                        itemIdx === 0 ? (
-                          <Fragment key={item}>
-                            {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-                            <a href="#" className=" text-orange-600 hover:text-orange-400 px-3 py-2 rounded-md text-sm font-poppins font-medium text-xl">
-                              {item}
-                            </a>
-                          </Fragment>
-                        ) : (
-                          <a
-                            key={item}
-                            href="#"
-                            className="text-gray-800 hover:text-gray-500 px-3 py-2 rounded-md text-sm font-poppins font-medium text-xl"
-                          >
-                            {item}
-                          </a>
-                        )
-                      )}
+                      <NavItem
+                        currentSection={currentSection}
+                        section="home"
+                        text='Início'
+                      />
+
+                      <NavItem
+                        currentSection={currentSection}
+                        section="about"
+                        text='Sobre Nós'
+                      />
+
+                      <NavItem
+                        currentSection={currentSection}
+                        section="contact"
+                        text='Contato'
+                      />
+
                     </div>
                   </div>
                 </div>
-                {/*<div className="flex items-center md:ml-6">
-                                    <button className=" p-1 text-gray-800 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                                        <SunIcon className="h-6 w-6" aria-hidden="true" />
-                                    </button>
+                {/* <div className="flex items-center md:ml-6">
+                  <button className=" p-1 text-gray-800 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                    <SunIcon className="h-6 w-6" aria-hidden="true" />
+                  </button>
 
-                                                </div>*/}
+                </div> */}
 
                 <div className="-mr-2 flex md:hidden" >
                   {/* Mobile menu button */}
 
-                  <Disclosure.Button className="bg-orange-600 inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white focus:ring-white">
+                  <Disclosure.Button className="bg-orange-600 inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white">
                     <span className="sr-only">Open main menu</span>
                     {open ? (
                       <XIcon className="block h-6 w-6" aria-hidden="true" />
@@ -105,37 +130,45 @@ export default function Dashboard() {
             </div>
 
             <Disclosure.Panel className="md:hidden">
+              <Transition
+                show={open}
+                enter="transition duration-300 ease-out"
+                enterFrom="transform scale-95 opacity-0"
+                enterTo="transform scale-100 opacity-100"
+                leave="transition duration-75 ease-out"
+                leaveFrom="transform scale-100 opacity-100"
+                leaveTo="transform scale-95 opacity-0"
+              >
 
-              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                {navigation.map((item, itemIdx) =>
-                  itemIdx === 0 ? (
-                    <Fragment key={item}>
-                      {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-                      <a href="#" className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">
-                        {item}
-                      </a>
-                    </Fragment>
-                  ) : (
-                    <a
-                      key={item}
-                      href="#"
-                      className="text-gray-500 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-normal"
-                    >
-                      {item}
-                    </a>
-                  )
-                )}
-              </div>
+                <div className="flex flex-col px-2 pt-2 pb-3 space-y-1 sm:px-3 transition duration-1000">
+                  <MenuItem
+                    currentSection={currentSection}
+                    section="home"
+                    text='Início'
+                  />
+                  <MenuItem
+                    currentSection={currentSection}
+                    section="about"
+                    text='Sobre Nós'
+                  />
+
+                  <MenuItem
+                    currentSection={currentSection}
+                    section="contact"
+                    text='Contato'
+                  />
+                </div>
+              </Transition>
 
             </Disclosure.Panel>
-          </>
+          </div>
         )}
       </Disclosure>
 
       <main>
         <div>
-          <div className='max-w-md sm:max-w-none lg:max-w-5xl mx-auto mt-12 mb-12 px-6 py-6 lg:px-8 sm:flex sm:flex-row sm:mt-0'>
-            <div className='flex flex-col items-center sm:w-2/3 sm:mt-20'>
+          <div className='home max-w-md sm:max-w-none lg:max-w-5xl mx-auto  mb-12 px-6 py-6 lg:px-8 sm:flex sm:flex-row sm:pt-28' id='home'>
+            <div className='flex flex-col items-center sm:w-2/3 mt-20'>
               <h1 className='font-semibold text-4xl text-center text-gray-800 sm:font-bold sm:text-5xl sm:text-left' >
                 <a className='text-orange-600'>Curso</a> Tribunal do Júri: Teoria e Prática
               </h1>
@@ -199,7 +232,7 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className='bg-orange-50'>
+        <div className='about bg-orange-50' id="about">
           <div className='max-w-md md:max-w-none md:max-w-5xl mx-auto pt-12 px-6 py-6 lg:px-8 md:flex md:flex-row md:mt-0'>
             <div className='md:w-3/5 pb-12 md:pt-12'>
               <img src="success_factors.svg" alt="" />
@@ -236,59 +269,23 @@ export default function Dashboard() {
           />
         </div>
 
-        {/*<div className='bg-white'>
-          <div className='max-w-md mx-auto pt-12 px-6 py-6 md:max-w-5xl '>
-            <div className='flex flex-col items-center '>
-              <hr className='border-orange-400 w-10' />
-              <p className=' font-normal text-base text-orange-500 '>Nossos Consultores</p>
-              <hr className='border-orange-400 w-10' />
-              <h1 className='pt-5 font-semibold text-4xl text-center text-gray-800 md:font-bold md:text-5xl md:pt-5' >
-                Consultores que levam <a className='text-orange-600'>Formação </a>e <a className='text-orange-600'>Orientação </a>a você
-              </h1>
 
-              <p className='mt-4 font-normal text-sm text-center text-gray-500 md:max-w-4xl md:font-normal md:text-base md:mt-10'>
-                Levamos informação e orientação, além de disseminar os direitos fundamentais previstos na Constituição Federal de 1988 aos profissionais atuantes dos setores públicos e privados, bem como assegurar que sua atuação seja desenvolvida com êxito.
-              </p>
+        {/*<Consultants />*/}
 
-            </div>
-          </div>
-
-          <div className='px-6 pt-6 mb-12 space-y-9 mx-auto md:flex md:flex-row md:space-y-0 md:space-x-9 md:max-w-5xl'>
-
-            <Card
-              nameConsultant='Marcio Alvarenga'
-              description='Advogado criminalista com 20 anos de experiência profissional, Professor Universitário Titular, Mestre em Direito Público, Especialista em Direito Penal e Processual Penal, Especialista em Docência do Ensino Superior, Extensão em Tribunal do Júri pela Escola Superior de Advocacia.'
-              image='marcio-consultor.jpg'
-            />
-
-            <Card
-              nameConsultant='Isabela Rocha'
-              description='Formada em Pedagogia, pós graduada em Psicopedagogia Clínica e Institucional e Direito Educacional, MBA pela Universidade de São Paulo em Gestão Escolar, graduanda em Direito pela Faculdade Santa Cecília. '
-              image='isabela-consultora.jpg'
-            />
-
-            <Card
-              nameConsultant='Fabiola Zoffoli'
-              description='Formada em Letras, pós graduada em Didática do Ensino Superior e Alfabetização e Letramento, mestranda em Linguística Aplicada pela Universidade de Taubaté e graduanda em Direito pela Faculdade Santa Cecília.'
-              image='fabiola-consultora.jpg'
-            />
-          </div>
-                  </div>*/}
-
-        <div className='bg-white'>
-          <div className='max-w-md mx-auto pt-12 px-6 py-6 md:max-w-5xl '>
-            <div className='flex flex-col items-center '>
+        <div className='contact bg-white' id='contact'>
+          <div className='max-w-md mx-auto pt-12 px-6 py-6 md:max-w-5xl'>
+            <div className='flex flex-col items-center md:py-10'>
               <hr className='border-orange-400 w-10' />
               <p className=' font-normal text-base text-orange-500 '>Fale com a gente</p>
               <hr className='border-orange-400 w-10' />
-              <h1 className='pt-5 font-semibold text-4xl text-center text-gray-800 md:font-bold md:text-5xl md:pt-5' >
-                Sinta-se <a className='text-orange-600'>Livre </a>para <a className='text-orange-600'>Entrar em Contato </a>Conosco
-              </h1>
-
             </div>
+            <h1 className='pt-5 font-semibold text-4xl text-center text-gray-800 md:font-bold md:text-5xl md:pt-5' >
+              Sinta-se <a className='text-orange-600'>Livre </a>para <a className='text-orange-600'>Entrar em Contato </a>Conosco
+            </h1>
+
           </div>
 
-          <div className='px-6 pt-6 pb-12 space-y-9 mx-auto md:flex md:flex-row md:space-y-0 md:space-x-9 md:max-w-5xl'>
+          <div className='px-6 pt-6 pb-12 space-y-9 mx-auto md:flex md:flex-row md:space-y-0 md:space-x-9 md:max-w-5xl '>
             <div className=' md:w-1/3'>
               <a href="mailto:institutoaroconsultoria@gmail.com" >
                 <ContactCard
@@ -339,6 +336,7 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
+
         <div className='bg-orange-500'>
           <div className='mx-auto px-6 py-4 flex items-center space-x-9 max-w-5xl'>
             <div className='mr-auto'>
