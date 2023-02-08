@@ -11,6 +11,8 @@ import NavItem from '../components/NavItem'
 import MenuItem from '../components/MenuItem';
 import Consultants from '../components/Consultants';
 
+import Fade from 'react-reveal/Fade';
+
 
 import {
   SunIcon,
@@ -170,66 +172,74 @@ export default function Home() {
         <div>
           <div className='home max-w-md sm:max-w-none lg:max-w-5xl mx-auto  mb-12 px-6 py-6 lg:px-8 sm:flex sm:flex-row sm:pt-28' id='home'>
             <div className='flex flex-col items-center sm:w-2/3 mt-20 sm:items-start'>
-              <h1 className='font-semibold text-4xl text-center text-gray-800 sm:font-bold sm:text-5xl sm:text-left' >
-                <a className='text-orange-600'>Curso</a> Tribunal do Júri: Teoria e Prática
-              </h1>
-              <p className='mt-4 font-normal text-sm text-center sm:mt-10 text-gray-500 sm:font-normal sm:text-base sm:text-left'>
-                Participe do nosso primeiro Curso dividido em 3 módulos com diversos conteúdos que irão da prática à teoria.
-              </p>
-              <Link href={'https://forms.gle/ty8bVWVCreRMpCjf7'}>
-                <button className='mx-auto mr-auto mt-10 mb-14 bg-orange-600 text-white font-medium text-xl py-3 px-6 rounded focus:outline-none hover:bg-orange-400 transition duration-500 sm:ml-0'>
-                  Inscreva-se
-                </button>
-              </Link>
+              <Fade delay={400} left duration={2500} >
+                <h1 className='font-semibold text-4xl text-center text-gray-800 sm:font-bold sm:text-5xl sm:text-left' >
+                  <a className='text-orange-600'>Curso</a> Tribunal do Júri: Teoria e Prática
+                </h1>
+              </Fade>
+              <Fade delay={600} left duration={2500} >
+                <p className='mt-4 font-normal text-sm text-center sm:mt-10 text-gray-500 sm:font-normal sm:text-base sm:text-left'>
+                  Participe do nosso primeiro Curso dividido em 3 módulos com diversos conteúdos que irão da prática à teoria.
+                </p>
+              </Fade>
+              <Fade delay={800} left duration={2500} >
+                <Link href={'https://forms.gle/ty8bVWVCreRMpCjf7'}>
+                  <button className='mx-auto mr-auto mt-10 mb-14 bg-orange-600 text-white font-medium text-xl py-3 px-6 rounded focus:outline-none hover:bg-orange-400 transition duration-500 sm:ml-0'>
+                    Inscreva-se
+                  </button>
+                </Link>
+              </Fade>
             </div>
             <div className='sm:w-2/5'>
-              <div className='border-2 border-orange-600 border-opacity-50 shadow-2xl '>
-                <div className='m-5'>
-                  <button className=' border-orange-600 border-2 text-orange-600 font-medium text-xs py-2 px-4 rounded disabled cursor-auto mb-2 focus:outline-none'>
-                    Vagas limitadas
-                  </button>
-                  <div className='text-sm '>
+              <Fade delay={400} right duration={2500} >
+                <div className='border-2 border-orange-600 border-opacity-50 shadow-2xl '>
+                  <div className='m-5'>
+                    <button className=' border-orange-600 border-2 text-orange-600 font-medium text-xs py-2 px-4 rounded disabled cursor-auto mb-2 focus:outline-none'>
+                      Vagas limitadas
+                    </button>
+                    <div className='text-sm '>
 
-                    <span className='flex items-center my-2'>
-                      <CalendarIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />24 e 25 de Fevereiro
-                    </span>
-                    <span className='flex items-center my-2'>
-                      <MapIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Em Lorena-SP
-                    </span>
-                    {/* <span className='flex items-center my-2'>
+                      <span className='flex items-center my-2'>
+                        <CalendarIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />24 e 25 de Fevereiro
+                      </span>
+                      <span className='flex items-center my-2'>
+                        <MapIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Em Lorena-SP
+                      </span>
+                      {/* <span className='flex items-center my-2'>
                     <LocationMarkerIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Auditório Hotel Platanus
                   </span> */}
-                    <span className='flex items-center my-2'>
-                      <CheckCircleIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />
-                      <a>Curso com certificação de  <strong className='text-orange-600'>20h</strong></a>
-                    </span>
-                    <Link href={'https://forms.gle/ty8bVWVCreRMpCjf7'}>
-                      <button className='flex items-center bg-orange-600 my-8 mx-auto font-medium text-xs py-2 px-4 rounded text-white focus:outline-none hover:bg-orange-400 transition duration-500'><TicketIcon className="h-6 w-6 mr-2 " aria-hidden="true" />Quero me inscrever</button>
-                    </Link>
-                    <span className='flex items-center my-2 font-medium text-base'>
-                      <CurrencyDollarIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Investimento:
-                    </span>
-
-                    <div className='text-xs'>
-
-                      <p> <strong> R$500,00</strong> em até 3x para <strong> ADVOGADOS </strong></p>
-                      <p> <strong> R$349,90</strong> em até 3x para <strong> ESTUDANTES DE DIREITO </strong></p>
-                    </div>
-
-                    <div className='my-6 mr-auto'>
-
-                      <span className='flex items-center my-2 font-medium text-base'>
-                        <CreditCardIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Formas de Pagamento:
+                      <span className='flex items-center my-2'>
+                        <CheckCircleIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />
+                        <a>Curso com certificação de  <strong className='text-orange-600'>20h</strong></a>
                       </span>
-                      <div className='text-xs '>
-                        <p><strong>Cartão de Crédito</strong></p>
-                        <p><strong>Pix</strong></p>
-                        <p><strong>Transferência Bancária</strong></p>
+                      <Link href={'https://forms.gle/ty8bVWVCreRMpCjf7'}>
+                        <button className='flex items-center bg-orange-600 my-8 mx-auto font-medium text-xs py-2 px-4 rounded text-white focus:outline-none hover:bg-orange-400 transition duration-500'><TicketIcon className="h-6 w-6 mr-2 " aria-hidden="true" />Quero me inscrever</button>
+                      </Link>
+                      <span className='flex items-center my-2 font-medium text-base'>
+                        <CurrencyDollarIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Investimento:
+                      </span>
+
+                      <div className='text-xs'>
+
+                        <p> <strong> R$500,00</strong> em até 3x para <strong> ADVOGADOS </strong></p>
+                        <p> <strong> R$349,90</strong> em até 3x para <strong> ESTUDANTES DE DIREITO </strong></p>
+                      </div>
+
+                      <div className='my-6 mr-auto'>
+
+                        <span className='flex items-center my-2 font-medium text-base'>
+                          <CreditCardIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Formas de Pagamento:
+                        </span>
+                        <div className='text-xs '>
+                          <p><strong>Cartão de Crédito</strong></p>
+                          <p><strong>Pix</strong></p>
+                          <p><strong>Transferência Bancária</strong></p>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </Fade>
             </div>
           </div>
         </div>
@@ -237,22 +247,26 @@ export default function Home() {
         <div className='about bg-orange-50' id="about">
           <div className='max-w-md md:max-w-none md:max-w-5xl mx-auto pt-12 px-6 py-6 lg:px-8 md:flex md:flex-row md:mt-0'>
             <div className='md:w-3/5 pb-12 md:pt-12'>
-              <img src="success_factors.svg" alt="" />
+              <Fade delay={400} left duration={2500} >
+                <img src="success_factors.svg" alt="" />
+              </Fade>
             </div>
             <div className='flex flex-col items-center md:w-2/3 md:mt-0 md:pl-5 md:items-start'>
-              <p className=' font-normal text-base text-orange-500 md:mr-auto'>Sobre nós </p>
-              <h1 className='pt-5 font-semibold text-4xl text-center text-gray-800 md:font-bold md:text-5xl md:text-left md:pt-4' >
-                Consultoria e Formação de <a className='text-orange-600'>Profissionais</a> nas Principais<a className='text-orange-600'> Áreas</a>
-              </h1>
+              <Fade delay={400} right duration={2500} >
+                <p className=' font-normal text-base text-orange-500 md:mr-auto'>Sobre nós </p>
+                <h1 className='pt-5 font-semibold text-4xl text-center text-gray-800 md:font-bold md:text-5xl md:text-left md:pt-4' >
+                  Consultoria e Formação de <a className='text-orange-600'>Profissionais</a> nas Principais<a className='text-orange-600'> Áreas</a>
+                </h1>
 
-              <p className='mt-4 font-normal text-sm text-center md:mt-10 text-gray-500 md:font-normal md:text-base md:text-left'>
-                Prestamos serviços nos ramos da formação de profissionais e consultoria nas áreas do Direito Educacional, Direito Administrativo, bem como nas Áreas Esportivas e Culturais
-              </p>
-              <a href={'https://wa.me/5512996867080?text=Olá%20Instituto%20Aro!'} target='_blank'>
-                <button className='mx-auto mr-auto mt-10 mb-14 bg-orange-600 text-white font-medium text-lg py-3 px-6 rounded focus:outline-none hover:bg-orange-400 transition duration-500 sm:ml-0 md:mb-40'>
-                  Entre em contato
-                </button>
-              </a>
+                <p className='mt-4 font-normal text-sm text-center md:mt-10 text-gray-500 md:font-normal md:text-base md:text-left'>
+                  Prestamos serviços nos ramos da formação de profissionais e consultoria nas áreas do Direito Educacional, Direito Administrativo, bem como nas Áreas Esportivas e Culturais
+                </p>
+                <a href={'https://wa.me/5512996867080?text=Olá%20Instituto%20Aro!'} target='_blank'>
+                  <button className='mx-auto mr-auto mt-10 mb-14 bg-orange-600 text-white font-medium text-lg py-3 px-6 rounded focus:outline-none hover:bg-orange-400 transition duration-500 sm:ml-0 md:mb-40'>
+                    Entre em contato
+                  </button>
+                </a>
+              </Fade>
             </div>
           </div>
         </div>
@@ -273,18 +287,22 @@ export default function Home() {
 
         <div className=' px-6 pt-6 mb-12 lg:px-8 space-y-9 lg:max-w-5xl md:flex md:flex-row md:space-y-0 md:space-x-9  md:mx-auto md:-mt-24 '>
           <div className=' md:w-1/2'>
-            <AreaCard
-              nameArea='Âmbito Jurídico'
-              icon={<ScaleIcon className='w-8 h-8  text-white ' />}
-              description='Levamos informação e orientação, além de disseminar os direitos fundamentais previstos na Constituição Federal de 1988 aos profissionais atuantes dos setores públicos e privados, bem como assegurar que sua atuação seja desenvolvida com êxito.'
-            />
+            <Fade delay={400} down duration={2500} >
+              <AreaCard
+                nameArea='Âmbito Jurídico'
+                icon={<ScaleIcon className='w-8 h-8  text-white ' />}
+                description='Levamos informação e orientação, além de disseminar os direitos fundamentais previstos na Constituição Federal de 1988 aos profissionais atuantes dos setores públicos e privados, bem como assegurar que sua atuação seja desenvolvida com êxito.'
+              />
+            </Fade>
           </div>
           <div className=' md:w-1/2'>
-            <AreaCard
-              nameArea='Âmbito Educacional'
-              icon={<AcademicCapIcon className='w-8 h-8  text-white ' />}
-              description='Atuamos diretamente no cotidiano de trabalho dos profissionais da Educação, o que permite conhecer essa realidade e planejar o trabalho de forma conectada às necessidades reais das escolas e demais instituições.'
-            />
+            <Fade delay={600} down duration={2500}>
+              <AreaCard
+                nameArea='Âmbito Educacional'
+                icon={<AcademicCapIcon className='w-8 h-8  text-white ' />}
+                description='Atuamos diretamente no cotidiano de trabalho dos profissionais da Educação, o que permite conhecer essa realidade e planejar o trabalho de forma conectada às necessidades reais das escolas e demais instituições.'
+              />
+            </Fade>
           </div>
         </div>
 
@@ -294,13 +312,17 @@ export default function Home() {
         <div className='contact bg-white' id='contact'>
           <div className='max-w-md mx-auto pt-12 px-6 py-6 md:max-w-5xl'>
             <div className='flex flex-col items-center md:py-10'>
-              <hr className='border-orange-400 w-10' />
-              <p className=' font-normal text-base text-orange-500 '>Fale com a gente</p>
-              <hr className='border-orange-400 w-10' />
+              <Fade delay={400} down duration={2500} >
+                <hr className='border-orange-400 w-10' />
+                <p className=' font-normal text-base text-orange-500 '>Fale com a gente</p>
+                <hr className='border-orange-400 w-10' />
+              </Fade>
             </div>
-            <h1 className='pt-5 font-semibold text-4xl text-center text-gray-800 md:font-bold md:text-5xl md:pt-5' >
-              Sinta-se <a className='text-orange-600'>Livre </a>para <a className='text-orange-600'>Entrar em Contato </a>Conosco
-            </h1>
+            <Fade delay={400} down duration={2500} >
+              <h1 className='pt-5 font-semibold text-4xl text-center text-gray-800 md:font-bold md:text-5xl md:pt-5' >
+                Sinta-se <a className='text-orange-600'>Livre </a>para <a className='text-orange-600'>Entrar em Contato </a>Conosco
+              </h1>
+            </Fade>
 
           </div>
 
@@ -312,17 +334,20 @@ export default function Home() {
                   titleGray='Deixe um e-mail'
                   icon={<MailIcon className='w-8 h-8  text-white ' />}
                   info='institutoaroconsultoria@gmail.com'
+                  fadeEffectDelay={400}
                 />
               </a>
             </div>
 
             <div className=' md:w-1/3'>
+
               <a href="tel:12996867080">
                 <ContactCard
                   titleOrange='Telefone'
                   titleGray='Faça uma ligação'
                   icon={<PhoneIcon className='w-8 h-8  text-white ' />}
                   info='(12) 99686-7080'
+                  fadeEffectDelay={600}
                 />
               </a>
             </div>
@@ -334,6 +359,7 @@ export default function Home() {
                   titleGray='Mande mensagem'
                   icon={<FaWhatsapp className='w-8 h-8  text-white ' />}
                   info='(12) 99686-7080'
+                  fadeEffectDelay={800}
                 />
               </a>
             </div>
