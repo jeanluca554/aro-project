@@ -177,7 +177,7 @@ export default function Home() {
                   <a className='text-orange-600'>Curso</a> Tribunal do Júri: Teoria e Prática
                 </h1>
               </Fade>
-              <Fade left duration={2500} delay={600} >
+              <Fade right duration={2500} delay={600} >
                 <p className='mt-4 font-normal text-sm text-center sm:mt-10 text-gray-500 sm:font-normal sm:text-base sm:text-left'>
                   Participe do nosso primeiro Curso dividido em 3 módulos com diversos conteúdos que irão da prática à teoria.
                 </p>
