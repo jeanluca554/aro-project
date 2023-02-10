@@ -247,12 +247,12 @@ export default function Home() {
         <div className='about bg-orange-50' id="about">
           <div className='max-w-md md:max-w-none md:max-w-5xl mx-auto pt-12 px-6 py-6 lg:px-8 md:flex md:flex-row md:mt-0'>
             <div className='md:w-3/5 pb-12 md:pt-12'>
-              <Fade left duration={2500} delay={400} >
+              <Fade down duration={2500} delay={400} >
                 <img src="success_factors.svg" alt="" />
               </Fade>
             </div>
             <div className='flex flex-col items-center md:w-2/3 md:mt-0 md:pl-5 md:items-start'>
-              <Fade right duration={2500} delay={400} >
+              <Fade down duration={2500} delay={400} >
                 <p className=' font-normal text-base text-orange-500 md:mr-auto'>Sobre nós </p>
                 <h1 className='pt-5 font-semibold text-4xl text-center text-gray-800 md:font-bold md:text-5xl md:text-left md:pt-4' >
                   Consultoria e Formação de <a className='text-orange-600'>Profissionais</a> nas Principais<a className='text-orange-600'> Áreas</a>
