@@ -172,17 +172,17 @@ export default function Home() {
         <div>
           <div className='home max-w-md sm:max-w-none lg:max-w-5xl mx-auto  mb-12 px-6 py-6 lg:px-8 sm:flex sm:flex-row sm:pt-28' id='home'>
             <div className='flex flex-col items-center sm:w-2/3 mt-20 sm:items-start'>
-              <Fade left duration={2500} delay={400}>
+              <Fade down duration={2500} delay={400}>
                 <h1 className='font-semibold text-4xl text-center text-gray-800 sm:font-bold sm:text-5xl sm:text-left' >
                   <a className='text-orange-600'>Curso</a> Tribunal do Júri: Teoria e Prática
                 </h1>
               </Fade>
-              <Fade right duration={2500} delay={600} >
+              <Fade down duration={2500} delay={600} >
                 <p className='mt-4 font-normal text-sm text-center sm:mt-10 text-gray-500 sm:font-normal sm:text-base sm:text-left'>
                   Participe do nosso primeiro Curso dividido em 3 módulos com diversos conteúdos que irão da prática à teoria.
                 </p>
               </Fade>
-              <Fade left duration={2500} delay={800}>
+              <Fade down duration={2500} delay={800}>
                 <Link href={'https://forms.gle/ty8bVWVCreRMpCjf7'}>
                   <button className='mx-auto mr-auto mt-10 mb-14 bg-orange-600 text-white font-medium text-xl py-3 px-6 rounded focus:outline-none hover:bg-orange-400 transition duration-500 sm:ml-0'>
                     Inscreva-se
