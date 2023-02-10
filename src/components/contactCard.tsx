@@ -14,7 +14,7 @@ type ContactCardProps = {
 const ContactCard = (props: ContactCardProps) => {
     return (
         <Fade delay={props.fadeEffectDelay} down duration={2500} >
-            <div className='bg-white rounded-3xl shadow-3xl '>
+            <div className='bg-white rounded-3xl shadow-3xl group'>
                 <div className='p-4 flex items-center'>
                     <div>
                         <div className='w-14 h-14 rounded-full bg-orange-600 flex flex-col justify-center items-center'>
