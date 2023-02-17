@@ -11,6 +11,8 @@ import NavItem from '../components/NavItem'
 import MenuItem from '../components/MenuItem';
 import Consultants from '../components/Consultants';
 
+import { Fade } from "react-awesome-reveal";
+
 
 import {
   SunIcon,
@@ -184,64 +186,72 @@ export default function Home() {
         <div>
           <div className='home max-w-md sm:max-w-none sm:gap-8 lg:max-w-5xl mx-auto mb-12 px-6 py-6 lg:px-8 sm:flex sm:flex-row sm:pt-28' id='home'>
             <div className='flex flex-col items-center sm:w-2/3 mt-20 sm:items-start'>
-              <h1 className='font-semibold text-5xl text-center text-gray-800 sm:font-bold sm:text-left' >
-                Curso <a className='text-orange-600'>Interpretação Jurídica</a> com o Dr. Maurício Pereira Simões
-              </h1>
-              <p className='mt-4 font-normal text-sm text-center sm:mt-10 text-gray-500 sm:font-normal sm:text-base sm:text-left'>
-                Análise e interpretação do texto legal, por meio da interpretação doutrinária e jurisprudencial.
-              </p>
+              <Fade direction='down' duration={2500} delay={400} triggerOnce>
+                <h1 className='font-semibold text-5xl text-center text-gray-800 sm:font-bold sm:text-left' >
+                  Curso <a className='text-orange-600'>Interpretação Jurídica</a> com o Dr. Maurício Pereira Simões
+                </h1>
+              </Fade>
+              <Fade direction='down' duration={1000} delay={400} triggerOnce>
+                <p className='mt-4 font-normal text-sm text-center sm:mt-10 text-gray-500 sm:font-normal sm:text-base sm:text-left'>
+                  Análise e interpretação do texto legal, por meio da interpretação doutrinária e jurisprudencial.
+                </p>
+              </Fade>
               <Link href={'https://forms.gle/ffWNTPhfD86indUz8'}>
-                <button className='mx-auto mr-auto mt-10 mb-14 bg-orange-600 text-white font-medium text-xl py-3 px-6 rounded focus:outline-none hover:bg-orange-400 transition duration-500 sm:ml-0'>
-                  Inscreva-se
-                </button>
+                <Fade direction='down' duration={1000} delay={400} triggerOnce>
+                  <button className='mx-auto mr-auto mt-10 mb-14 bg-orange-600 text-white font-medium text-xl py-3 px-6 rounded focus:outline-none hover:bg-orange-400 transition duration-500 sm:ml-0'>
+                    Inscreva-se
+                  </button>
+                </Fade>
               </Link>
             </div>
             <div className='sm:w-2/5'>
-              <div className='border-2 border-orange-600 border-opacity-50 shadow-2xl '>
-                <div className='m-5'>
-                  <button className=' border-orange-600 border-2 text-orange-600 font-medium text-xs py-2 px-4 rounded disabled cursor-auto mb-2 focus:outline-none'>
-                    Vagas limitadas
-                  </button>
-                  <div className='text-sm '>
+              <Fade direction='down' duration={1500} delay={600} triggerOnce>
+                <div className='border-2 border-orange-600 border-opacity-50 shadow-2xl '>
+                  <div className='m-5'>
+                    <button className=' border-orange-600 border-2 text-orange-600 font-medium text-xs py-2 px-4 rounded disabled cursor-auto mb-2 focus:outline-none'>
+                      Vagas limitadas
+                    </button>
+                    <div className='text-sm '>
 
-                    <span className='flex items-center my-2'>
-                      <CalendarIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />04 de março de 2023
-                    </span>
-                    <span className='flex items-center my-2'>
-                      <MapIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Em Taubaté-SP
-                    </span>
-                    <span className='flex items-center my-2'>
-                      <LocationMarkerIcon className="h-6 w-6  mr-2 text-orange-600" aria-hidden="true" />Auditório da Faculdade Anhanguera
-                    </span>
-                    <span className='flex items-center my-2'>
-                      <CheckCircleIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />
-                      <a>Curso <strong className='text-orange-600'>presencial</strong></a>
-                    </span>
-                    <Link href={'https://forms.gle/ffWNTPhfD86indUz8'}>
-                      <button className='flex items-center bg-orange-600 my-8 mx-auto font-medium text-xs py-2 px-4 rounded text-white focus:outline-none hover:bg-orange-400 transition duration-500'><TicketIcon className="h-6 w-6 mr-2 " aria-hidden="true" />Quero me inscrever</button>
-                    </Link>
-                    <span className='flex items-center my-2 font-medium text-base'>
-                      <CurrencyDollarIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Investimento:
-                    </span>
-
-                    <div className='text-xs'>
-
-                      <p> <strong> R$300,00</strong> em até 3x (sem juros) no cartão.</p>
-                      <p> <strong> R$200,00</strong> para <strong> alunos matriculados nas instituições de ensino: </strong>ANHANGUERA, FACIC, FARO, FASC, SERRA DOURADA, UNISAL e UNITAU.</p>
-                    </div>
-
-                    <div className='my-6 mr-auto'>
-
-                      <span className='flex items-center my-2 font-medium text-base'>
-                        <CreditCardIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Formas de Pagamento:
+                      <span className='flex items-center my-2'>
+                        <CalendarIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />04 de março de 2023
                       </span>
-                      <div className='text-xs '>
-                        <p><strong>Cartão de Crédito ou Pix.</strong></p>
+                      <span className='flex items-center my-2'>
+                        <MapIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Em Taubaté-SP
+                      </span>
+                      <span className='flex items-center my-2'>
+                        <LocationMarkerIcon className="h-6 w-6  mr-2 text-orange-600" aria-hidden="true" />Auditório da Faculdade Anhanguera
+                      </span>
+                      <span className='flex items-center my-2'>
+                        <CheckCircleIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />
+                        <a>Curso <strong className='text-orange-600'>presencial</strong></a>
+                      </span>
+                      <Link href={'https://forms.gle/ffWNTPhfD86indUz8'}>
+                        <button className='flex items-center bg-orange-600 my-8 mx-auto font-medium text-xs py-2 px-4 rounded text-white focus:outline-none hover:bg-orange-400 transition duration-500'><TicketIcon className="h-6 w-6 mr-2 " aria-hidden="true" />Quero me inscrever</button>
+                      </Link>
+                      <span className='flex items-center my-2 font-medium text-base'>
+                        <CurrencyDollarIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Investimento:
+                      </span>
+
+                      <div className='text-xs'>
+
+                        <p> <strong> R$300,00</strong> em até 3x (sem juros) no cartão.</p>
+                        <p> <strong> R$200,00</strong> para <strong> alunos matriculados nas instituições de ensino: </strong>ANHANGUERA, FACIC, FARO, FASC, SERRA DOURADA, UNISAL e UNITAU.</p>
+                      </div>
+
+                      <div className='my-6 mr-auto'>
+
+                        <span className='flex items-center my-2 font-medium text-base'>
+                          <CreditCardIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Formas de Pagamento:
+                        </span>
+                        <div className='text-xs '>
+                          <p><strong>Cartão de Crédito ou Pix.</strong></p>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </Fade>
             </div>
           </div>
         </div>
@@ -249,21 +259,30 @@ export default function Home() {
         <div className='about bg-orange-50' id="about">
           <div className='max-w-md md:max-w-none md:max-w-5xl mx-auto pt-12 px-6 py-6 lg:px-8 md:flex md:flex-row md:mt-0'>
             <div className='md:w-3/5 pb-12 md:pt-12'>
-              <img src="success_factors.svg" alt="" />
+              <Fade direction='down' duration={1000} delay={400} triggerOnce>
+                <img src="success_factors.svg" alt="" />
+              </Fade>
             </div>
             <div className='flex flex-col items-center md:w-2/3 md:mt-0 md:pl-5 md:items-start'>
-              <p className=' font-normal text-base text-orange-500 md:mr-auto'>Sobre nós </p>
-              <h1 className='pt-5 font-semibold text-4xl text-center text-gray-800 md:font-bold md:text-5xl md:text-left md:pt-4' >
-                Consultoria e Formação de <a className='text-orange-600'>Profissionais</a> nas Principais<a className='text-orange-600'> Áreas</a>
-              </h1>
-
-              <p className='mt-4 font-normal text-sm text-center md:mt-10 text-gray-500 md:font-normal md:text-base md:text-left'>
-                Prestamos serviços nos ramos da formação de profissionais e consultoria nas áreas do Direito Educacional, Direito Administrativo, bem como nas Áreas Esportivas e Culturais
-              </p>
+              <Fade direction='down' duration={2500} delay={800} triggerOnce>
+                <p className=' font-normal text-base text-orange-500 md:mr-auto'>Sobre nós </p>
+              </Fade>
+              <Fade direction='down' duration={1500} delay={400} triggerOnce>
+                <h1 className='pt-5 font-semibold text-4xl text-center text-gray-800 md:font-bold md:text-5xl md:text-left md:pt-4' >
+                  Consultoria e Formação de <a className='text-orange-600'>Profissionais</a> nas Principais<a className='text-orange-600'> Áreas</a>
+                </h1>
+              </Fade>
+              <Fade direction='down' duration={1500} delay={400} triggerOnce>
+                <p className='mt-4 font-normal text-sm text-center md:mt-10 text-gray-500 md:font-normal md:text-base md:text-left'>
+                  Prestamos serviços nos ramos da formação de profissionais e consultoria nas áreas do Direito Educacional, Direito Administrativo, bem como nas Áreas Esportivas e Culturais
+                </p>
+              </Fade>
               <a href={'https://wa.me/5512996867080?text=Olá%20Instituto%20Aro!'} target='_blank'>
-                <button className='mx-auto mr-auto mt-10 mb-14 bg-orange-600 text-white font-medium text-lg py-3 px-6 rounded focus:outline-none hover:bg-orange-400 transition duration-500 sm:ml-0 md:mb-40'>
-                  Entre em contato
-                </button>
+                <Fade direction='down' duration={1000} delay={400} triggerOnce>
+                  <button className='mx-auto mr-auto mt-10 mb-14 bg-orange-600 text-white font-medium text-lg py-3 px-6 rounded focus:outline-none hover:bg-orange-400 transition duration-500 sm:ml-0 md:mb-40'>
+                    Entre em contato
+                  </button>
+                </Fade>
               </a>
             </div>
           </div>
@@ -285,18 +304,23 @@ export default function Home() {
 
         <div className=' px-6 pt-6 mb-12 lg:px-8 space-y-9 lg:max-w-5xl md:flex md:flex-row md:space-y-0 md:space-x-9  md:mx-auto md:-mt-24 '>
           <div className=' md:w-1/2'>
-            <AreaCard
-              nameArea='Âmbito Jurídico'
-              icon={<ScaleIcon className='w-8 h-8  text-white ' />}
-              description='Levamos informação e orientação, além de disseminar os direitos fundamentais previstos na Constituição Federal de 1988 aos profissionais atuantes dos setores públicos e privados, bem como assegurar que sua atuação seja desenvolvida com êxito.'
-            />
+            <Fade direction='down' duration={1000} delay={400} triggerOnce>
+              <AreaCard
+                nameArea='Âmbito Jurídico'
+                icon={<ScaleIcon className='w-8 h-8  text-white ' />}
+                description='Levamos informação e orientação, além de disseminar os direitos fundamentais previstos na Constituição Federal de 1988 aos profissionais atuantes dos setores públicos e privados, bem como assegurar que sua atuação seja desenvolvida com êxito.'
+              />
+            </Fade>
           </div>
+
           <div className=' md:w-1/2'>
-            <AreaCard
-              nameArea='Âmbito Educacional'
-              icon={<AcademicCapIcon className='w-8 h-8  text-white ' />}
-              description='Atuamos diretamente no cotidiano de trabalho dos profissionais da Educação, o que permite conhecer essa realidade e planejar o trabalho de forma conectada às necessidades reais das escolas e demais instituições.'
-            />
+            <Fade direction='down' duration={1000} delay={600} triggerOnce>
+              <AreaCard
+                nameArea='Âmbito Educacional'
+                icon={<AcademicCapIcon className='w-8 h-8  text-white ' />}
+                description='Atuamos diretamente no cotidiano de trabalho dos profissionais da Educação, o que permite conhecer essa realidade e planejar o trabalho de forma conectada às necessidades reais das escolas e demais instituições.'
+              />
+            </Fade>
           </div>
         </div>
 
@@ -306,64 +330,87 @@ export default function Home() {
         <div className='contact bg-white' id='contact'>
           <div className='max-w-md mx-auto pt-12 px-6 py-6 md:max-w-5xl'>
             <div className='flex flex-col items-center md:py-10'>
-              <hr className='border-orange-400 w-10' />
-              <p className=' font-normal text-base text-orange-500 '>Fale com a gente</p>
-              <hr className='border-orange-400 w-10' />
+              <Fade direction='down' duration={2500} delay={400} triggerOnce>
+                <hr className='border-orange-400 w-10' />
+              </Fade>
+
+              <Fade direction='down' duration={2500} delay={600} triggerOnce>
+                <p className=' font-normal text-base text-orange-500 '>Fale com a gente</p>
+              </Fade>
+
+              <Fade direction='down' duration={2500} delay={800} triggerOnce>
+                <hr className='border-orange-400 w-10' />
+              </Fade>
             </div>
-            <h1 className='pt-5 font-semibold text-4xl text-center text-gray-800 md:font-bold md:text-5xl md:pt-5' >
-              Sinta-se <a className='text-orange-600'>Livre </a>para <a className='text-orange-600'>Entrar em Contato </a>Conosco
-            </h1>
+
+            <Fade direction='down' duration={1500} delay={400} triggerOnce>
+              <h1 className='pt-5 font-semibold text-4xl text-center text-gray-800 md:font-bold md:text-5xl md:pt-5' >
+                Sinta-se <a className='text-orange-600'>Livre </a>para <a className='text-orange-600'>Entrar em Contato </a>Conosco
+              </h1>
+            </Fade>
 
           </div>
 
           <div className='px-6 pt-6 pb-12 space-y-9 mx-auto md:flex md:flex-row md:space-y-0 md:space-x-9 md:max-w-5xl '>
             <div className=' md:w-1/3'>
-              <a href="mailto:institutoaroconsultoria@gmail.com" >
-                <ContactCard
-                  titleOrange='E-mail'
-                  titleGray='Deixe um e-mail'
-                  icon={<MailIcon className='w-8 h-8  text-white ' />}
-                  info='institutoaroconsultoria@gmail.com'
-                />
-              </a>
+              <Fade direction='down' duration={1000} delay={400} triggerOnce>
+                <a href="mailto:institutoaroconsultoria@gmail.com" >
+                  <ContactCard
+                    titleOrange='E-mail'
+                    titleGray='Deixe um e-mail'
+                    icon={<MailIcon className='w-8 h-8  text-white ' />}
+                    info='institutoaroconsultoria@gmail.com'
+                  />
+                </a>
+              </Fade>
             </div>
 
             <div className=' md:w-1/3'>
-              <a href="tel:12996867080">
-                <ContactCard
-                  titleOrange='Telefone'
-                  titleGray='Faça uma ligação'
-                  icon={<PhoneIcon className='w-8 h-8  text-white ' />}
-                  info='(12) 99686-7080'
-                />
-              </a>
+              <Fade direction='down' duration={1000} delay={400} triggerOnce>
+                <a href="tel:12996867080">
+                  <ContactCard
+                    titleOrange='Telefone'
+                    titleGray='Faça uma ligação'
+                    icon={<PhoneIcon className='w-8 h-8  text-white ' />}
+                    info='(12) 99686-7080'
+                  />
+                </a>
+              </Fade>
             </div>
 
             <div className=' md:w-1/3'>
-              <a href={'https://wa.me/5512996867080?text=Olá%20Instituto%20Aro!'} target='_blank'>
-                <ContactCard
-                  titleOrange='Whatsapp'
-                  titleGray='Mande mensagem'
-                  icon={<FaWhatsapp className='w-8 h-8  text-white ' />}
-                  info='(12) 99686-7080'
-                />
-              </a>
+              <Fade direction='down' duration={1000} delay={400} triggerOnce>
+                <a href={'https://wa.me/5512996867080?text=Olá%20Instituto%20Aro!'} target='_blank'>
+                  <ContactCard
+                    titleOrange='Whatsapp'
+                    titleGray='Mande mensagem'
+                    icon={<FaWhatsapp className='w-8 h-8  text-white ' />}
+                    info='(12) 99686-7080'
+                  />
+                </a>
+              </Fade>
             </div>
 
           </div>
           <div className='flex pb-10'>
             <div className='flex mx-auto space-x-4 '>
-              <a href="https://www.instagram.com/institutoaroconsultoria/" target='_blank'>
-                <FaInstagram className='w-8 h-8  text-orange-600 ' />
-              </a>
+              <Fade direction='down' duration={1500} delay={400} triggerOnce>
+                <a href="https://www.instagram.com/institutoaroconsultoria/" target='_blank'>
+                  <FaInstagram className='w-8 h-8  text-orange-600 ' />
+                </a>
+              </Fade>
 
-              <a href="https://wa.me/5512996867080?text=Olá%20Instituto%20Aro!" target='_blank'>
-                <FaWhatsapp className='w-8 h-8  text-orange-600 ' />
-              </a>
+              <Fade direction='down' duration={1500} delay={600} triggerOnce>
+                <a href="https://wa.me/5512996867080?text=Olá%20Instituto%20Aro!" target='_blank'>
+                  <FaWhatsapp className='w-8 h-8  text-orange-600 ' />
+                </a>
+              </Fade>
 
-              <a href="https://www.facebook.com/people/Aro-Institucional/100085932366282/" target='_blank'>
-                <FaFacebook className='w-8 h-8  text-orange-600' />
-              </a>
+              <Fade direction='down' duration={1500} delay={800} triggerOnce>
+                <a href="https://www.facebook.com/people/Aro-Institucional/100085932366282/" target='_blank'>
+                  <FaFacebook className='w-8 h-8  text-orange-600' />
+                </a>
+              </Fade>
             </div>
           </div>
         </div>
