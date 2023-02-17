@@ -35,6 +35,20 @@ import {
 
 export default function Home() {
   const [currentSection, setCurrentSection] = useState('home');
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  {/*Get the scroll position*/ }
+  useEffect(() => {
+    function updatePosition() {
+      setScrollPosition(window.pageYOffset);
+
+    }
+    window.addEventListener('scroll', updatePosition);
+    updatePosition();
+
+    return () => window.removeEventListener('scroll', updatePosition);
+
+  }, []);
 
   {/*Scroll Sections active link*/ }
   useEffect(() => {
@@ -74,9 +88,9 @@ export default function Home() {
 
       <Disclosure as="nav" className="">
         {({ open }) => (
-          <div className="fixed w-full top-0 left-0 bg-white z-10">
+          <div className={`fixed w-full top-0 left-0 bg-white z-10 ${scrollPosition >= 50 ? 'border-b-2 border-orange-200 border-opacity-50' : ''} `}>
             <div className=" max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 ">
-              <div className="flex items-center justify-between py-7">
+              <div className="flex items-center justify-between py-5">
                 <div className="flex-shrink-0 ">
                   <img
                     src="/logo.svg"
@@ -168,15 +182,15 @@ export default function Home() {
 
       <main>
         <div>
-          <div className='home max-w-md sm:max-w-none lg:max-w-5xl mx-auto  mb-12 px-6 py-6 lg:px-8 sm:flex sm:flex-row sm:pt-28' id='home'>
+          <div className='home max-w-md sm:max-w-none sm:gap-8 lg:max-w-5xl mx-auto mb-12 px-6 py-6 lg:px-8 sm:flex sm:flex-row sm:pt-28' id='home'>
             <div className='flex flex-col items-center sm:w-2/3 mt-20 sm:items-start'>
-              <h1 className='font-semibold text-4xl text-center text-gray-800 sm:font-bold sm:text-5xl sm:text-left' >
-                <a className='text-orange-600'>Curso</a> Tribunal do Júri: Teoria e Prática
+              <h1 className='font-semibold text-5xl text-center text-gray-800 sm:font-bold sm:text-left' >
+                Curso <a className='text-orange-600'>Interpretação Jurídica</a> com o Dr. Maurício Pereira Simões
               </h1>
               <p className='mt-4 font-normal text-sm text-center sm:mt-10 text-gray-500 sm:font-normal sm:text-base sm:text-left'>
-                Participe do nosso primeiro Curso dividido em 3 módulos com diversos conteúdos que irão da prática à teoria.
+                Análise e interpretação do texto legal, por meio da interpretação doutrinária e jurisprudencial.
               </p>
-              <Link href={'https://forms.gle/ty8bVWVCreRMpCjf7'}>
+              <Link href={'https://forms.gle/ffWNTPhfD86indUz8'}>
                 <button className='mx-auto mr-auto mt-10 mb-14 bg-orange-600 text-white font-medium text-xl py-3 px-6 rounded focus:outline-none hover:bg-orange-400 transition duration-500 sm:ml-0'>
                   Inscreva-se
                 </button>
@@ -191,19 +205,19 @@ export default function Home() {
                   <div className='text-sm '>
 
                     <span className='flex items-center my-2'>
-                      <CalendarIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />24 e 25 de Fevereiro
+                      <CalendarIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />04 de março de 2023
                     </span>
                     <span className='flex items-center my-2'>
-                      <MapIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Em Lorena-SP
+                      <MapIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Em Taubaté-SP
                     </span>
-                    {/* <span className='flex items-center my-2'>
-                    <LocationMarkerIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Auditório Hotel Platanus
-                  </span> */}
+                    <span className='flex items-center my-2'>
+                      <LocationMarkerIcon className="h-6 w-6  mr-2 text-orange-600" aria-hidden="true" />Auditório da Faculdade Anhanguera
+                    </span>
                     <span className='flex items-center my-2'>
                       <CheckCircleIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />
-                      <a>Curso com certificação de  <strong className='text-orange-600'>20h</strong></a>
+                      <a>Curso <strong className='text-orange-600'>presencial</strong></a>
                     </span>
-                    <Link href={'https://forms.gle/ty8bVWVCreRMpCjf7'}>
+                    <Link href={'https://forms.gle/ffWNTPhfD86indUz8'}>
                       <button className='flex items-center bg-orange-600 my-8 mx-auto font-medium text-xs py-2 px-4 rounded text-white focus:outline-none hover:bg-orange-400 transition duration-500'><TicketIcon className="h-6 w-6 mr-2 " aria-hidden="true" />Quero me inscrever</button>
                     </Link>
                     <span className='flex items-center my-2 font-medium text-base'>
@@ -212,8 +226,8 @@ export default function Home() {
 
                     <div className='text-xs'>
 
-                      <p> <strong> R$500,00</strong> em até 3x para <strong> ADVOGADOS </strong></p>
-                      <p> <strong> R$349,90</strong> em até 3x para <strong> ESTUDANTES DE DIREITO </strong></p>
+                      <p> <strong> R$300,00</strong> em até 3x (sem juros) no cartão.</p>
+                      <p> <strong> R$200,00</strong> para <strong> alunos matriculados nas instituições de ensino: </strong>ANHANGUERA, FACIC, FARO, FASC, SERRA DOURADA, UNISAL e UNITAU.</p>
                     </div>
 
                     <div className='my-6 mr-auto'>
@@ -222,9 +236,7 @@ export default function Home() {
                         <CreditCardIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Formas de Pagamento:
                       </span>
                       <div className='text-xs '>
-                        <p><strong>Cartão de Crédito</strong></p>
-                        <p><strong>Pix</strong></p>
-                        <p><strong>Transferência Bancária</strong></p>
+                        <p><strong>Cartão de Crédito ou Pix.</strong></p>
                       </div>
                     </div>
                   </div>
