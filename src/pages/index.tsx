@@ -188,59 +188,55 @@ export default function Home() {
             <div className='flex flex-col items-center sm:w-2/3 mt-20 sm:items-start'>
               <Fade direction='down' duration={2500} delay={400} triggerOnce>
                 <h1 className='font-semibold text-5xl text-center text-gray-800 sm:font-bold sm:text-left' >
-                  Curso <a className='text-orange-600'>Interpretação Jurídica</a> com o Dr. Maurício Pereira Simões
+                  <a className='text-orange-600'>Curso</a> Tribunal do Júri: Teoria e Prática
                 </h1>
               </Fade>
               <Fade direction='down' duration={1000} delay={400} triggerOnce>
                 <p className='mt-4 font-normal text-sm text-center sm:mt-10 text-gray-500 sm:font-normal sm:text-base sm:text-left'>
-                  Análise e interpretação do texto legal, por meio da interpretação doutrinária e jurisprudencial.
+                  Participe do nosso Curso que é dividido em 3 módulos com diversos conteúdos que vão da prática à teoria.
                 </p>
               </Fade>
-              <Link href={'https://forms.gle/ffWNTPhfD86indUz8'}>
+              <a href="https://forms.gle/Bk1gFrtujMqPQuCx8" target="_blank" >
                 <Fade direction='down' duration={1000} delay={400} triggerOnce>
                   <button className='mx-auto mr-auto mt-10 mb-14 bg-orange-600 text-white font-medium text-xl py-3 px-6 rounded focus:outline-none hover:bg-orange-400 transition duration-500 sm:ml-0'>
                     Inscreva-se
                   </button>
                 </Fade>
-              </Link>
+              </a>
             </div>
             <div className='sm:w-2/5'>
               <Fade direction='down' duration={1500} delay={600} triggerOnce>
                 <div className='border-2 border-orange-600 border-opacity-50 shadow-2xl '>
                   <div className='m-5'>
                     <button className=' border-orange-600 border-2 text-orange-600 font-medium text-xs py-2 px-4 rounded disabled cursor-auto mb-2 focus:outline-none'>
-                      Vagas limitadas
+                      Vagas Limitadas
                     </button>
                     <div className='text-sm '>
 
                       <span className='flex items-center my-2'>
-                        <CalendarIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />04 de março de 2023
+                        <CalendarIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />01 de abril (sábado)
                       </span>
                       <span className='flex items-center my-2'>
-                        <MapIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Em Taubaté-SP
+                        <MapIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Em Volta Redonda - RJ
                       </span>
-                      <span className='flex items-center my-2'>
-                        <LocationMarkerIcon className="h-6 w-6  mr-2 text-orange-600" aria-hidden="true" />Auditório da Faculdade Anhanguera
-                      </span>
+
                       <span className='flex items-center my-2'>
                         <CheckCircleIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />
                         <a>Curso <strong className='text-orange-600'>presencial</strong></a>
                       </span>
-                      <Link href={'https://forms.gle/ffWNTPhfD86indUz8'}>
+                      <a href={'https://forms.gle/Bk1gFrtujMqPQuCx8'} target='_blank'>
                         <button className='flex items-center bg-orange-600 my-8 mx-auto font-medium text-xs py-2 px-4 rounded text-white focus:outline-none hover:bg-orange-400 transition duration-500'><TicketIcon className="h-6 w-6 mr-2 " aria-hidden="true" />Quero me inscrever</button>
-                      </Link>
+                      </a>
                       <span className='flex items-center my-2 font-medium text-base'>
                         <CurrencyDollarIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Investimento:
                       </span>
 
                       <div className='text-xs'>
-
-                        <p> <strong> R$300,00</strong> em até 3x (sem juros) no cartão.</p>
-                        <p> <strong> R$200,00</strong> para <strong> alunos matriculados nas instituições de ensino: </strong>ANHANGUERA, FACIC, FARO, FASC, SERRA DOURADA, UNISAL e UNITAU.</p>
+                        <p> <strong> R$400,00</strong> em até 3x para <strong> ADVOGADOS </strong></p>
+                        <p> <strong> R$349,90</strong> em até 3x para <strong> ESTUDANTES DE DIREITO </strong></p>
                       </div>
 
                       <div className='my-6 mr-auto'>
-
                         <span className='flex items-center my-2 font-medium text-base'>
                           <CreditCardIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Formas de Pagamento:
                         </span>
@@ -248,6 +244,15 @@ export default function Home() {
                           <p><strong>Cartão de Crédito ou Pix.</strong></p>
                         </div>
                       </div>
+
+                      <span className='flex items-center my-2 font-medium text-base'>
+                        <LocationMarkerIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Local do curso:
+                      </span>
+                      <div className='text-xs'>
+                        <p>Rua <strong>Simão da Cunha Gago</strong>, <strong>19</strong> - <strong>Aterrado</strong> </p>
+                        <p>CEP <strong>27213-170</strong></p>
+                      </div>
+
                     </div>
                   </div>
                 </div>
