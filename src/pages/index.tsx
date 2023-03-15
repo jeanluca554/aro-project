@@ -233,7 +233,8 @@ export default function Home() {
 
                       <div className='text-xs'>
                         <p> <strong> R$400,00</strong> em até 3x para <strong> ADVOGADOS </strong></p>
-                        <p> <strong> R$349,90</strong> em até 3x para <strong> ESTUDANTES DE DIREITO </strong></p>
+                        <p> <strong> R$300,00</strong> em até 3x para <strong> ESTUDANTES DE DIREITO </strong></p>
+                        <p> <strong> R$349,90</strong> em até 3x para  Advogados <strong>Inscritos na Subseção de Volta Redonda e Barra Mansa</strong></p>
                       </div>
 
                       <div className='my-6 mr-auto'>
