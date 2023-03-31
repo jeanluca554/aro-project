@@ -5,8 +5,8 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { FaWhatsapp, FaInstagram, FaFacebook } from "react-icons/fa"
 import Image from 'next/image';
 import Link from 'next/link';
-import AreaCard from '../components/areaCard';
-import ContactCard from '../components/contactCard';
+import AreaCard from '../components/AreaCard';
+import ContactCard from '../components/ContactCard';
 import NavItem from '../components/NavItem'
 import MenuItem from '../components/MenuItem';
 import Consultants from '../components/Consultants';
@@ -263,7 +263,7 @@ export default function Home() {
         </div>
 
         <div className='about bg-orange-50' id="about">
-          <div className='max-w-md md:max-w-none md:max-w-5xl mx-auto pt-12 px-6 py-6 lg:px-8 md:flex md:flex-row md:mt-0'>
+          <div className='max-w-md md:max-w-5xl mx-auto pt-12 px-6 py-6 lg:px-8 md:flex md:flex-row md:mt-0'>
             <div className='md:w-3/5 pb-12 md:pt-12'>
               <Fade direction='down' duration={1000} delay={400} triggerOnce>
                 <img src="success_factors.svg" alt="" />
