@@ -3,7 +3,7 @@ import { CheckCircle, User, Wallet } from "@phosphor-icons/react";
 
 export function Steps({ currentStep }) {
   return (
-    <div className='px-6 sm:px-0 pt-8'>
+    <div className='px-6 sm:px-0 pt-8 '>
       <div className='steps flex  justify-center items-center max-w-lg my-0 mx-auto relative mb-2 px-2 '>
         <div className="step active flex flex-col items-center justify-center">
           <div className='w-14 h-14 rounded-full border-2 border-orange-600 flex items-center justify-center'>

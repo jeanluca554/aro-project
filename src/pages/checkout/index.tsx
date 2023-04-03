@@ -25,15 +25,15 @@ export default function checkout() {
       </div> */}
       <Steps currentStep={currentStep} />
       {!isFirsStep && (
-        <div className='w-full max-w-xl my-0 mx-auto bg-gray-100 p-4 sm:shadow-3xl sm:rounded-lg border-b border-gray-300'>
-          <button type="button" onClick={() => changeStep(currentStep - 1)} className='flex items-center gap-2'>
+        <div className='w-full max-w-xl my-0 mx-auto px-6 py-4 sm:rounded-lg'>
+          <button type="button" onClick={() => changeStep(currentStep - 1)} className='flex items-center gap-2 text-gray-600'>
             <ArrowLeft size={16} weight="bold" />
-            <span>Voltar</span>
+            <span className='font-medium '>Voltar</span>
           </button>
         </div>
       )
       }
-      <div className="form-container w-full sm:max-w-xl my-0 mx-auto border border-gray-300 p-6 sm:shadow-3xl sm:rounded-lg">
+      <div className="form-container w-full sm:max-w-xl my-0 mx-auto border border-gray-300 p-6 sm:rounded-lg">
         <form onSubmit={(event) => changeStep(currentStep + 1, event)} className="max-w-md my-0 mx-auto">
           <div className="inputs-container min-h-[280px]">
             {currentComponent}
@@ -42,7 +42,7 @@ export default function checkout() {
           <div className="actions flex justify-end gap-4">
 
             {!isLastStep ? (
-              <button type="submit" className='py-3 w-full text-sm text-white rounded-md bg-orange-600 hover:bg-orange-500 transition-all'>
+              <button type="submit" className='py-3 w-full text-sm text-white rounded-md bg-orange-600 hover:bg-orange-500 transition-all mb-6'>
                 <span className='font-semibold'>AVANÇAR</span>
               </button>
             ) : (
