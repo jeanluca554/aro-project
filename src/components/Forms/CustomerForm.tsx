@@ -1,15 +1,27 @@
+import { Input } from 'components';
 import React from 'react'
 
 export function CustomerForm() {
   return (
     <div>
       <div className="form-control flex flex-col gap-2 mb-8">
-        <label htmlFor="name" className='font-bold text-[#777] text-sm'>Nome:</label>
-        <input type="text" name='text' id='name' placeholder='Digite o seu nome' required className='p-2 border border-gray-300 outline-gray-400 rounded' />
-      </div>
-      <div className="form-control flex flex-col gap-2 mb-8">
-        <label htmlFor="email" className='font-bold text-[#777] text-sm'>E-mail:</label>
-        <input type="email" name='email' id='email' placeholder='Digite o seu e-mail' required className='p-2 border border-gray-300 outline-gray-400 rounded' />
+        <h2 className='font-medium text-gray-600 pt-2'>Dados pessoais</h2>
+        <Input placeholder='Nome completo' id='name' name='name' />
+        <Input placeholder='CPF' id='cpf' name='cpf' />
+        <Input placeholder='Telefone' id='phone' name='phone' />
+
+        <h2 className='font-medium text-gray-600 pt-2'>Endereço</h2>
+        <Input placeholder='CEP' id='cep' name='cep' />
+        <Input placeholder='Rua' id='street' name='street' />
+        <Input placeholder='Número' id='number' name='number' />
+        <div className='flex py-2'>
+          <input type="checkbox" id='withoutNumber' name='withoutNumber' />
+          <span className='ml-2 text-gray-500'>S/ número</span>
+        </div>
+        <Input placeholder='Complemento' id='complement' name='complement' />
+        <Input placeholder='Bairro' id='district' name='district' />
+        <Input placeholder='Cidade' id='city' name='city' />
+        <Input placeholder='UF' id='stateInitials' name='stateInitials' />
       </div>
     </div>
   )
