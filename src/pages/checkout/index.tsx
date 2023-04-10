@@ -1,11 +1,39 @@
+import { useState } from 'react';
 import { useForm } from 'hooks';
 import { CustomerForm, PaymentForm, ReviewForm, Steps } from 'components';
 import { ArrowLeft } from "@phosphor-icons/react";
 
+const formTemplate = {
+  name: '',
+  identity: '',
+  phone: '',
+  addressCity: '',
+  addressComplement: '',
+  addressDistrict: '',
+  addressNumber: '' || false,
+  addressStateInitials: '',
+  addressStreet: '',
+  addressZipCode: '',
+  creditCardHolder: '',
+  creditCardCardNumber: '',
+  creditCardExpirationDate: '',
+  creditCardSecurityCode: '',
+  creditCardInstallmentQuantity: '',
+  creditCardFocus: '',
+}
+
 export default function checkout() {
+  const [data, setData] = useState(formTemplate);
+
+  const updateFieldHandler = (key, value) => {
+    setData((prev) => {
+      return { ...prev, [key]: value }
+    })
+  }
+
   const formComponents = [
-    <CustomerForm />,
-    <PaymentForm />,
+    <CustomerForm data={data} updateFieldHandler={updateFieldHandler} />,
+    <PaymentForm data={data} updateFieldHandler={updateFieldHandler} />,
     <ReviewForm />
   ]
 
@@ -14,17 +42,13 @@ export default function checkout() {
     currentStep,
     changeStep,
     isLastStep,
-    isFirsStep,
+    isFirstStep,
   } = useForm(formComponents);
 
   return (
     <div className="app bg-white h-full sm:p-8">
-      {/* <div className="header text-center mb-8">
-        <h2 className='text-4xl mb-4'>Deixe sua avaliação</h2>
-        <p className='text-[#777]'>Ficamos felizes com a sua compra, utilize o formulário abaixo para avaliar o produto</p>
-      </div> */}
       <Steps currentStep={currentStep} />
-      {!isFirsStep && (
+      {!isFirstStep && (
         <div className='w-full max-w-xl my-0 mx-auto px-6 py-4 sm:rounded-lg'>
           <button type="button" onClick={() => changeStep(currentStep - 1)} className='flex items-center gap-2 text-gray-600'>
             <ArrowLeft size={16} weight="bold" />
@@ -42,7 +66,7 @@ export default function checkout() {
           <div className="actions flex justify-end gap-4">
 
             {!isLastStep ? (
-              <button type="submit" className='py-3 w-full text-sm text-white rounded-md bg-orange-600 hover:bg-orange-500 transition-all mb-6'>
+              <button type="submit" className='py-4 w-full text-sm text-white rounded-md bg-orange-600 hover:bg-orange-500 transition-all mb-6'>
                 <span className='font-semibold'>AVANÇAR</span>
               </button>
             ) : (
