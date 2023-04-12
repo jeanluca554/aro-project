@@ -1,4 +1,5 @@
 import { Input } from 'components';
+import { ErrorMessage } from 'components';
 
 export function CustomerForm({ data, updateFieldHandler }) {
   return (
@@ -14,15 +15,19 @@ export function CustomerForm({ data, updateFieldHandler }) {
             (e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("name", e.target.value)
           }
         />
+        <ErrorMessage field='name' />
+
         <Input
           placeholder='CPF'
-          id='cpf'
-          name='cpf'
+          id='identity'
+          name='identity'
           value={data.identity || ""}
           onChange={
             (e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("identity", e.target.value)
           }
         />
+        <ErrorMessage field='identity' />
+
         <Input
           placeholder='Telefone'
           id='phone'
@@ -32,83 +37,99 @@ export function CustomerForm({ data, updateFieldHandler }) {
             (e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("phone", e.target.value)
           }
         />
+        <ErrorMessage field='phone' />
 
         <h2 className='font-medium text-gray-600 pt-2'>Endereço</h2>
         <Input
           placeholder='CEP'
-          id='cep'
-          name='cep'
+          id='addressZipCode'
+          name='addressZipCode'
           value={data.addressZipCode || ""}
           onChange={
             (e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("addressZipCode", e.target.value)
           }
         />
+        <ErrorMessage field='addressZipCode' />
+
         <Input
           placeholder='Rua'
-          id='street'
-          name='street'
+          id='addressStreet'
+          name='addressStreet'
           value={data.addressStreet || ""}
           onChange={
             (e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("addressStreet", e.target.value)
           }
         />
+        <ErrorMessage field='addressStreet' />
+
         <Input
           placeholder='Número'
-          id='number'
-          name='number'
+          id='addressNumber'
+          name='addressNumber'
           value={data.addressNumber || ""}
           onChange={
             (e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("addressNumber", e.target.value)
           }
           disabled={data.addressNumber}
         />
+        <ErrorMessage field='addressNumber' />
+
         <div className='flex py-2'>
           <input type="checkbox"
             id='withoutNumber'
             name='withoutNumber'
-            value={data.addressComplement || ""}
+            value={data.addressComplement || "S/N"}
             onChange={
               (e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("addressNumber", e.target.checked)
             }
           />
           <span className='ml-2 text-gray-500'>S/ número</span>
         </div>
+
         <Input
           placeholder='Complemento'
-          id='complement'
-          name='complement'
+          id='addressComplement'
+          name='addressComplement'
           value={data.addressComplement || ""}
           onChange={
             (e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("addressComplement", e.target.value)
           }
         />
+        <ErrorMessage field='addressComplement' />
+
         <Input
           placeholder='Bairro'
-          id='district'
-          name='district'
+          id='addressDistrict'
+          name='addressDistrict'
           value={data.addressDistrict || ""}
           onChange={
             (e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("addressDistrict", e.target.value)
           }
         />
+        <ErrorMessage field='addressDistrict' />
+
         <Input
           placeholder='Cidade'
-          id='city'
-          name='city'
+          id='addressCity'
+          name='addressCity'
           value={data.addressCity || ""}
           onChange={
             (e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("addressCity", e.target.value)
           }
         />
+        <ErrorMessage field='addressCity' />
+
         <Input
           placeholder='UF'
-          id='stateInitials'
-          name='stateInitials'
+          id='addressStateInitials'
+          name='addressStateInitials'
           value={data.addressStateInitials || ""}
           onChange={
             (e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("addressStateInitials", e.target.value)
           }
         />
+        <ErrorMessage field='addressStateInitials' />
+
       </div>
     </div>
   )

@@ -1,5 +1,6 @@
-import { CreditCard, Input } from 'components';
 import React from 'react';
+import { CreditCard, ErrorMessage, Input } from 'components';
+
 
 export function PaymentForm({ data, updateFieldHandler }) {
   return (
@@ -18,40 +19,45 @@ export function PaymentForm({ data, updateFieldHandler }) {
         <h2 className='font-medium text-gray-600 pt-2'>Dados do cartão</h2>
         <Input
           placeholder='Nome impresso no cartão'
-          id='cardHolder'
-          name='cardHolder'
+          id='creditCardHolder'
+          name='creditCardHolder'
           value={data.creditCardHolder || ""}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("creditCardHolder", e.target.value)}
           onFocus={(e: React.FocusEvent<HTMLInputElement>) => updateFieldHandler("creditCardFocus", e.target.name)}
         />
+        <ErrorMessage field='creditCardHolder' />
 
         <Input
           placeholder='Número do cartão'
-          id='cardNumber'
-          name='cardNumber'
+          id='creditCardCardNumber'
+          name='creditCardCardNumber'
           value={data.creditCardCardNumber || ""}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("creditCardCardNumber", e.target.value)}
           onFocus={(e: React.FocusEvent<HTMLInputElement>) => updateFieldHandler("creditCardFocus", e.target.name)}
         />
+        <ErrorMessage field='creditCardCardNumber' />
+
         <div className='flex flex-wrap '>
           <div className='w-2/3 pr-2'>
             <Input
               placeholder='Validade'
-              id='cardExpirationDate'
-              name='cardExpirationDate' value={data.creditCardExpirationDate || ""}
+              id='creditCardExpirationDate'
+              name='creditCardExpirationDate' value={data.creditCardExpirationDate || ""}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("creditCardExpirationDate", e.target.value)}
               onFocus={(e: React.FocusEvent<HTMLInputElement>) => updateFieldHandler("creditCardFocus", e.target.name)}
             />
+            <ErrorMessage field='creditCardExpirationDate' />
           </div>
           <div className='w-1/3 pl-2'>
             <Input
               placeholder='CVV'
-              id='cardSecurityCode'
-              name='cardSecurityCode'
+              id='creditCardSecurityCode'
+              name='creditCardSecurityCode'
               value={data.creditCardSecurityCode || ""}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("creditCardSecurityCode", e.target.value)}
               onFocus={(e: React.FocusEvent<HTMLInputElement>) => updateFieldHandler("creditCardFocus", e.target.name)}
             />
+            <ErrorMessage field='creditCardSecurityCode' />
           </div>
         </div>
 

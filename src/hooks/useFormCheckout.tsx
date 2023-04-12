@@ -4,7 +4,7 @@ type eventProps = {
   event: React.FormEvent<HTMLFormElement>
 }
 
-export function useForm(steps) {
+export function useFormCheckout(steps) {
   const [currentStep, setCurrentStep] = useState(0);
 
   function changeStep(input, event?: React.FormEvent<HTMLFormElement>) {
