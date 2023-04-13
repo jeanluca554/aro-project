@@ -4,7 +4,8 @@ import { CustomerForm, PaymentForm, ReviewForm, Steps } from 'components';
 import { ArrowLeft } from "@phosphor-icons/react";
 import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod'
+import { zodResolver } from '@hookform/resolvers/zod';
+import { isCPF, isPhone, isCEP } from 'brazilian-values';
 
 const formTemplate = {
   name: '',
@@ -50,7 +51,10 @@ export default function checkout() {
     isFirstStep,
   } = useFormCheckout(formComponents);
 
-
+  function formatNumberPhone(phoneNumber: string) {
+    var formattedNumber = phoneNumber.replace(/[^0-9]/g, '');
+    return formattedNumber;
+  }
 
   const createCheckoutSchema = z.object({
     name: z.string().nonempty({
@@ -62,15 +66,16 @@ export default function checkout() {
         .map(word => word[0].toLocaleUpperCase().concat(word.substring(1)))
         .join(' ')
     }),
-    identity: z.string().nonempty({ message: 'O CPF é obrigatório', }).length(14),
-    phone: z.string().nonempty({ message: 'O telefone é obrigatório', }).min(14),
+    identity: z.string().refine((identity) => isCPF(identity), { message: "Não é um CPF válido" }),
+    phone: z.string().refine((phone) => isPhone(formatNumberPhone(phone)), { message: "Informe um número de telefone válido" }),
+    // phone: z.string().nonempty({ message: 'O telefone é obrigatório', }).min(14),
     addressCity: z.string().nonempty({ message: 'A cidade é obrigatória', }),
     addressComplement: z.string(),
     addressDistrict: z.string().nonempty({ message: 'O bairro é obrigatório', }),
     addressNumber: z.string(),
     addressStateInitials: z.string().nonempty({ message: 'A UF é obrigatória', }).toUpperCase(),
     addressStreet: z.string().nonempty({ message: 'A rua é obrigatória', }),
-    addressZipCode: z.string().nonempty({ message: 'O CEP é obrigatório', }),
+    addressZipCode: z.string().refine((addressZipCode) => isCEP(addressZipCode), { message: "Informe um CEP válido" }),
   })
 
   const createCheckoutSchema2 = z.object({

@@ -15,7 +15,7 @@ export function PaymentForm({ data, updateFieldHandler }) {
         />
 
       </div>
-      <div className="form-control flex flex-col gap-2 mb-8">
+      <div className="form-control flex flex-col gap-4 mb-8">
         <h2 className='font-medium text-gray-600 pt-2'>Dados do cartão</h2>
         <Input
           placeholder='Nome impresso no cartão'

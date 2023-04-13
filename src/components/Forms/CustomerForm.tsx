@@ -4,7 +4,7 @@ import { ErrorMessage } from 'components';
 export function CustomerForm({ data, updateFieldHandler }) {
   return (
     <div>
-      <div className="form-control flex flex-col gap-2 mb-8">
+      <div className="form-control flex flex-col gap-4 mb-8">
         <h2 className='font-medium text-gray-600 pt-2'>Dados pessoais</h2>
         <Input
           placeholder='Nome completo'
