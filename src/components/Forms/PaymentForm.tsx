@@ -8,7 +8,7 @@ export function PaymentForm({ data, updateFieldHandler }) {
       <div className='my-8'>
         <CreditCard
           holder={data.creditCardHolder}
-          number={data.creditCardCardNumber}
+          number={data.creditCardNumber}
           expirationDate={data.creditCardExpirationDate}
           securityCode={data.creditCardSecurityCode}
           focus={data.creditCardFocus}
@@ -29,15 +29,15 @@ export function PaymentForm({ data, updateFieldHandler }) {
 
         <Input
           placeholder='Número do cartão'
-          id='creditCardCardNumber'
-          name='creditCardCardNumber'
+          id='creditCardNumber'
+          name='creditCardNumber'
           mask='9999 9999 9999 9999'
           maskChar=" "
-          value={data.creditCardCardNumber || ""}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("creditCardCardNumber", e.target.value)}
+          value={data.creditCardNumber || ""}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("creditCardNumber", e.target.value)}
           onFocus={(e: React.FocusEvent<HTMLInputElement>) => updateFieldHandler("creditCardFocus", e.target.name)}
         />
-        <ErrorMessage field='creditCardCardNumber' />
+        <ErrorMessage field='creditCardNumber' />
 
         <div className='flex flex-wrap '>
           <div className='w-2/3 pr-2'>

@@ -18,7 +18,7 @@ const formTemplate = {
   addressStreet: '',
   addressZipCode: '',
   creditCardHolder: '',
-  creditCardCardNumber: '',
+  creditCardNumber: '',
   creditCardExpirationDate: '',
   creditCardSecurityCode: '',
   creditCardInstallmentQuantity: '',
@@ -75,7 +75,7 @@ export default function checkout() {
 
   const createCheckoutSchema2 = z.object({
     creditCardHolder: z.string().nonempty({ message: 'O nome impresso é obrigatório', }),
-    creditCardCardNumber: z.string().nonempty({ message: 'O número do cartão é obrigatório', }).length(19, {
+    creditCardNumber: z.string().nonempty({ message: 'O número do cartão é obrigatório', }).length(19, {
       message: 'Insira um número válido de 0-16'
     }),
     creditCardExpirationDate: z.string().nonempty({ message: 'A data de expiração é obrigatória', }),
