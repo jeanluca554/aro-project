@@ -62,13 +62,13 @@ export default function checkout() {
         .map(word => word[0].toLocaleUpperCase().concat(word.substring(1)))
         .join(' ')
     }),
-    identity: z.string().nonempty({ message: 'O CPF é obrigatório', }),
-    phone: z.string().nonempty({ message: 'O telefone é obrigatório', }),
+    identity: z.string().nonempty({ message: 'O CPF é obrigatório', }).length(14),
+    phone: z.string().nonempty({ message: 'O telefone é obrigatório', }).min(14),
     addressCity: z.string().nonempty({ message: 'A cidade é obrigatória', }),
     addressComplement: z.string(),
     addressDistrict: z.string().nonempty({ message: 'O bairro é obrigatório', }),
     addressNumber: z.string(),
-    addressStateInitials: z.string().nonempty({ message: 'A UF é obrigatória', }),
+    addressStateInitials: z.string().nonempty({ message: 'A UF é obrigatória', }).toUpperCase(),
     addressStreet: z.string().nonempty({ message: 'A rua é obrigatória', }),
     addressZipCode: z.string().nonempty({ message: 'O CEP é obrigatório', }),
   })

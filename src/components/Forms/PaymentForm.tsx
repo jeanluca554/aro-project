@@ -31,6 +31,8 @@ export function PaymentForm({ data, updateFieldHandler }) {
           placeholder='Número do cartão'
           id='creditCardCardNumber'
           name='creditCardCardNumber'
+          mask='9999 9999 9999 9999'
+          maskChar=" "
           value={data.creditCardCardNumber || ""}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("creditCardCardNumber", e.target.value)}
           onFocus={(e: React.FocusEvent<HTMLInputElement>) => updateFieldHandler("creditCardFocus", e.target.name)}
@@ -42,7 +44,10 @@ export function PaymentForm({ data, updateFieldHandler }) {
             <Input
               placeholder='Validade'
               id='creditCardExpirationDate'
-              name='creditCardExpirationDate' value={data.creditCardExpirationDate || ""}
+              name='creditCardExpirationDate'
+              mask='99/99'
+              maskChar=" "
+              value={data.creditCardExpirationDate || ""}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("creditCardExpirationDate", e.target.value)}
               onFocus={(e: React.FocusEvent<HTMLInputElement>) => updateFieldHandler("creditCardFocus", e.target.name)}
             />
@@ -53,6 +58,8 @@ export function PaymentForm({ data, updateFieldHandler }) {
               placeholder='CVV'
               id='creditCardSecurityCode'
               name='creditCardSecurityCode'
+              mask='999'
+              maskChar=" "
               value={data.creditCardSecurityCode || ""}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("creditCardSecurityCode", e.target.value)}
               onFocus={(e: React.FocusEvent<HTMLInputElement>) => updateFieldHandler("creditCardFocus", e.target.name)}
