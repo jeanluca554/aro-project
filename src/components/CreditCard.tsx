@@ -8,8 +8,6 @@ type InputProps = {
   focus: any;
 }
 export function CreditCard(props: InputProps) {
-
-
   return (
     <>
       <Cards
