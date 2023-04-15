@@ -6,6 +6,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { isCPF, isPhone, isCEP } from 'brazilian-values';
+import cep from 'cep-promise';
 
 const formTemplate = {
   name: '',
@@ -31,7 +32,42 @@ export default function checkout() {
   const [output, setOutput] = useState('')
   // const { handleSubmit } = useForm()
 
+  function onlyNumbers(input: string) {
+    var formattedNumber = input.replace(/[^0-9]/g, '');
+    return formattedNumber;
+  }
+
   const updateFieldHandler = (key, value) => {
+    if (key === 'addressNumber') console.log(value)
+
+    if (key === 'addressZipCode') {
+      var formattedNumber = onlyNumbers(value);
+
+      const getCep = async () => {
+        try {
+          const addressInfo = await cep(formattedNumber);
+          setData((prev) => {
+            return {
+              ...prev,
+              [key]: value,
+              addressStreet: addressInfo.street,
+              addressDistrict: addressInfo.neighborhood,
+              addressCity: addressInfo.city,
+              addressStateInitials: addressInfo.state
+            }
+          })
+        } catch (e) {
+          console.log('CEP inválido');
+        }
+      };
+
+      if (formattedNumber.length === 8) {
+        // cep(formattedNumber).then(console.log).catch(console.log)
+        getCep();
+
+      }
+    }
+
     setData((prev) => {
       return { ...prev, [key]: value }
     })
@@ -51,10 +87,7 @@ export default function checkout() {
     isFirstStep,
   } = useFormCheckout(formComponents);
 
-  function formatNumberPhone(phoneNumber: string) {
-    var formattedNumber = phoneNumber.replace(/[^0-9]/g, '');
-    return formattedNumber;
-  }
+
 
   const createCheckoutSchema = z.object({
     name: z.string().nonempty({
@@ -67,7 +100,7 @@ export default function checkout() {
         .join(' ')
     }),
     identity: z.string().refine((identity) => isCPF(identity), { message: "Não é um CPF válido" }),
-    phone: z.string().refine((phone) => isPhone(formatNumberPhone(phone)), { message: "Informe um número de telefone válido" }),
+    phone: z.string().refine((phone) => isPhone(onlyNumbers(phone)), { message: "Informe um número de telefone válido" }),
     // phone: z.string().nonempty({ message: 'O telefone é obrigatório', }).min(14),
     addressCity: z.string().nonempty({ message: 'A cidade é obrigatória', }),
     addressComplement: z.string(),

@@ -28,7 +28,8 @@ export function Input(props: InputProps) {
           id={props.id}
           placeholder={props.placeholder}
           //only used in checkbox `withoutNumber`:
-          value={props.disabled === true ? "S/N" : props.value}
+          // value={props.disabled === true ? "S/N" : props.value}
+          value={props.value}
           onChange={props.onChange}
           onFocus={props.onFocus}
           disabled={props.disabled === true}
@@ -44,7 +45,8 @@ export function Input(props: InputProps) {
           id={props.id}
           placeholder={props.placeholder}
           //only used in checkbox `withoutNumber`:
-          value={props.disabled === true ? "S/N" : props.value}
+          // value={props.disabled === true ? "S/N" : props.value}
+          value={typeof props.value === "boolean" ? "S/N" : props.value}
           onChange={props.onChange}
           onFocus={props.onFocus}
           disabled={props.disabled === true}

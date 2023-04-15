@@ -82,7 +82,7 @@ export function CustomerForm({ data, updateFieldHandler }) {
           <input type="checkbox"
             id='withoutNumber'
             name='withoutNumber'
-            value={data.addressComplement || "S/N"}
+            value={data.addressNumber || "S/N"}
             onChange={
               (e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("addressNumber", e.target.checked)
             }
@@ -120,6 +120,7 @@ export function CustomerForm({ data, updateFieldHandler }) {
           onChange={
             (e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("addressCity", e.target.value)
           }
+        // disabled={true}
         />
         <ErrorMessage field='addressCity' />
 
@@ -132,6 +133,7 @@ export function CustomerForm({ data, updateFieldHandler }) {
           onChange={
             (e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("addressStateInitials", e.target.value)
           }
+        // disabled={true}
         />
         <ErrorMessage field='addressStateInitials' />
 
