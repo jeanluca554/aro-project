@@ -16,7 +16,7 @@ export function CreditCard(props: InputProps) {
         cvc={props.securityCode}
         expiry={props.expirationDate}
         // focused={'cvc'}
-        focused={(props.focus === 'cardSecurityCode') ? 'cvc' : 'name'}
+        focused={(props.focus === 'creditCardSecurityCode') ? 'cvc' : 'name'}
         name={props.holder}
         number={props.number}
         locale={{ valid: 'Válido até' }}
