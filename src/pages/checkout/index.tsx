@@ -38,8 +38,6 @@ export default function checkout() {
   }
 
   const updateFieldHandler = (key, value) => {
-    if (key === 'addressNumber') console.log(value)
-
     if (key === 'addressZipCode') {
       var formattedNumber = onlyNumbers(value);
 
