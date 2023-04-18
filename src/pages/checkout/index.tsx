@@ -44,10 +44,14 @@ export default function checkout() {
       const getCep = async () => {
         try {
           const addressInfo = await cep(formattedNumber);
+
           setData((prev) => {
+            setValue("addressCity", addressInfo.city);
+            setValue("addressDistrict", addressInfo.neighborhood);
+            setValue("addressStreet", addressInfo.street);
+            setValue("addressStateInitials", addressInfo.state);
             return {
               ...prev,
-              [key]: value,
               addressStreet: addressInfo.street,
               addressDistrict: addressInfo.neighborhood,
               addressCity: addressInfo.city,
@@ -60,9 +64,7 @@ export default function checkout() {
       };
 
       if (formattedNumber.length === 8) {
-        // cep(formattedNumber).then(console.log).catch(console.log)
         getCep();
-
       }
     }
 
@@ -85,7 +87,10 @@ export default function checkout() {
     isFirstStep,
   } = useFormCheckout(formComponents);
 
-
+  function isNotEmpty(input: string) {
+    const inputTrim = input.trim();
+    return inputTrim.length > 0 ? true : false
+  }
 
   const createCheckoutSchema = z.object({
     name: z.string().nonempty({
@@ -99,20 +104,19 @@ export default function checkout() {
     }),
     identity: z.string().refine((identity) => isCPF(identity), { message: "Não é um CPF válido" }),
     phone: z.string().refine((phone) => isPhone(onlyNumbers(phone)), { message: "Informe um número de telefone válido" }),
-    // phone: z.string().nonempty({ message: 'O telefone é obrigatório', }).min(14),
-    addressCity: z.string().nonempty({ message: 'A cidade é obrigatória', }),
+    addressCity: z.string(),
     addressComplement: z.string(),
-    addressDistrict: z.string().nonempty({ message: 'O bairro é obrigatório', }),
+    addressDistrict: z.string().nonempty({ message: "Informe um bairro válido" }),
     addressNumber: z.string(),
-    addressStateInitials: z.string().nonempty({ message: 'A UF é obrigatória', }).toUpperCase(),
-    addressStreet: z.string().nonempty({ message: 'A rua é obrigatória', }),
+    addressStateInitials: z.string(),
+    addressStreet: z.string().nonempty({ message: "Informe uma rua, avenida ou logradouro" }),
     addressZipCode: z.string().refine((addressZipCode) => isCEP(addressZipCode), { message: "Informe um CEP válido" }),
   })
 
   const createCheckoutSchema2 = z.object({
     creditCardHolder: z.string().nonempty({ message: 'O nome impresso é obrigatório', }),
     creditCardNumber: z.string().nonempty({ message: 'O número do cartão é obrigatório', }).length(19, {
-      message: 'Insira um número válido de 0-16'
+      message: 'Insira um número válido de 0-16 dígitos'
     }),
     creditCardExpirationDate: z.string().nonempty({ message: 'A data de expiração é obrigatória', }),
     creditCardSecurityCode: z.string().nonempty({ message: 'CVV inválido', }),
@@ -124,14 +128,9 @@ export default function checkout() {
     resolver: zodResolver(currentStep === 1 ? createCheckoutSchema2 : createCheckoutSchema),
   })
 
-  const {
-    handleSubmit,
-    formState: { isSubmitting },
-    watch,
-    control,
-  } = createCheckoutForm;
+  const { handleSubmit, setValue } = createCheckoutForm;
 
-  function onSubmit(data: CreateCheckoutData, event: any) {
+  function onSubmit(data, event: any) {
     console.log(currentStep);
     setOutput(JSON.stringify(data, null, 2))
     changeStep(currentStep + 1);
@@ -153,8 +152,6 @@ export default function checkout() {
         <FormProvider {...createCheckoutForm} >
           <form
             onSubmit={handleSubmit(onSubmit)}
-            // onSubmit={(event) => { handleSubmit(onSubmit); changeStep(currentStep + 1, event) }}
-            // onSubmit={(event) => { handleSubmitForm(event) }}
             className="max-w-md my-0 mx-auto"
           >
             <div className="inputs-container min-h-[280px]">

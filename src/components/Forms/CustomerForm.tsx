@@ -63,6 +63,7 @@ export function CustomerForm({ data, updateFieldHandler }) {
           onChange={
             (e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("addressStreet", e.target.value)
           }
+        // disabled={true}
         />
         <ErrorMessage field='addressStreet' />
 
@@ -94,7 +95,7 @@ export function CustomerForm({ data, updateFieldHandler }) {
           placeholder='Complemento'
           id='addressComplement'
           name='addressComplement'
-          value={data.addressComplement || ""}
+          value={data.addressComplement}
           onChange={
             (e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("addressComplement", e.target.value)
           }
@@ -105,7 +106,7 @@ export function CustomerForm({ data, updateFieldHandler }) {
           placeholder='Bairro'
           id='addressDistrict'
           name='addressDistrict'
-          value={data.addressDistrict || ""}
+          value={data.addressDistrict}
           onChange={
             (e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("addressDistrict", e.target.value)
           }
@@ -116,11 +117,11 @@ export function CustomerForm({ data, updateFieldHandler }) {
           placeholder='Cidade'
           id='addressCity'
           name='addressCity'
-          value={data.addressCity || ""}
+          value={data.addressCity}
           onChange={
             (e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("addressCity", e.target.value)
           }
-        // disabled={true}
+          disabled={true}
         />
         <ErrorMessage field='addressCity' />
 
@@ -129,11 +130,11 @@ export function CustomerForm({ data, updateFieldHandler }) {
           id='addressStateInitials'
           name='addressStateInitials'
           mask='aa'
-          value={data.addressStateInitials || ""}
+          value={data.addressStateInitials}
           onChange={
             (e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("addressStateInitials", e.target.value)
           }
-        // disabled={true}
+          disabled={true}
         />
         <ErrorMessage field='addressStateInitials' />
 

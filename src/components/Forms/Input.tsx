@@ -10,7 +10,6 @@ type InputProps = {
   value: string;
   onChange: any;
   disabled?: boolean;
-  onFocus?: any;
   mask?: string;
   maskChar?: string;
 }
@@ -27,12 +26,9 @@ export function Input(props: InputProps) {
           {...register(props.name)}
           id={props.id}
           placeholder={props.placeholder}
-          //only used in checkbox `withoutNumber`:
-          // value={props.disabled === true ? "S/N" : props.value}
           value={props.value}
           onChange={props.onChange}
-          onFocus={props.onFocus}
-          disabled={props.disabled === true}
+          disabled={props.disabled}
           className={`py-3 px-4 border-2 border-gray-200 outline-gray-400 rounded bg-gray-200 text-gray-700 placeholder-gray-500  focus:outline-none focus:bg-white focus:border-orange-500 block w-full disabled:bg-gray-300 disabled:text-gray-500 disabled:border-gray-300 focus:invalid:border-red-500`}
           mask={props.mask}
           maskChar=' '
@@ -45,10 +41,8 @@ export function Input(props: InputProps) {
           id={props.id}
           placeholder={props.placeholder}
           //only used in checkbox `withoutNumber`:
-          // value={props.disabled === true ? "S/N" : props.value}
           value={typeof props.value === "boolean" ? "S/N" : props.value}
           onChange={props.onChange}
-          onFocus={props.onFocus}
           disabled={props.disabled === true}
           className={`py-3 px-4 border-2 border-gray-200 outline-gray-400 rounded bg-gray-200 text-gray-700 placeholder-gray-500  focus:outline-none focus:bg-white focus:border-orange-500 block w-full disabled:bg-gray-300 disabled:text-gray-500 disabled:border-gray-300 focus:invalid:border-red-500`}
         />
