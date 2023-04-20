@@ -9,6 +9,7 @@ type InputProps = {
   id: string;
   value: string;
   onChange: any;
+  onFocus?: any;
   disabled?: boolean;
   mask?: string;
   maskChar?: string;
@@ -28,6 +29,7 @@ export function Input(props: InputProps) {
           placeholder={props.placeholder}
           value={props.value}
           onChange={props.onChange}
+          onFocus={props.onFocus}
           disabled={props.disabled}
           className={`py-3 px-4 border-2 border-gray-200 outline-gray-400 rounded bg-gray-200 text-gray-700 placeholder-gray-500  focus:outline-none focus:bg-white focus:border-orange-500 block w-full disabled:bg-gray-300 disabled:text-gray-500 disabled:border-gray-300 focus:invalid:border-red-500`}
           mask={props.mask}
@@ -43,6 +45,7 @@ export function Input(props: InputProps) {
           //only used in checkbox `withoutNumber`:
           value={typeof props.value === "boolean" ? "S/N" : props.value}
           onChange={props.onChange}
+          onFocus={props.onFocus}
           disabled={props.disabled === true}
           className={`py-3 px-4 border-2 border-gray-200 outline-gray-400 rounded bg-gray-200 text-gray-700 placeholder-gray-500  focus:outline-none focus:bg-white focus:border-orange-500 block w-full disabled:bg-gray-300 disabled:text-gray-500 disabled:border-gray-300 focus:invalid:border-red-500`}
         />
