@@ -70,6 +70,13 @@ export default function checkout() {
       }
     }
 
+    // if (key === 'addressNumber' && value === true) {
+    //   setDataForm((prev) => {
+    //     return { ...prev, [key]: "S/N" }
+    //   })
+    //   return;
+    // }
+
     setDataForm((prev) => {
       return { ...prev, [key]: value }
     })
@@ -131,7 +138,19 @@ export default function checkout() {
     console.log("Os dados salvos são: " + JSON.stringify(dataForm, null, 2));
   }
 
+  function transformAddressNumber(addressNumber: string | true) {
+    if (addressNumber === true || addressNumber === '') {
+      return "S/N"
+    }
+    else {
+      return addressNumber
+    }
+  }
+
   async function createTransaction() {
+    const formattedAddressNumber = transformAddressNumber(dataForm.addressNumber)
+    console.log("o número do endereço formatado é: ", formattedAddressNumber)
+
     await TransactionServices.transaction({
       paymentMethod: "2",
       customerName: dataForm.name,
@@ -140,7 +159,7 @@ export default function checkout() {
       customerEmail: "safe2pay@safe2pay.com.br",
       addressZipCode: dataForm.addressZipCode,
       addressStreet: dataForm.addressStreet,
-      addressNumber: dataForm.addressNumber,
+      addressNumber: formattedAddressNumber,
       addressComplement: dataForm.addressComplement,
       addressDistrict: dataForm.addressDistrict,
       addressCity: dataForm.addressCity,
@@ -178,7 +197,7 @@ export default function checkout() {
         }
       })
       .catch(error => {
-        if (error.statusCode === 400) {
+        if (error.code === "ERR_BAD_REQUEST") {
           console.log(JSON.stringify(error.response.data, null, 2));
         }
         else {
