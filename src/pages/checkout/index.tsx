@@ -7,6 +7,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { isCPF, isPhone, isCEP } from 'brazilian-values';
 import cep from 'cep-promise';
+import { TransactionServices } from 'services';
 
 const formTemplate = {
   name: '',
@@ -15,7 +16,7 @@ const formTemplate = {
   addressCity: '',
   addressComplement: '',
   addressDistrict: '',
-  addressNumber: '' || false,
+  addressNumber: '',
   addressStateInitials: '',
   addressStreet: '',
   addressZipCode: '',
@@ -25,12 +26,13 @@ const formTemplate = {
   creditCardSecurityCode: '',
   creditCardInstallmentQuantity: '',
   creditCardFocus: '',
+  message: '',
+  description: '',
 }
 
 export default function checkout() {
-  const [data, setData] = useState(formTemplate);
+  const [dataForm, setDataForm] = useState(formTemplate);
   const [output, setOutput] = useState('')
-  // const { handleSubmit } = useForm()
 
   function onlyNumbers(input: string) {
     var formattedNumber = input.replace(/[^0-9]/g, '');
@@ -45,7 +47,7 @@ export default function checkout() {
         try {
           const addressInfo = await cep(formattedNumber);
 
-          setData((prev) => {
+          setDataForm((prev) => {
             setValue("addressCity", addressInfo.city);
             setValue("addressDistrict", addressInfo.neighborhood);
             setValue("addressStreet", addressInfo.street);
@@ -68,15 +70,15 @@ export default function checkout() {
       }
     }
 
-    setData((prev) => {
+    setDataForm((prev) => {
       return { ...prev, [key]: value }
     })
   }
 
   const formComponents = [
-    <CustomerForm data={data} updateFieldHandler={updateFieldHandler} />,
-    <PaymentForm data={data} updateFieldHandler={updateFieldHandler} />,
-    <ReviewForm />
+    <CustomerForm data={dataForm} updateFieldHandler={updateFieldHandler} />,
+    <PaymentForm data={dataForm} updateFieldHandler={updateFieldHandler} />,
+    <ReviewForm data={dataForm} />
   ]
 
   const {
@@ -86,11 +88,6 @@ export default function checkout() {
     isLastStep,
     isFirstStep,
   } = useFormCheckout(formComponents);
-
-  function isNotEmpty(input: string) {
-    const inputTrim = input.trim();
-    return inputTrim.length > 0 ? true : false
-  }
 
   const createCheckoutSchema = z.object({
     name: z.string().nonempty({
@@ -130,9 +127,74 @@ export default function checkout() {
 
   const { handleSubmit, setValue } = createCheckoutForm;
 
-  function onSubmit(data, event: any) {
-    console.log(currentStep);
+  function outputData() {
+    console.log("Os dados salvos são: " + JSON.stringify(dataForm, null, 2));
+  }
+
+  async function createTransaction() {
+    await TransactionServices.transaction({
+      paymentMethod: "2",
+      customerName: dataForm.name,
+      customerIdentity: dataForm.identity,
+      customerPhone: dataForm.phone,
+      customerEmail: "safe2pay@safe2pay.com.br",
+      addressZipCode: dataForm.addressZipCode,
+      addressStreet: dataForm.addressStreet,
+      addressNumber: dataForm.addressNumber,
+      addressComplement: dataForm.addressComplement,
+      addressDistrict: dataForm.addressDistrict,
+      addressCity: dataForm.addressCity,
+      addressStateInitials: dataForm.addressStateInitials,
+      courseCode: "41fa7a4c-8315-4f2e-8e99-20c123ab34b0",
+      courseDescription: "Tribunal do Júri",
+      courseUnitPrice: 400,
+      creditCardHolder: dataForm.creditCardHolder,
+      creditCardCardNumber: dataForm.creditCardNumber,
+      creditCardExpirationDate: dataForm.creditCardExpirationDate,
+      creditCardSecurityCode: dataForm.creditCardSecurityCode,
+      creditCardInstallmentQuantity: 2
+    })
+      .then((response) => {
+        if (response.status === 201) {
+          setDataForm((prev) => {
+            return {
+              ...prev,
+              description: response.data.transactionResult.description,
+              message: response.data.transactionResult.message
+            }
+          })
+
+          console.log(response.data.transactionResult.message)
+          console.log(response.data.transactionResult.description)
+          console.log(response);
+          outputData()
+          return {
+            message: response.data.transactionResult.message,
+            description: response.data.transactionResult.description,
+          }
+        }
+        else {
+          console.log(response)
+        }
+      })
+      .catch(error => {
+        if (error.statusCode === 400) {
+          console.log(JSON.stringify(error.response.data, null, 2));
+        }
+        else {
+          console.log(error);
+        }
+      });
+  }
+
+  function onSubmit(data: CreateCheckoutData) {
+    console.log("O passo atual é: " + currentStep);
+    outputData();
+    if (currentStep === 1) {
+      createTransaction()
+    }
     setOutput(JSON.stringify(data, null, 2))
+    // currentStep === 0 && changeStep(currentStep + 1);
     changeStep(currentStep + 1);
   }
 

@@ -45,7 +45,7 @@ export function PaymentForm({ data, updateFieldHandler }) {
               placeholder='Validade'
               id='creditCardExpirationDate'
               name='creditCardExpirationDate'
-              mask='99/99'
+              mask='99/9999'
               maskChar=" "
               value={data.creditCardExpirationDate || ""}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("creditCardExpirationDate", e.target.value)}

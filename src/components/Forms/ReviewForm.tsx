@@ -1,7 +1,22 @@
+import { CreditCard } from 'components/CreditCard';
 import React from 'react'
 
-export function ReviewForm() {
+type ReviewProps = {
+  message: string;
+  description: string;
+}
+
+export function ReviewForm({ data }) {
   return (
-    <div>ReviewForm</div>
+    <div>
+      {data.message === ""
+        ? "Carregando transação..."
+        : (<>
+          <h1>{data.message}</h1>
+          <h2>{data.description}</h2>
+        </>)
+
+      }
+    </div>
   )
 }
