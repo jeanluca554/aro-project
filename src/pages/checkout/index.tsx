@@ -70,13 +70,6 @@ export default function checkout() {
       }
     }
 
-    // if (key === 'addressNumber' && value === true) {
-    //   setDataForm((prev) => {
-    //     return { ...prev, [key]: "S/N" }
-    //   })
-    //   return;
-    // }
-
     setDataForm((prev) => {
       return { ...prev, [key]: value }
     })
@@ -85,7 +78,7 @@ export default function checkout() {
   const formComponents = [
     <CustomerForm data={dataForm} updateFieldHandler={updateFieldHandler} />,
     <PaymentForm data={dataForm} updateFieldHandler={updateFieldHandler} />,
-    <ReviewForm data={dataForm} />
+    <ReviewForm data={dataForm} />,
   ]
 
   const {
@@ -175,21 +168,28 @@ export default function checkout() {
     })
       .then((response) => {
         if (response.status === 201) {
-          setDataForm((prev) => {
-            return {
-              ...prev,
-              description: response.data.transactionResult.description,
-              message: response.data.transactionResult.message
-            }
-          })
+          if (response.data.transactionResult.errorCode) {
+            setDataForm((prev) => {
+              return {
+                ...prev,
+                description: response.data.transactionResult.errorMessage,
+                message: "Algo deu errado"
+              }
+            })
+          }
+          else {
+            setDataForm((prev) => {
+              return {
+                ...prev,
+                description: response.data.transactionResult.description,
+                message: response.data.transactionResult.message
+              }
+            })
 
-          console.log(response.data.transactionResult.message)
-          console.log(response.data.transactionResult.description)
-          console.log(response);
-          outputData()
-          return {
-            message: response.data.transactionResult.message,
-            description: response.data.transactionResult.description,
+            console.log(response.data.transactionResult.message)
+            console.log(response.data.transactionResult.description)
+            console.log(response);
+            outputData()
           }
         }
         else {
@@ -241,7 +241,15 @@ export default function checkout() {
 
             <div className="actions flex justify-end gap-4">
 
-              {!isLastStep ? (
+              {!isLastStep && (
+                <button
+                  type="submit"
+                  className='py-4 w-full text-sm text-white rounded-md bg-orange-600 hover:bg-orange-500 transition-all mb-6'
+                >
+                  <span className='font-semibold'>AVANÇAR</span>
+                </button>
+              )}
+              {/* {!isLastStep ? (
                 <button
                   type="submit"
                   className='py-4 w-full text-sm text-white rounded-md bg-orange-600 hover:bg-orange-500 transition-all mb-6'
@@ -252,7 +260,7 @@ export default function checkout() {
                 <button type="button">
                   <span>Enviar</span>
                 </button>
-              )}
+              )} */}
 
             </div>
           </form>
