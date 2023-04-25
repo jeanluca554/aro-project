@@ -8,6 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { isCPF, isPhone, isCEP } from 'brazilian-values';
 import cep from 'cep-promise';
 import { TransactionServices } from 'services';
+import toast, { ToastBar, Toaster } from 'react-hot-toast';
 
 const formTemplate = {
   name: '',
@@ -29,6 +30,9 @@ const formTemplate = {
   message: '',
   description: '',
 }
+
+// const notify = () => toast.error('Ocorreu um erro ao encontrar os dados do CEP.');
+const notify = () => toast.error("Ocorreu um erro ao encontrar os dados do CEP.")
 
 export default function checkout() {
   const [dataForm, setDataForm] = useState(formTemplate);
@@ -62,6 +66,20 @@ export default function checkout() {
           })
         } catch (e) {
           console.log('CEP inválido');
+          setDataForm((prev) => {
+            setValue("addressCity", "");
+            setValue("addressDistrict", "");
+            setValue("addressStreet", "");
+            setValue("addressStateInitials", "");
+            return {
+              ...prev,
+              addressStreet: "",
+              addressDistrict: "",
+              addressCity: "",
+              addressStateInitials: ""
+            }
+          })
+          notify()
         }
       };
 
@@ -262,6 +280,20 @@ export default function checkout() {
                 </button>
               )} */}
 
+              <Toaster
+                position="top-right"
+                toastOptions={{ duration: 6000 }}
+              >
+                {(t) => (
+                  <ToastBar
+                    toast={t}
+                    style={{
+                      ...t.style,
+                      animation: t.visible ? 'custom-enter 1s ease' : 'custom-exit 1s ease',
+                    }}
+                  />
+                )}
+              </Toaster>
             </div>
           </form>
         </FormProvider>
