@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useFormCheckout } from 'hooks';
-import { CustomerForm, PaymentForm, ReviewForm, Steps } from 'components';
+import { CheckoutBannerRightSide, CheckoutBannerTopSide, CustomerForm, PaymentForm, ReviewForm, Steps } from 'components';
 import { ArrowLeft } from "@phosphor-icons/react";
 import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -31,7 +31,6 @@ const formTemplate = {
   description: '',
 }
 
-// const notify = () => toast.error('Ocorreu um erro ao encontrar os dados do CEP.');
 const notify = () => toast.error("Ocorreu um erro ao encontrar os dados do CEP.")
 
 export default function checkout() {
@@ -236,7 +235,7 @@ export default function checkout() {
   }
 
   return (
-    <div className="app bg-white h-full sm:p-8">
+    <div className="app bg-white h-full md:p-8">
       <Steps currentStep={currentStep} />
       {!isFirstStep && (
         <div className='w-full max-w-xl my-0 mx-auto px-6 py-4 sm:rounded-lg'>
@@ -247,27 +246,30 @@ export default function checkout() {
         </div>
       )
       }
-      <div className="form-container w-full sm:max-w-xl my-0 mx-auto border border-gray-300 p-6 sm:rounded-lg">
-        <FormProvider {...createCheckoutForm} >
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="max-w-md my-0 mx-auto"
-          >
-            <div className="inputs-container min-h-[280px]">
-              {currentComponent}
-            </div>
+      <div className='md:flex items-start justify-center gap-8'>
+        <CheckoutBannerTopSide />
+        <div className="form-container w-full md:max-w-xl my-0  border border-gray-300 p-6 md:rounded-lg">
+          <FormProvider {...createCheckoutForm} >
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="max-w-md my-0 mx-auto"
+            >
+              <div className="inputs-container min-h-[280px]">
+                {currentComponent}
+              </div>
 
-            <div className="actions flex justify-end gap-4">
 
-              {!isLastStep && (
-                <button
-                  type="submit"
-                  className='py-4 w-full text-sm text-white rounded-md bg-orange-600 hover:bg-orange-500 transition-all mb-6'
-                >
-                  <span className='font-semibold'>AVANÇAR</span>
-                </button>
-              )}
-              {/* {!isLastStep ? (
+              <div className="actions flex justify-end gap-4">
+
+                {!isLastStep && (
+                  <button
+                    type="submit"
+                    className='py-4 w-full text-sm text-white rounded-md bg-orange-600 hover:bg-orange-500 transition-all mb-6'
+                  >
+                    <span className='font-semibold'>AVANÇAR</span>
+                  </button>
+                )}
+                {/* {!isLastStep ? (
                 <button
                   type="submit"
                   className='py-4 w-full text-sm text-white rounded-md bg-orange-600 hover:bg-orange-500 transition-all mb-6'
@@ -280,29 +282,31 @@ export default function checkout() {
                 </button>
               )} */}
 
-              <Toaster
-                position="top-right"
-                toastOptions={{ duration: 6000 }}
-              >
-                {(t) => (
-                  <ToastBar
-                    toast={t}
-                    style={{
-                      ...t.style,
-                      animation: t.visible ? 'custom-enter 1s ease' : 'custom-exit 1s ease',
-                    }}
-                  />
-                )}
-              </Toaster>
-            </div>
-          </form>
-        </FormProvider>
-        {output && (
-          <pre className="text-sm bg-zinc-800 text-zinc-100 p-6 rounded-lg">
-            {output}
-          </pre>
-        )}
+                <Toaster
+                  position="top-right"
+                  toastOptions={{ duration: 6000 }}
+                >
+                  {(t) => (
+                    <ToastBar
+                      toast={t}
+                      style={{
+                        ...t.style,
+                        animation: t.visible ? 'custom-enter 1s ease' : 'custom-exit 1s ease',
+                      }}
+                    />
+                  )}
+                </Toaster>
+              </div>
+            </form>
+          </FormProvider>
+          {output && (
+            <pre className="text-sm bg-zinc-800 text-zinc-100 p-6 rounded-lg">
+              {output}
+            </pre>
+          )}
+        </div>
+        <CheckoutBannerRightSide />
       </div>
-    </div>
+    </div >
   )
 }
