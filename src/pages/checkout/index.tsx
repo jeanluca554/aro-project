@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useFormCheckout } from 'hooks';
-import { CheckoutBannerRightSide, CheckoutBannerTopSide, CustomerForm, PaymentForm, ReviewForm, Steps } from 'components';
+import { AddressForm, CheckoutBannerRightSide, CheckoutBannerTopSide, CustomerForm, PaymentForm, ReviewForm, Steps } from 'components';
 import { ArrowLeft } from "@phosphor-icons/react";
 import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -94,6 +94,7 @@ export default function checkout() {
 
   const formComponents = [
     <CustomerForm data={dataForm} updateFieldHandler={updateFieldHandler} />,
+    <AddressForm data={dataForm} updateFieldHandler={updateFieldHandler} />,
     <PaymentForm data={dataForm} updateFieldHandler={updateFieldHandler} />,
     <ReviewForm data={dataForm} />,
   ]
@@ -118,6 +119,10 @@ export default function checkout() {
     }),
     identity: z.string().refine((identity) => isCPF(identity), { message: "Não é um CPF válido" }),
     phone: z.string().refine((phone) => isPhone(onlyNumbers(phone)), { message: "Informe um número de telefone válido" }),
+
+  })
+
+  const createCheckoutSchema1 = z.object({
     addressCity: z.string(),
     addressComplement: z.string(),
     addressDistrict: z.string().nonempty({ message: "Informe um bairro válido" }),
@@ -136,10 +141,16 @@ export default function checkout() {
     creditCardSecurityCode: z.string().nonempty({ message: 'CVV inválido', }),
   })
 
-  type CreateCheckoutData = z.infer<typeof createCheckoutSchema>
+  const checkoutSchemaTemplate = [
+    createCheckoutSchema,
+    createCheckoutSchema1,
+    createCheckoutSchema2,
+  ]
+
+  type CreateCheckoutData = z.infer<typeof createCheckoutSchema1>
 
   const createCheckoutForm = useForm<CreateCheckoutData>({
-    resolver: zodResolver(currentStep === 1 ? createCheckoutSchema2 : createCheckoutSchema),
+    resolver: zodResolver(checkoutSchemaTemplate[currentStep]),
   })
 
   const { handleSubmit, setValue } = createCheckoutForm;
@@ -226,7 +237,7 @@ export default function checkout() {
   function onSubmit(data: CreateCheckoutData) {
     console.log("O passo atual é: " + currentStep);
     outputData();
-    if (currentStep === 1) {
+    if (currentStep === 2) {
       createTransaction()
     }
     setOutput(JSON.stringify(data, null, 2))
@@ -238,7 +249,7 @@ export default function checkout() {
     <div className="app bg-white h-full md:p-8">
       <Steps currentStep={currentStep} />
       {!isFirstStep && (
-        <div className='w-full max-w-xl my-0 mx-auto px-6 py-4 sm:rounded-lg'>
+        <div className='w-full max-w-5xl my-0 mx-auto px-10 md:px-6 py-4 sm:rounded-lg'>
           <button type="button" onClick={() => changeStep(currentStep - 1)} className='flex items-center gap-2 text-gray-600'>
             <ArrowLeft size={16} weight="bold" />
             <span className='font-medium '>Voltar</span>
@@ -248,11 +259,11 @@ export default function checkout() {
       }
       <div className='md:flex items-start justify-center gap-8'>
         <CheckoutBannerTopSide />
-        <div className="form-container w-full md:max-w-xl my-0  border border-gray-300 p-6 md:rounded-lg">
+        <div className="form-container w-full md:max-w-xl my-0  border border-gray-300 py-6 px-10 md:px-6 md:rounded-lg">
           <FormProvider {...createCheckoutForm} >
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className="max-w-md my-0 mx-auto"
+              className="max-w-5xl md:max-w-md my-0 mx-auto"
             >
               <div className="inputs-container min-h-[280px]">
                 {currentComponent}

@@ -5,3 +5,4 @@ export * from "./Input";
 export * from "./ErrorMessage";
 export * from "./LoadingAnimation";
 export * from "./PaymentResponse";
+export * from "./AddressForm";
