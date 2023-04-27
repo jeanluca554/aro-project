@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useFormCheckout } from 'hooks';
-import { AddressForm, CheckoutBannerRightSide, CheckoutBannerTopSide, CustomerForm, PaymentForm, ReviewForm, Steps } from 'components';
+import { AddressForm, CourseInformationBannerRightSide, CourseInformationBannerTopSide, CustomerForm, CustomerInformationBannerTopSide, PaymentForm, ReviewForm, Steps } from 'components';
 import { ArrowLeft } from "@phosphor-icons/react";
 import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -9,10 +9,12 @@ import { isCPF, isPhone, isCEP } from 'brazilian-values';
 import cep from 'cep-promise';
 import { TransactionServices } from 'services';
 import toast, { ToastBar, Toaster } from 'react-hot-toast';
+import { CustomerInformationBannerRightSide } from 'components/CustomerInformationBannerRightSide';
 
 const formTemplate = {
   name: '',
   identity: '',
+  email: '',
   phone: '',
   addressCity: '',
   addressComplement: '',
@@ -118,6 +120,7 @@ export default function checkout() {
         .join(' ')
     }),
     identity: z.string().refine((identity) => isCPF(identity), { message: "Não é um CPF válido" }),
+    email: z.string().email({ message: "Informe um e-mail válido" }),
     phone: z.string().refine((phone) => isPhone(onlyNumbers(phone)), { message: "Informe um número de telefone válido" }),
 
   })
@@ -235,7 +238,7 @@ export default function checkout() {
   }
 
   function onSubmit(data: CreateCheckoutData) {
-    console.log("O passo atual é: " + currentStep);
+    console.log("O passo atual é: ", currentStep + 1);
     outputData();
     if (currentStep === 2) {
       createTransaction()
@@ -258,7 +261,9 @@ export default function checkout() {
       )
       }
       <div className='md:flex items-start justify-center gap-8'>
-        <CheckoutBannerTopSide />
+        {currentStep > 0 && <CustomerInformationBannerTopSide data={dataForm} />}
+
+        <CourseInformationBannerTopSide />
         <div className="form-container w-full md:max-w-xl my-0  border border-gray-300 py-6 px-10 md:px-6 md:rounded-lg">
           <FormProvider {...createCheckoutForm} >
             <form
@@ -316,7 +321,10 @@ export default function checkout() {
             </pre>
           )}
         </div>
-        <CheckoutBannerRightSide />
+        <div className='flex-row'>
+          {currentStep > 0 && <CustomerInformationBannerRightSide data={dataForm} />}
+          <CourseInformationBannerRightSide />
+        </div>
       </div>
     </div >
   )

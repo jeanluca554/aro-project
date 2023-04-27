@@ -31,6 +31,17 @@ export function CustomerForm({ data, updateFieldHandler }) {
         <ErrorMessage field='identity' />
 
         <Input
+          placeholder='E-mail'
+          id='email'
+          name='email'
+          value={data.email || ""}
+          onChange={
+            (e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("email", e.target.value)
+          }
+        />
+        <ErrorMessage field='email' />
+
+        <Input
           placeholder='Telefone'
           id='phone'
           name='phone'
