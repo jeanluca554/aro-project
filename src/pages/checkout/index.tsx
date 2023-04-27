@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useFormCheckout } from 'hooks';
-import { AddressForm, CourseInformationBannerRightSide, CourseInformationBannerTopSide, CustomerForm, CustomerInformationBannerTopSide, PaymentForm, ReviewForm, Steps } from 'components';
-import { ArrowLeft } from "@phosphor-icons/react";
+import { AddressForm, CourseInformationBannerRightSide, CourseInformationBannerTopSide, CustomerCategoryForm, CustomerForm, CustomerInformationBannerTopSide, PaymentForm, ReviewForm, Steps } from 'components';
+import { ArrowLeft, CaretRight, Scales, Student } from "@phosphor-icons/react";
 import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -31,6 +31,7 @@ const formTemplate = {
   creditCardFocus: '',
   message: '',
   description: '',
+  category: '',
 }
 
 const notify = () => toast.error("Ocorreu um erro ao encontrar os dados do CEP.")
@@ -97,6 +98,7 @@ export default function checkout() {
   const formComponents = [
     <CustomerForm data={dataForm} updateFieldHandler={updateFieldHandler} />,
     <AddressForm data={dataForm} updateFieldHandler={updateFieldHandler} />,
+    <CustomerCategoryForm updateFieldHandler={updateFieldHandler} />,
     <PaymentForm data={dataForm} updateFieldHandler={updateFieldHandler} />,
     <ReviewForm data={dataForm} />,
   ]
@@ -125,6 +127,7 @@ export default function checkout() {
 
   })
 
+
   const createCheckoutSchema1 = z.object({
     addressCity: z.string(),
     addressComplement: z.string(),
@@ -136,6 +139,10 @@ export default function checkout() {
   })
 
   const createCheckoutSchema2 = z.object({
+    category: z.unknown()
+  })
+
+  const createCheckoutSchema3 = z.object({
     creditCardHolder: z.string().nonempty({ message: 'O nome impresso é obrigatório', }),
     creditCardNumber: z.string().nonempty({ message: 'O número do cartão é obrigatório', }).length(19, {
       message: 'Insira um número válido de 0-16 dígitos'
@@ -148,6 +155,7 @@ export default function checkout() {
     createCheckoutSchema,
     createCheckoutSchema1,
     createCheckoutSchema2,
+    createCheckoutSchema3,
   ]
 
   type CreateCheckoutData = z.infer<typeof createCheckoutSchema1>
@@ -240,7 +248,7 @@ export default function checkout() {
   function onSubmit(data: CreateCheckoutData) {
     console.log("O passo atual é: ", currentStep + 1);
     outputData();
-    if (currentStep === 2) {
+    if (currentStep === 3) {
       createTransaction()
     }
     setOutput(JSON.stringify(data, null, 2))
@@ -274,17 +282,19 @@ export default function checkout() {
                 {currentComponent}
               </div>
 
-
               <div className="actions flex justify-end gap-4">
 
-                {!isLastStep && (
-                  <button
-                    type="submit"
-                    className='py-4 w-full text-sm text-white rounded-md bg-orange-600 hover:bg-orange-500 transition-all mb-6'
-                  >
-                    <span className='font-semibold'>AVANÇAR</span>
-                  </button>
-                )}
+                {!isLastStep && currentStep !== 2 ?
+                  (
+                    <button
+                      type="submit"
+                      className='py-4 w-full text-sm text-white rounded-md bg-orange-600 hover:bg-orange-500 transition-all mb-6'
+                    >
+                      <span className='font-semibold'>AVANÇAR</span>
+                    </button>
+                  )
+                  : (<></>)
+                }
                 {/* {!isLastStep ? (
                 <button
                   type="submit"

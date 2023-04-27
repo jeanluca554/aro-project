@@ -19,18 +19,18 @@ export function Steps({ currentStep }) {
           </div>
         </div>
 
-        <hr className={`w-full border ${currentStep >= 3 ? "border-orange-500" : "border-gray-300"}`} />
+        <hr className={`w-full border ${currentStep >= 4 ? "border-orange-500" : "border-gray-300"}`} />
 
         <div className="step active flex flex-col items-center justify-center">
-          <div className={`w-14 h-14 rounded-full border-2 ${currentStep >= 3 ? "border-orange-600" : "border-gray-300 bg-gray-300"} flex items-center justify-center`}>
-            <CheckCircle size={24} weight="bold" className={`${currentStep >= 3 ? "text-gray-800" : "text-gray-500"} `} />
+          <div className={`w-14 h-14 rounded-full border-2 ${currentStep >= 4 ? "border-orange-600" : "border-gray-300 bg-gray-300"} flex items-center justify-center`}>
+            <CheckCircle size={24} weight="bold" className={`${currentStep >= 4 ? "text-gray-800" : "text-gray-500"} `} />
           </div>
         </div>
       </div>
       <div className='steps flex items-center justify-between max-w-lg my-0 mx-auto relative mb-8 text-xs'>
         <p className='text-orange-600'>Identificação</p>
         <p className={`px-1 ${currentStep >= 2 ? "text-orange-600" : "text-gray-600"}`}>Pagamento</p>
-        <p className={`${currentStep >= 3 ? "text-orange-600" : "text-gray-800"}`}>Finalização</p>
+        <p className={`${currentStep >= 4 ? "text-orange-600" : "text-gray-800"}`}>Finalização</p>
 
       </div>
     </div>

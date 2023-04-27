@@ -6,3 +6,4 @@ export * from "./ErrorMessage";
 export * from "./LoadingAnimation";
 export * from "./PaymentResponse";
 export * from "./AddressForm";
+export * from "./CustomerCategoryForm";
