@@ -333,7 +333,7 @@ export default function checkout() {
         </div>
         <div className='flex-row'>
           {currentStep > 0 && <CustomerInformationBannerRightSide data={dataForm} />}
-          <CourseInformationBannerRightSide />
+          <CourseInformationBannerRightSide data={dataForm} currentStep={currentStep} />
         </div>
       </div>
     </div >
