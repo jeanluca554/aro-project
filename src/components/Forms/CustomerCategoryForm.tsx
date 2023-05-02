@@ -10,7 +10,7 @@ export function CustomerCategoryForm({ updateFieldHandler }) {
         <button
           type="submit"
           onClick={() => updateFieldHandler("category", "lawyer")}
-          className='flex items-center justify-between w-full p-4 border border-orange-500 text-gray-700 rounded-lg hover:bg-yellow-200 hover:border-orange-300 transition-all'>
+          className='flex items-center justify-between w-full p-4 border border-orange-500 text-gray-700 rounded-lg hover:bg-orange-200 hover:border-orange-300 transition-all'>
           <div className="flex items-center text-left gap-3 text-sm sm:text-base">
             <Scales size={24} weight="bold" className="text-orange-600" />
             Sou Advogado
@@ -20,7 +20,7 @@ export function CustomerCategoryForm({ updateFieldHandler }) {
         <button
           type="submit"
           onClick={() => updateFieldHandler("category", "student")}
-          className='flex items-center justify-between w-full p-4 border border-orange-500 text-gray-700 rounded-lg hover:bg-yellow-200 hover:border-orange-300 transition-all'>
+          className='flex items-center justify-between w-full p-4 border border-orange-500 text-gray-700 rounded-lg hover:bg-orange-200 hover:border-orange-300 transition-all'>
           <div className="flex items-center text-left gap-3 text-sm sm:text-base">
             <Student size={24} weight="bold" className="text-orange-600" />
             <p>Sou Estudante de Direito</p>

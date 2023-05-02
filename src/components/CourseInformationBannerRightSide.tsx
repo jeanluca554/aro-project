@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 export function CourseInformationBannerRightSide({ data, currentStep }) {
   const [productPrice, setProductPrice] = useState(400);
   let [productDiscount, setProductDiscount] = useState(0);
-  let [productAmount, setProductAmount] = useState(0);
 
   useEffect(() => {
     if (data.category === "student") {
@@ -13,9 +12,7 @@ export function CourseInformationBannerRightSide({ data, currentStep }) {
       setProductDiscount(0);
     }
 
-  }, [data.category])
-
-  // setProductAmount(productPrice - productDiscount);
+  }, [data.category]);
 
   return (
     <div className='hidden border-2 border-orange-600 border-opacity-50 sm:rounded-lg w-96 md:block'>

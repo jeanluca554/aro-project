@@ -271,7 +271,7 @@ export default function checkout() {
       <div className='md:flex items-start justify-center gap-8'>
         {currentStep > 0 && <CustomerInformationBannerTopSide data={dataForm} />}
 
-        <CourseInformationBannerTopSide />
+        <CourseInformationBannerTopSide currentStep={currentStep} data={dataForm} />
         <div className="form-container w-full md:max-w-xl my-0  border border-gray-300 py-6 px-10 md:px-6 md:rounded-lg">
           <FormProvider {...createCheckoutForm} >
             <form
@@ -325,11 +325,11 @@ export default function checkout() {
               </div>
             </form>
           </FormProvider>
-          {output && (
+          {/*output && (
             <pre className="text-sm bg-zinc-800 text-zinc-100 p-6 rounded-lg">
               {output}
             </pre>
-          )}
+          )*/}
         </div>
         <div className='flex-row'>
           {currentStep > 0 && <CustomerInformationBannerRightSide data={dataForm} />}
