@@ -18,19 +18,6 @@ export function CustomerForm({ data, updateFieldHandler }) {
         <ErrorMessage field='name' />
 
         <Input
-          placeholder='CPF'
-          id='identity'
-          name='identity'
-          value={data.identity || ""}
-          mask={'999.999.999-99'}
-          maskChar=" "
-          onChange={
-            (e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("identity", e.target.value)
-          }
-        />
-        <ErrorMessage field='identity' />
-
-        <Input
           placeholder='E-mail'
           id='email'
           name='email'

@@ -23,6 +23,7 @@ const formTemplate = {
   addressStateInitials: '',
   addressStreet: '',
   addressZipCode: '',
+  identityCreditCard: '',
   creditCardHolder: '',
   creditCardNumber: '',
   creditCardExpirationDate: '',
@@ -43,6 +44,14 @@ export default function checkout() {
   function onlyNumbers(input: string) {
     var formattedNumber = input.replace(/[^0-9]/g, '');
     return formattedNumber;
+  }
+
+  function verifyIdentity(input: string) {
+    var formattedNumber = onlyNumbers(input)
+    if (formattedNumber.length === 0) return true
+    else {
+      return isCPF(input)
+    }
   }
 
   const updateFieldHandler = (key, value) => {
@@ -121,7 +130,6 @@ export default function checkout() {
         .map(word => word[0].toLocaleUpperCase().concat(word.substring(1)))
         .join(' ')
     }),
-    identity: z.string().refine((identity) => isCPF(identity), { message: "Não é um CPF válido" }),
     email: z.string().email({ message: "Informe um e-mail válido" }),
     phone: z.string().refine((phone) => isPhone(onlyNumbers(phone)), { message: "Informe um número de telefone válido" }),
 
@@ -143,6 +151,8 @@ export default function checkout() {
   })
 
   const createCheckoutSchema3 = z.object({
+    identity: z.string().refine((identity) => isCPF(identity), { message: "Não é um CPF válido" }),
+    identityCreditCard: z.string().refine((identityCreditCard) => verifyIdentity(identityCreditCard), { message: "Não é um CPF válido" }).optional(),
     creditCardHolder: z.string().nonempty({ message: 'O nome impresso é obrigatório', }),
     creditCardNumber: z.string().nonempty({ message: 'O número do cartão é obrigatório', }).length(19, {
       message: 'Insira um número válido de 0-16 dígitos'
