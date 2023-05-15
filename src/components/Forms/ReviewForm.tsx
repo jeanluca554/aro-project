@@ -1,20 +1,18 @@
 import React from 'react';
-import { LoadingAnimation, PaymentResponse } from 'components';
+import { LoadingAnimation, PaymentResponse, Ticket } from 'components';
 
 
 export function ReviewForm({ data }) {
   return (
-    <div>
+    <div className='h-[800px]'>
       {data.message === ""
         ? <LoadingAnimation />
-        : <PaymentResponse
-          message={data.message}
-          description={data.description}
+        : <Ticket
         />
-        // : (<>
-        //   <h1>{data.message}</h1>
-        //   <h2>{data.description}</h2>
-        // </>)
+        // : <PaymentResponse
+        //   message={data.message}
+        //   description={data.description}
+        // />
 
       }
     </div>
