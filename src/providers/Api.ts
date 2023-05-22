@@ -1,5 +1,3 @@
-import axios from 'axios';
+import { getAPIClient } from "providers/axios";
 
-const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
-console.log(baseURL)
-export const Api = axios.create({ baseURL: baseURL });
+export const api = getAPIClient();

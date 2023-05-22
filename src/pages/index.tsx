@@ -440,3 +440,11 @@ export default function Home() {
     </div >
   )
 }
+
+Home.getLayout = function PageLayout(page) {
+  return (
+    <>
+      {page}
+    </>
+  )
+}
