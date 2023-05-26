@@ -10,7 +10,7 @@ const Layout = ({ children }) => {
       </Head>
       <main className='flex flex-col md:flex-row'>
         <Sidebar />
-        <section className='p-7 text-2xl font-semibold'>
+        <section className='flex-1'>
           {children}
         </section>
       </main>

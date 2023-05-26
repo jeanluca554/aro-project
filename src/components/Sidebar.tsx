@@ -136,7 +136,7 @@ const Sidebar = () => {
       </Transition.Root>
 
       {/* desktop Menu */}
-      <div className={`${open ? 'w-72 ' : 'w-20'} hidden duration-300 pt-8 p-4 h-screen bg-purple-900 relative md:flex flex-col `}>
+      <div className={`${open ? 'w-72 ' : 'w-20'} hidden relative duration-300 pt-8 p-4 h-screen bg-purple-900 md:flex flex-col `}>
 
         <div
           className={`hidden md:flex items-center justify-center absolute cursor-pointer rounded-full -right-3 top-9 w-7 h-7 border-2 border-purple-900 bg-white ${!open && 'rotate-180'}`}
