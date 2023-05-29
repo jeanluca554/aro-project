@@ -52,7 +52,7 @@ export function CustomerForm({ data, updateFieldHandler }) {
         />
         <ErrorMessage field='phone' />
 
-        <CustomerCategoryForm updateFieldHandler={updateFieldHandler} />
+        <CustomerCategoryForm updateFieldHandler={updateFieldHandler} data={data} />
 
       </div>
     </div>
