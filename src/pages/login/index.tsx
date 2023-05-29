@@ -3,7 +3,6 @@ import { LockClosedIcon } from '@heroicons/react/solid';
 import { useForm } from 'react-hook-form'
 import { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
-import LoginComponent from 'components/Login';
 
 export default function Login() {
   const { register, handleSubmit } = useForm();
@@ -113,7 +112,7 @@ Login.getLayout = function PageLayout(page) {
 
   return (
     <>
-      <LoginComponent />
+      {page}
     </>
   )
 }

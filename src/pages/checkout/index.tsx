@@ -349,3 +349,11 @@ export default function checkout() {
     </div >
   )
 }
+
+checkout.getLayout = function PageLayout(page) {
+  return (
+    <>
+      {page}
+    </>
+  )
+}
