@@ -1,7 +1,19 @@
-import { Input } from 'components';
+import { useState } from 'react';
+import { CustomerCategoryForm, Input } from 'components';
 import { ErrorMessage } from 'components';
+import Radio from '@mui/material/Radio';
 
 export function CustomerForm({ data, updateFieldHandler }) {
+  const [selectedValue, setSelectedValue] = useState('advogado');
+
+  const controlProps = (item: string) => ({
+    checked: selectedValue === item,
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("category", e.target.value),
+    value: item,
+    name: 'color-radio-button-demo',
+    inputProps: { 'aria-label': item },
+  });
+
   return (
     <div>
       <div className="form-control flex flex-col gap-4 mb-8">
@@ -39,6 +51,8 @@ export function CustomerForm({ data, updateFieldHandler }) {
           }
         />
         <ErrorMessage field='phone' />
+
+        <CustomerCategoryForm updateFieldHandler={updateFieldHandler} />
 
       </div>
     </div>
