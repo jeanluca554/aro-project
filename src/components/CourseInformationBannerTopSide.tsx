@@ -15,7 +15,7 @@ export function CourseInformationBannerTopSide({ data, currentStep }) {
   }, [data.category]);
   return (
     <div className=" flex items-center justify-center w-full  border border-gray-300 py-2 border-b-0 md:hidden">
-      <div className='font-semibold sm:text-xl text-gray-600 text-center px-4 max-w-[100px]'>
+      <div className='font-semibold sm:text-xl text-gray-600 text-center px-4 max-w-[100px] sm:max-w-[150px]'>
         <a className='text-orange-600'>Curso</a> Tribunal do Júri
       </div>
       {
