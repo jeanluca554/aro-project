@@ -20,7 +20,6 @@ export function CustomerCategoryForm({ updateFieldHandler, data }) {
             onChange={
               (e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("category", e.target.value)
             }
-            required
           />
           <label htmlFor="category-lawyer" className={`flex items-center justify-between w-full p-4 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer  peer-checked:border-orange-600 peer-checked:text-orange-600 hover:bg-gray-100 hover:border-gray-200 hover:text-gray-600 peer-checked:hover:bg-transparent transition-all ${data.category === 'lawyer' ? 'border-orange-600 text-orange-600' : 'border-gray-200 text-gray-500'}`}>
             <div className="flex items-center text-left gap-3 text-sm sm:text-base">

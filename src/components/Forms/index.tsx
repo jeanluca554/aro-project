@@ -8,3 +8,4 @@ export * from "./PaymentResponse";
 export * from "./AddressForm";
 export * from "./CustomerCategoryForm";
 export * from "./Ticket";
+export * from "./PaymentMethodForm";

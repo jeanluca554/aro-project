@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useFormCheckout } from 'hooks';
-import { AddressForm, CourseInformationBannerRightSide, CourseInformationBannerTopSide, CustomerCategoryForm, CustomerForm, CustomerInformationBannerTopSide, PaymentForm, ReviewForm, Steps } from 'components';
+import { AddressForm, CourseInformationBannerRightSide, CourseInformationBannerTopSide, CustomerCategoryForm, CustomerForm, CustomerInformationBannerTopSide, PaymentForm, PaymentMethodForm, ReviewForm, Steps } from 'components';
 import { ArrowLeft, CaretRight, Scales, Student } from "@phosphor-icons/react";
 import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -33,6 +33,7 @@ const formTemplate = {
   message: '',
   description: '',
   category: '',
+  paymentMethod: '',
 }
 
 const notify = () => toast.error("Ocorreu um erro ao encontrar os dados do CEP.")
@@ -107,7 +108,7 @@ export default function checkout() {
   const formComponents = [
     <CustomerForm data={dataForm} updateFieldHandler={updateFieldHandler} />,
     <AddressForm data={dataForm} updateFieldHandler={updateFieldHandler} />,
-    <CustomerCategoryForm updateFieldHandler={updateFieldHandler} />,
+    <PaymentMethodForm updateFieldHandler={updateFieldHandler} />,
     <PaymentForm data={dataForm} updateFieldHandler={updateFieldHandler} />,
     <ReviewForm data={dataForm} />,
   ]
