@@ -9,11 +9,6 @@ function classNames(...classes) {
 export function CreditCardForm({ data, updateFieldHandler }) {
   return (
     <>
-      {data.paymentMethod === "6" ? (
-        console.log("pix")
-      ) : (
-        console.log("cartão de crédito")
-      )}
       <div className='my-8'>
         <CreditCard
           holder={data.creditCardHolder}
