@@ -34,6 +34,7 @@ const formTemplate = {
   description: '',
   category: '',
   paymentMethod: '',
+  pixQrCode: '',
 }
 
 const notify = () => toast.error("Ocorreu um erro ao encontrar os dados do CEP.")
@@ -151,16 +152,28 @@ export default function checkout() {
     category: z.unknown()
   })
 
-  const createCheckoutSchema3 = z.object({
+  let createCheckoutSchema3 = z.object({
     identity: z.string().refine((identity) => isCPF(identity), { message: "Não é um CPF válido" }),
-    identityCreditCard: z.string().refine((identityCreditCard) => verifyIdentity(identityCreditCard), { message: "Não é um CPF válido" }).optional(),
-    creditCardHolder: z.string().nonempty({ message: 'O nome impresso é obrigatório', }),
-    creditCardNumber: z.string().nonempty({ message: 'O número do cartão é obrigatório', }).length(19, {
-      message: 'Insira um número válido de 0-16 dígitos'
-    }),
-    creditCardExpirationDate: z.string().nonempty({ message: 'A data de expiração é obrigatória', }),
-    creditCardSecurityCode: z.string().nonempty({ message: 'CVV inválido', }),
-  })
+  });
+
+  if (dataForm.paymentMethod === '2') {
+    createCheckoutSchema3 = z.object({
+      identity: z.string().refine((identity) => isCPF(identity), { message: "Não é um CPF válido" }),
+      identityCreditCard: z.string().refine((identityCreditCard) => verifyIdentity(identityCreditCard), { message: "Não é um CPF válido" }).optional(),
+      creditCardHolder: z.string().nonempty({ message: 'O nome impresso é obrigatório', }),
+      creditCardNumber: z.string().nonempty({ message: 'O número do cartão é obrigatório', }).length(19, {
+        message: 'Insira um número válido de 0-16 dígitos'
+      }),
+      creditCardExpirationDate: z.string().nonempty({ message: 'A data de expiração é obrigatória', }),
+      creditCardSecurityCode: z.string().nonempty({ message: 'CVV inválido', }),
+    })
+  }
+
+  if (dataForm.paymentMethod === '6') {
+    createCheckoutSchema3 = z.object({
+      identity: z.string().refine((identity) => isCPF(identity), { message: "Não é um CPF válido" }),
+    })
+  }
 
   const checkoutSchemaTemplate = [
     createCheckoutSchema,
@@ -192,10 +205,9 @@ export default function checkout() {
 
   async function createTransaction() {
     const formattedAddressNumber = transformAddressNumber(dataForm.addressNumber)
-    console.log("o número do endereço formatado é: ", formattedAddressNumber)
 
     await TransactionServices.transaction({
-      paymentMethod: "2",
+      paymentMethod: dataForm.paymentMethod,
       customerName: dataForm.name,
       customerIdentity: dataForm.identity,
       customerPhone: dataForm.phone,
@@ -232,7 +244,8 @@ export default function checkout() {
               return {
                 ...prev,
                 description: response.data.transactionResult.description,
-                message: response.data.transactionResult.message
+                message: response.data.transactionResult.message,
+                pixQrCode: response.data.transactionResult.pixQrCode,
               }
             })
 
