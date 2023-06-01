@@ -134,7 +134,6 @@ export default function checkout() {
     }),
     email: z.string().email({ message: "Informe um e-mail válido" }),
     phone: z.string().refine((phone) => isPhone(onlyNumbers(phone)), { message: "Informe um número de telefone válido" }),
-
   })
 
 
@@ -312,7 +311,8 @@ export default function checkout() {
                   (
                     <button
                       type="submit"
-                      className='py-4 w-full text-sm text-white rounded-md bg-orange-600 hover:bg-orange-500 transition-all mb-6'
+                      disabled={dataForm.category === ""}
+                      className='py-4 w-full text-sm text-white rounded-md bg-orange-600 hover:bg-orange-500 transition-all mb-6 disabled:cursor-not-allowed'
                     >
                       <span className='font-semibold'>AVANÇAR</span>
                     </button>
