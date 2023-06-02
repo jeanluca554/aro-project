@@ -211,6 +211,7 @@ export default function checkout() {
       customerIdentity: dataForm.identity,
       customerPhone: dataForm.phone,
       customerEmail: dataForm.email,
+      customerCategory: dataForm.category,
       addressZipCode: dataForm.addressZipCode,
       addressStreet: dataForm.addressStreet,
       addressNumber: formattedAddressNumber,

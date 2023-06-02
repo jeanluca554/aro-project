@@ -14,6 +14,7 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 import { ProductsServices } from '../../services/ProductsService';
+import { TransactionsService } from 'services/TransactionService';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -48,6 +49,11 @@ function createData(
   customer_category: string,
 ) {
   return { id, date, identity, product_name, product_price, quantity, payment_method, installments, customer_name, customer_category };
+}
+
+function transformDate(date: string) {
+  const newDate = new Date(date);
+  return new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short' }).format(newDate);
 }
 
 const rows = [
@@ -104,12 +110,26 @@ const rows = [
 ];
 
 export default function Customers() {
-  const [age, setAge] = useState('');
+  const [selectedProduct, setSelectedProduct] = useState('');
   const [products, setProducts] = useState([]);
+  const [transactions, setTransactions] = useState([]);
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value as string);
 
+  const handleSelectedProductChange = async (event: SelectChangeEvent) => {
+    setSelectedProduct(event.target.value as string);
+    await TransactionsService.transactions(event.target.value).then((response) => {
+      setTransactions(response.data.transactions);
+      console.log(response.data.transactions)
+    })
+      .catch(error => {
+        console.log(error)
+        // if (error.code === "ERR_BAD_REQUEST") {
+        //   console.log(JSON.stringify(error.response.data, null, 2));
+        // }
+        // else {
+        //   console.log(error);
+        // }
+      });
 
   };
 
@@ -148,12 +168,12 @@ export default function Customers() {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={age}
+            value={selectedProduct}
             label="Selectione o produto"
-            onChange={handleChange}
+            onChange={handleSelectedProductChange}
           >
             {products.map((product) => (
-              <MenuItem value={product.description} key={product.id}>
+              <MenuItem value={product.id} key={product.id}>
                 {product.description}
               </MenuItem>
             ))}
@@ -168,7 +188,6 @@ export default function Customers() {
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell >Id</StyledTableCell>
                 <StyledTableCell align="center">Cliente</StyledTableCell>
                 <StyledTableCell align="center">Categoria</StyledTableCell>
                 <StyledTableCell align="center">identidade</StyledTableCell>
@@ -181,19 +200,20 @@ export default function Customers() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
-                <StyledTableRow key={row.id}>
-                  <StyledTableCell component="th" scope="row">
-                    {row.id}
+              {transactions.map((item) => (
+                <StyledTableRow key={item.transaction.id}>
+                  <StyledTableCell >{item.transaction.customer.name}</StyledTableCell>
+                  <StyledTableCell align="center">{item.transaction.customer.category}</StyledTableCell>
+                  <StyledTableCell align="center">{item.transaction.customer.identity}</StyledTableCell>
+                  <StyledTableCell align="center">R$ {item.product.price},00</StyledTableCell>
+                  <StyledTableCell >
+                    {item.transaction.paymentMethod === "2" && "Catão de Crédito"}
+                    {item.transaction.paymentMethod === "6" && "Pix"}
                   </StyledTableCell>
-                  <StyledTableCell >{row.customer_name}</StyledTableCell>
-                  <StyledTableCell align="center">{row.customer_category}</StyledTableCell>
-                  <StyledTableCell align="center">{row.identity}</StyledTableCell>
-                  <StyledTableCell align="center">{row.product_price}</StyledTableCell>
-                  <StyledTableCell >{row.payment_method}</StyledTableCell>
-                  <StyledTableCell align="center">{row.installments}</StyledTableCell>
-                  <StyledTableCell >{row.product_name}</StyledTableCell>
-                  <StyledTableCell align="center">{row.date}</StyledTableCell>
+                  <StyledTableCell align="center">{item.transaction.installments}</StyledTableCell>
+                  <StyledTableCell >{item.product.description}</StyledTableCell>
+                  <StyledTableCell align="center">{transformDate(item.transaction.createdAt)}</StyledTableCell>
+                  {/* <StyledTableCell align="center">{new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short' }).format(item.transaction.createdAt)}</StyledTableCell> */}
                 </StyledTableRow>
               ))}
             </TableBody>

@@ -4,6 +4,7 @@ export interface ITransaction {
   customerIdentity: string
   customerPhone: string
   customerEmail: string
+  customerCategory: string
   addressZipCode: string
   addressStreet: string
   addressNumber: string
