@@ -206,7 +206,7 @@ export default function Customers() {
                   <StyledTableCell align="center">{item.transaction.customer.category}</StyledTableCell>
                   <StyledTableCell align="center">{item.transaction.customer.identity}</StyledTableCell>
                   <StyledTableCell align="center">R$ {item.product.price},00</StyledTableCell>
-                  <StyledTableCell >
+                  <StyledTableCell align="center">
                     {item.transaction.paymentMethod === "2" && "Catão de Crédito"}
                     {item.transaction.paymentMethod === "6" && "Pix"}
                   </StyledTableCell>
