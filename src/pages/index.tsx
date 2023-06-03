@@ -196,7 +196,7 @@ export default function Home() {
                   Participe do nosso Curso que é dividido em 3 módulos com diversos conteúdos que vão da prática à teoria.
                 </p>
               </Fade>
-              <a href="https://forms.gle/Bk1gFrtujMqPQuCx8" target="_blank" >
+              <a href={`/checkout`} target="_blank" >
                 <Fade direction='down' duration={1000} delay={400} triggerOnce>
                   <button className='mx-auto mr-auto mt-10 mb-14 bg-orange-600 text-white font-medium text-xl py-3 px-6 rounded focus:outline-none hover:bg-orange-400 transition duration-500 sm:ml-0'>
                     Inscreva-se
@@ -214,7 +214,7 @@ export default function Home() {
                     <div className='text-sm '>
 
                       <span className='flex items-center my-2'>
-                        <CalendarIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />01 de abril (sábado)
+                        <CalendarIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />22 de junho (sábado)
                       </span>
                       <span className='flex items-center my-2'>
                         <MapIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Em Volta Redonda - RJ
@@ -224,7 +224,7 @@ export default function Home() {
                         <CheckCircleIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />
                         <a>Curso <strong className='text-orange-600'>presencial</strong></a>
                       </span>
-                      <a href={'https://forms.gle/Bk1gFrtujMqPQuCx8'} target='_blank'>
+                      <a href={'/checkout'} target='_blank'>
                         <button className='flex items-center bg-orange-600 my-8 mx-auto font-medium text-xs py-2 px-4 rounded text-white focus:outline-none hover:bg-orange-400 transition duration-500'><TicketIcon className="h-6 w-6 mr-2 " aria-hidden="true" />Quero me inscrever</button>
                       </a>
                       <span className='flex items-center my-2 font-medium text-base'>
