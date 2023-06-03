@@ -1,12 +1,14 @@
 import React from 'react';
 import { CreditCard, ErrorMessage, Input } from 'components';
 import { Tab } from '@headlessui/react'
+import { useFormContext } from 'react-hook-form';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export function CreditCardForm({ data, updateFieldHandler }) {
+  const { register } = useFormContext();
   return (
     <>
       <div className='my-8'>
@@ -120,6 +122,9 @@ export function CreditCardForm({ data, updateFieldHandler }) {
 
                 <div className="inline-block relative">
                   <select
+                    id='installment'
+                    name='installment'
+                    {...register('installment')}
                     value={data.creditCardInstallmentQuantity || ""}
                     onChange={(e: React.ChangeEvent<HTMLSelectElement>) => updateFieldHandler("creditCardInstallmentQuantity", e.target.value)}
                     onFocus={(e: React.FocusEvent<HTMLSelectElement>) => updateFieldHandler("creditCardFocus", e.target.name)}
@@ -134,6 +139,7 @@ export function CreditCardForm({ data, updateFieldHandler }) {
                     </svg>
                   </div>
                 </div>
+                <ErrorMessage field='installment' />
               </div>
             </div>
           </Tab.Panel>
@@ -206,8 +212,12 @@ export function CreditCardForm({ data, updateFieldHandler }) {
                   </div>
                 </div>
 
+
                 <div className="inline-block relative">
                   <select
+                    id='installment'
+                    name='installment'
+                    {...register('installment')}
                     value={data.creditCardInstallmentQuantity || ""}
                     onChange={(e: React.ChangeEvent<HTMLSelectElement>) => updateFieldHandler("creditCardInstallmentQuantity", e.target.value)}
                     onFocus={(e: React.FocusEvent<HTMLSelectElement>) => updateFieldHandler("creditCardFocus", e.target.name)}
@@ -222,6 +232,7 @@ export function CreditCardForm({ data, updateFieldHandler }) {
                     </svg>
                   </div>
                 </div>
+                <ErrorMessage field='installment' />
               </div>
             </div>
           </Tab.Panel>

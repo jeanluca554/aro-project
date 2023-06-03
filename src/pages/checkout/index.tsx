@@ -35,6 +35,7 @@ const formTemplate = {
   category: '',
   paymentMethod: '',
   pixQrCode: '',
+  installments: '',
 }
 
 const notify = () => toast.error("Ocorreu um erro ao encontrar os dados do CEP.")
@@ -54,6 +55,15 @@ export default function checkout() {
     else {
       return isCPF(input)
     }
+  }
+
+  function verifyInstallments(installment: string) {
+    // if (dataForm.creditCardInstallmentQuantity.length === 0) {
+    if (installment.length === 0) {
+      return false
+    }
+    // return dataForm.creditCardInstallmentQuantity !== '0' ? true : false
+    return installment !== '0' ? true : false
   }
 
   const updateFieldHandler = (key, value) => {
@@ -152,7 +162,7 @@ export default function checkout() {
   })
 
   let createCheckoutSchema3 = z.object({
-    identity: z.string().refine((identity) => isCPF(identity), { message: "Não é um CPF válido" }),
+    // identity: z.string().refine((identity) => isCPF(identity), { message: "Não é um CPF válido" }),
   });
 
   if (dataForm.paymentMethod === '2') {
@@ -165,6 +175,7 @@ export default function checkout() {
       }),
       creditCardExpirationDate: z.string().nonempty({ message: 'A data de expiração é obrigatória', }),
       creditCardSecurityCode: z.string().nonempty({ message: 'CVV inválido', }),
+      installment: z.string().refine((installment) => verifyInstallments(installment), { message: "Selecione a quantidade de parcelas" })
     })
   }
 
@@ -226,7 +237,7 @@ export default function checkout() {
       creditCardCardNumber: dataForm.creditCardNumber,
       creditCardExpirationDate: dataForm.creditCardExpirationDate,
       creditCardSecurityCode: dataForm.creditCardSecurityCode,
-      creditCardInstallmentQuantity: 2
+      creditCardInstallmentQuantity: parseInt(dataForm.creditCardInstallmentQuantity),
     })
       .then((response) => {
         if (response.status === 201) {
