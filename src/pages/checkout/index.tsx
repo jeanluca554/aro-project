@@ -38,11 +38,21 @@ const formTemplate = {
   installments: '',
 }
 
-const notify = () => toast.error("Ocorreu um erro ao encontrar os dados do CEP.")
+const notify = () => toast.error("Ocorreu um erro ao encontrar os dados do CEP.", {
+  style: {
+    color: '#fff',
+    background: '#ef4444',
+  },
+  iconTheme: {
+    primary: 'white',
+    secondary: '#ef4444',
+  },
+})
 
 export default function checkout() {
   const [dataForm, setDataForm] = useState(formTemplate);
-  const [output, setOutput] = useState('')
+  const [output, setOutput] = useState('');
+  const [lastLengthIs7, setLastLengthIs7] = useState(false);
 
   function onlyNumbers(input: string) {
     var formattedNumber = input.replace(/[^0-9]/g, '');
@@ -106,8 +116,14 @@ export default function checkout() {
         }
       };
 
-      if (formattedNumber.length === 8) {
+      //ensure getCep() execute only once when the length is 8 to avoid unnecessary notifications
+      if (formattedNumber.length === 7) {
+        setLastLengthIs7(true);
+      }
+
+      if (formattedNumber.length === 8 && lastLengthIs7 === true) {
         getCep();
+        setLastLengthIs7(false);
       }
     }
 
@@ -151,8 +167,8 @@ export default function checkout() {
     addressCity: z.string(),
     addressComplement: z.string(),
     addressDistrict: z.string().nonempty({ message: "Informe um bairro válido" }),
-    addressNumber: z.string(),
-    addressStateInitials: z.string(),
+    addressNumber: z.string().min(2, { message: "Utilize o campo CEP para inserir uma cidade válida" }),
+    addressStateInitials: z.string().min(2, { message: "Utilize o campo CEP para inserir uma UF válida" }),
     addressStreet: z.string().nonempty({ message: "Informe uma rua, avenida ou logradouro" }),
     addressZipCode: z.string().refine((addressZipCode) => isCEP(addressZipCode), { message: "Informe um CEP válido" }),
   })
