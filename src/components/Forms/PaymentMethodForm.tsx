@@ -15,7 +15,7 @@ export function PaymentMethodForm({ updateFieldHandler }) {
             <CreditCard size={30} weight="bold" className="text-orange-600" />
             <div>
               <p className="font-bold">Cartão de crédito</p>
-              <p>Parcele em até 12x sem juros</p>
+              <p>Parcele em até 3x sem juros</p>
             </div>
           </div>
 
