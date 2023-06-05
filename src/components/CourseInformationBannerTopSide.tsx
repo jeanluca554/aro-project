@@ -19,7 +19,7 @@ export function CourseInformationBannerTopSide({ data, currentStep }) {
         <a className='text-orange-600'>Curso</a> Tribunal do Júri
       </div>
       {
-        currentStep === 3 && (
+        currentStep === 1 && (
           <div className='w-full max-w-md min-w-[245px]'>
             <div className='relative border-l border-orange-600 border-opacity-50 text-gray-600 text-sm p-4'>
               <div className='flex justify-between'>
