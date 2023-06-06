@@ -36,6 +36,7 @@ const formTemplate = {
   paymentMethod: '',
   pixQrCode: '',
   installments: '',
+  isSelectedAnotherCreditCardOwner: false,
 }
 
 const notify = () => toast.error("Ocorreu um erro ao encontrar os dados do CEP.", {
@@ -61,10 +62,19 @@ export default function checkout() {
 
   function verifyIdentity(input: string) {
     var formattedNumber = onlyNumbers(input)
-    if (formattedNumber.length === 0) return true
+    if (formattedNumber.length === 0) return false
     else {
       return isCPF(input)
     }
+  }
+
+  function verifyIdentityCreditCard(identityCreditCard: string) {
+    console.log(dataForm.isSelectedAnotherCreditCardOwner)
+    console.log("a identidade do cartão é: ", identityCreditCard)
+    if (dataForm.isSelectedAnotherCreditCardOwner === false) {
+      return true
+    }
+    return verifyIdentity(identityCreditCard)
   }
 
   function verifyInstallments(installment: string) {
@@ -164,10 +174,10 @@ export default function checkout() {
 
 
   const createCheckoutSchema1 = z.object({
-    addressCity: z.string(),
+    addressCity: z.string().min(2, { message: "Utilize o campo CEP para inserir uma cidade válida" }),
     addressComplement: z.string(),
     addressDistrict: z.string().nonempty({ message: "Informe um bairro válido" }),
-    addressNumber: z.string().min(2, { message: "Utilize o campo CEP para inserir uma cidade válida" }),
+    addressNumber: z.string(),
     addressStateInitials: z.string().min(2, { message: "Utilize o campo CEP para inserir uma UF válida" }),
     addressStreet: z.string().nonempty({ message: "Informe uma rua, avenida ou logradouro" }),
     addressZipCode: z.string().refine((addressZipCode) => isCEP(addressZipCode), { message: "Informe um CEP válido" }),
@@ -177,22 +187,33 @@ export default function checkout() {
     category: z.unknown()
   })
 
-  let createCheckoutSchema3 = z.object({
-    // identity: z.string().refine((identity) => isCPF(identity), { message: "Não é um CPF válido" }),
-  });
+  let createCheckoutSchema3 = z.object({});
 
   if (dataForm.paymentMethod === '2') {
-    createCheckoutSchema3 = z.object({
-      identity: z.string().refine((identity) => isCPF(identity), { message: "Não é um CPF válido" }),
-      identityCreditCard: z.string().refine((identityCreditCard) => verifyIdentity(identityCreditCard), { message: "Não é um CPF válido" }).optional(),
-      creditCardHolder: z.string().nonempty({ message: 'O nome impresso é obrigatório', }),
-      creditCardNumber: z.string().nonempty({ message: 'O número do cartão é obrigatório', }).length(19, {
-        message: 'Insira um número válido de 0-16 dígitos'
-      }),
-      creditCardExpirationDate: z.string().nonempty({ message: 'A data de expiração é obrigatória', }),
-      creditCardSecurityCode: z.string().nonempty({ message: 'CVV inválido', }),
-      installment: z.string().refine((installment) => verifyInstallments(installment), { message: "Selecione a quantidade de parcelas" })
-    })
+    dataForm.isSelectedAnotherCreditCardOwner === true
+      ?
+      createCheckoutSchema3 = z.object({
+        identity: z.string().refine((identity) => isCPF(identity), { message: "Não é um CPF válido" }),
+        identityCreditCard: z.string().refine((identityCreditCard) => verifyIdentityCreditCard(identityCreditCard), { message: "Não é um CPF válido" }),
+        creditCardHolder: z.string().nonempty({ message: 'O nome impresso é obrigatório', }),
+        creditCardNumber: z.string().nonempty({ message: 'O número do cartão é obrigatório', }).length(19, {
+          message: 'Insira um número válido de 0-16 dígitos'
+        }),
+        creditCardExpirationDate: z.string().nonempty({ message: 'A data de expiração é obrigatória', }),
+        creditCardSecurityCode: z.string().nonempty({ message: 'CVV inválido', }),
+        installment: z.string().refine((installment) => verifyInstallments(installment), { message: "Selecione a quantidade de parcelas" })
+      })
+      :
+      createCheckoutSchema3 = z.object({
+        identity: z.string().refine((identity) => isCPF(identity), { message: "Não é um CPF válido" }),
+        creditCardHolder: z.string().nonempty({ message: 'O nome impresso é obrigatório', }),
+        creditCardNumber: z.string().nonempty({ message: 'O número do cartão é obrigatório', }).length(19, {
+          message: 'Insira um número válido de 0-16 dígitos'
+        }),
+        creditCardExpirationDate: z.string().nonempty({ message: 'A data de expiração é obrigatória', }),
+        creditCardSecurityCode: z.string().nonempty({ message: 'CVV inválido', }),
+        installment: z.string().refine((installment) => verifyInstallments(installment), { message: "Selecione a quantidade de parcelas" })
+      })
   }
 
   if (dataForm.paymentMethod === '6') {
@@ -254,6 +275,7 @@ export default function checkout() {
       creditCardExpirationDate: dataForm.creditCardExpirationDate,
       creditCardSecurityCode: dataForm.creditCardSecurityCode,
       creditCardInstallmentQuantity: parseInt(dataForm.creditCardInstallmentQuantity),
+      creditCardIdentity: dataForm.identityCreditCard,
     })
       .then((response) => {
         if (response.status === 201) {

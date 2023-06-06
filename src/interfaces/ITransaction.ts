@@ -20,4 +20,5 @@ export interface ITransaction {
   creditCardExpirationDate: string
   creditCardSecurityCode: string
   creditCardInstallmentQuantity: number
+  creditCardIdentity: string;
 }
