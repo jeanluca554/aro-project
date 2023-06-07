@@ -1,7 +1,38 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import QRCode from 'react-qr-code';
+import { TransactionsService } from 'services/TransactionByIdTransactionService';
 
-export function Ticket() {
+type TicketProps = {
+  id: string | string[];
+}
+
+export function Ticket(props: TicketProps) {
+  const [idTransaction, setIdTransaction] = useState('');
+
+  const baseURL = process.env.NEXT_PUBLIC_BASE_URL_FRONT;
+
+  function getShortId(longId: string) {
+    var shortId = longId.split("-");
+    return shortId[0];
+  }
+
+
+  useEffect(() => {
+    props.id !== undefined &&
+      TransactionsService.transaction(props.id)
+        .then((response) => {
+          setIdTransaction(response.data.transaction.idTransaction);
+        })
+        .catch(error => {
+          console.log(error)
+          // if (error.code === "ERR_BAD_REQUEST") {
+          //   console.log(JSON.stringify(error.response.data, null, 2));
+          // }
+          // else {
+          //   console.log(error);
+          // }
+        });
+  }, [props.id])
   return (
 
     // <div className='flex justify-center items-center min-w-max min-h-screen rotate-90'>
@@ -10,11 +41,11 @@ export function Ticket() {
     <div className='flex h-64 w-[750px] '>
       <div className='border border-gray-500 flex flex-col h-64 w-56 rounded-tl-lg rounded-bl-lg border-r-0 bg-orange-100'>
         < div className='flex justify-center my-auto' >
-          <img src="logo2.png" alt="" className='w-48 h-48' />
+          <img src="/logo2.png" alt="" className='w-48 h-48' />
 
         </div >
         <div className='flex justify-end'>
-          <span className="text-xs text-gray-400 font-semibold pb-2 pr-2">#20030220</span>
+          <span className="text-xs text-gray-400 font-semibold pb-2 pr-2">#{getShortId(idTransaction)}</span>
         </div>
 
       </div >
@@ -22,7 +53,7 @@ export function Ticket() {
       <div className='border border-x-0 border-gray-500 flex flex-col w-96 h-64 rounded-tr-lg rounded-br-lg'>
         <div className='flex justify-between border-t border-b border-gray-400 mx-8 my-4 font-semibold '>
           <span className='text-xs self-center text-gray-600 p-0'>Sábado</span>
-          <span className=' text-orange-500 text-lg p-0'>10 de Junho</span>
+          <span className=' text-orange-500 text-lg p-0'>24 de Junho</span>
           <span className='text-xs self-center text-gray-600 p-0'>2023</span>
         </div>
 
@@ -38,10 +69,10 @@ export function Ticket() {
           9h00<a className='text-orange-500 px-2'>às</a> 18h00
         </div>
 
-        <div className='flex justify-evenly border-t border-gray-400 mx-8 my-4 font-semibold mt-auto'>
-          <span className='text-xs self-center text-gray-600 p-0'>Universidade de Taubaté</span>
-          <span className=' text-orange-500 p-0'> | </span>
-          <span className='text-xs self-center text-gray-600 p-0'>Taubaté-SP</span>
+        <div className='flex border-t border-gray-400 mx-8 my-4 font-semibold mt-auto p-1 gap-2'>
+          <span className='flex-1 text-xs self-center text-center text-gray-600 p-0'>R. Simão da Cunha Gago, 19 - Aterrado</span>
+          <span className=' border-2 border-l border-orange-500'></span>
+          <span className='flex-1 text-xs self-center text-center text-gray-600 p-0'>Volta Redonda - RJ</span>
         </div>
 
       </div>
@@ -56,12 +87,12 @@ export function Ticket() {
         <div className='font-semibold text-gray-600 text-center text-sm mt-4 mb-2'>
           <p> 9h00<a className='text-orange-500 px-1'>às</a> 18h00</p>
 
-          <p className='mt-1'>10<a className='text-orange-500'>/</a>06<a className='text-orange-500'>/</a>2023</p>
+          <p className='mt-1'>24<a className='text-orange-500'>/</a>06<a className='text-orange-500'>/</a>2023</p>
         </div>
 
         <div className='font-semibold text-gray-600'>
           <QRCode
-            value='https://www.institutoaro.com.br/'
+            value={`${baseURL}/dashboard`}
             size={84}
             className='mx-auto mt-3 text-orange-500'
             bgColor='#fff'
@@ -70,7 +101,7 @@ export function Ticket() {
         </div>
 
         <div className='flex justify-center my-4'>
-          <span className="text-xs text-gray-400 font-semibold">#20030220</span>
+          <span className="text-xs text-gray-400 font-semibold">#{getShortId(idTransaction)}</span>
         </div>
 
       </div>

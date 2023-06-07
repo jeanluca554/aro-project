@@ -1,8 +1,12 @@
-import { Ticket } from "components";
 import { useRef } from "react";
+import { useRouter } from 'next/router';
+import { Ticket } from "components";
 import { useReactToPrint } from 'react-to-print';
 
 export default function PrintTicket() {
+  const router = useRouter();
+  const idTicket = router.query.id;
+
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -15,7 +19,9 @@ export default function PrintTicket() {
   return (
     <div className="pt-8 pl-16">
       <div ref={componentRef} >
-        <Ticket />
+        <Ticket
+          id={idTicket}
+        />
       </div>
       <div className="pt-6">
         <button
