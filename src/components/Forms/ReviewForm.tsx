@@ -28,7 +28,7 @@ export function ReviewForm({ data }) {
             :
             <div className='flex flex-col'>
               <h2 className='font-medium text-gray-600 pt-2'>Link do pix para pagamento:</h2>
-              <a className='mt-8' href={data.pixQrCode} target='_blank'>{data.pixQrCode}</a>
+              <a className='mt-8 underline cursor-pointer font-bold text-gray-600' href={data.pixQrCode} target='_blank'>{data.pixQrCode}</a>
             </div>
       }
     </div >
