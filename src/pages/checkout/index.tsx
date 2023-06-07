@@ -37,6 +37,8 @@ const formTemplate = {
   pixQrCode: '',
   installments: '',
   isSelectedAnotherCreditCardOwner: false,
+  idTransaction: '',
+  statusTransaction: '',
 }
 
 const notify = () => toast.error("Ocorreu um erro ao encontrar os dados do CEP.", {
@@ -295,6 +297,8 @@ export default function checkout() {
                 description: response.data.transactionResult.description,
                 message: response.data.transactionResult.message,
                 pixQrCode: response.data.transactionResult.pixQrCode,
+                idTransaction: response.data.transactionResult.idTransaction,
+                statusTransaction: response.data.transactionResult.status,
               }
             })
 
