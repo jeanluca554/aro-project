@@ -336,14 +336,14 @@ export default function checkout() {
   return (
     <div className="app bg-white h-full md:p-8">
       <Steps currentStep={currentStep} />
-      {!isFirstStep && (
+      {!isFirstStep && !isLastStep ? (
         <div className='w-full max-w-5xl my-0 mx-auto px-10 md:px-6 py-4 sm:rounded-lg'>
           <button type="button" onClick={() => changeStep(currentStep - 1)} className='flex items-center gap-2 text-gray-600'>
             <ArrowLeft size={16} weight="bold" />
             <span className='font-medium '>Voltar</span>
           </button>
         </div>
-      )
+      ) : (<></>)
       }
       <div className='md:flex items-start justify-center gap-8'>
         {currentStep > 0 && <CustomerInformationBannerTopSide data={dataForm} />}
