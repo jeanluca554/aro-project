@@ -34,7 +34,7 @@ export function AuthProvider({ children }) {
       const auth = {
         headers: { "Authorization": `Bearer ${token}` }
       }
-      axios.get('http://localhost:3333/me', auth).then(function (response) {
+      axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/me`, auth).then(function (response) {
         console.log(response.data.user);
         setUser(response.data.user);
 
