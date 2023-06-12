@@ -21,4 +21,5 @@ export interface ITransaction {
   creditCardSecurityCode: string
   creditCardInstallmentQuantity: number
   creditCardIdentity: string;
+  discount: number;
 }

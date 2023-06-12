@@ -255,6 +255,11 @@ export default function checkout() {
   async function createTransaction() {
     const formattedAddressNumber = transformAddressNumber(dataForm.addressNumber)
 
+    const coursePrice = 400;
+    const discount = dataForm.category === 'student' ? 100 : 0;
+
+    const amount = coursePrice - discount;
+
     await TransactionServices.transaction({
       paymentMethod: dataForm.paymentMethod,
       customerName: dataForm.name,
@@ -271,13 +276,14 @@ export default function checkout() {
       addressStateInitials: dataForm.addressStateInitials,
       courseCode: "d3ff5a60-f240-49c5-a863-368aaed7aa51",
       courseDescription: "Tribunal do Júri",
-      courseUnitPrice: 400,
+      courseUnitPrice: amount,
       creditCardHolder: dataForm.creditCardHolder,
       creditCardCardNumber: dataForm.creditCardNumber,
       creditCardExpirationDate: dataForm.creditCardExpirationDate,
       creditCardSecurityCode: dataForm.creditCardSecurityCode,
       creditCardInstallmentQuantity: parseInt(dataForm.creditCardInstallmentQuantity),
       creditCardIdentity: dataForm.identityCreditCard,
+      discount: discount,
     })
       .then((response) => {
         if (response.status === 201) {
