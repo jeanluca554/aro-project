@@ -8,7 +8,7 @@ import Link from 'next/link';
 import AreaCard from '../components/AreaCard';
 import ContactCard from '../components/ContactCard';
 import NavItem from '../components/NavItem'
-import MenuItem from '../components/MenuItem';
+import MenuItemComponent from '../components/MenuItem';
 import Consultants from '../components/Consultants';
 
 import { Fade } from "react-awesome-reveal";
@@ -158,18 +158,18 @@ export default function Home() {
               >
 
                 <div className="flex flex-col px-2 pt-2 pb-3 space-y-1 sm:px-3 transition duration-1000">
-                  <MenuItem
+                  <MenuItemComponent
                     currentSection={currentSection}
                     section="home"
                     text='Início'
                   />
-                  <MenuItem
+                  <MenuItemComponent
                     currentSection={currentSection}
                     section="about"
                     text='Sobre Nós'
                   />
 
-                  <MenuItem
+                  <MenuItemComponent
                     currentSection={currentSection}
                     section="contact"
                     text='Contato'

@@ -8,7 +8,7 @@ type MenuItemProps = {
 }
 
 
-const MenuItem = ({ text, section, currentSection }: MenuItemProps) => {
+const MenuItemComponent = ({ text, section, currentSection }: MenuItemProps) => {
     return (
         <Disclosure.Button>
             <a
@@ -35,4 +35,4 @@ const MenuItem = ({ text, section, currentSection }: MenuItemProps) => {
     )
 }
 
-export default MenuItem;
+export default MenuItemComponent;
