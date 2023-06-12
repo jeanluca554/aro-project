@@ -16,7 +16,7 @@ export function ReviewForm({ data }) {
               <h1 className='font-medium text-xl text-orange-600 pt-2 text-center'>{data.message}:</h1>
               <h2 className='font-medium text-gray-600 pt-6'>{data.description}</h2>
 
-              {data.statusTransaction === '3'
+              {data.statusTransaction === 3
                 ?
                 <p className='font-medium text-gray-600 pt-4'>Clique  <a href={`/ticket/${data.idTransaction}`} target='_blank' className='underline cursor-pointer font-bold'>AQUI</a>  para visualizar o seu ingresso.</p>
 
