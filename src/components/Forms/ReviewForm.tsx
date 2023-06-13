@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { LoadingAnimation, PaymentResponse, Ticket } from 'components';
-
+import QRCode from 'react-qr-code';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 export function ReviewForm({ data }) {
+  const [buttonText, setButtonText] = useState('Clique aqui e copie o código PIX');
   { console.log(data) }
+
   return (
     //< div className='h-[800px]' >
     < div className='' >
@@ -29,9 +32,27 @@ export function ReviewForm({ data }) {
             data.statusTransaction === 1
               ?
               <div className='flex flex-col'>
-                <h2 className='font-medium text-gray-600 pt-2'>Link do pix para pagamento:</h2>
-                <a className='mt-8 underline cursor-pointer font-bold text-gray-600' href={data.pixQrCode} target='_blank'>{data.pixQrCode}</a>
-                <img src={data.pixQrCode} alt="pix QR Code" />
+                <h2 className='font-medium text-gray-600 py-2'>Utilize o QR Code abaixo para realizar o pagamento ou clique no botão para copiar o código PIX.</h2>
+                <QRCode
+                  value={data.pixKey}
+                  size={180}
+                  className='mx-auto mt-3'
+                  bgColor='#fff'
+                  fgColor='#000'
+                // fgColor='#4b5563'
+                />
+
+                <CopyToClipboard
+                  text={data.pixKey}
+                  onCopy={() => setButtonText('Código copiado!')}
+                >
+                  <button
+                    className='py-4 mt-8 w-full text-sm text-white rounded-md bg-orange-600 hover:bg-orange-500 transition-all mb-6'
+                    onClick={(event) => event.preventDefault()}
+                  >
+                    <span className='font-semibold'>{buttonText}</span>
+                  </button>
+                </CopyToClipboard>
               </div>
               :
               <div className='flex flex-col'>

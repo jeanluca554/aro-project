@@ -34,7 +34,7 @@ const formTemplate = {
   description: '',
   category: '',
   paymentMethod: '',
-  pixQrCode: '',
+  pixKey: '',
   installments: '',
   isSelectedAnotherCreditCardOwner: false,
   idTransaction: '',
@@ -302,7 +302,7 @@ export default function checkout() {
                 ...prev,
                 description: response.data.transactionResult.description,
                 message: response.data.transactionResult.message,
-                pixQrCode: response.data.transactionResult.pixQrCode,
+                pixKey: response.data.transactionResult.pixKey,
                 idTransaction: response.data.transactionResult.idTransaction,
                 statusTransaction: response.data.transactionResult.status,
               }
