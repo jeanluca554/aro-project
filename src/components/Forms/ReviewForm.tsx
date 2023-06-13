@@ -47,7 +47,7 @@ export function ReviewForm({ data }) {
                   onCopy={() => setButtonText('Código copiado!')}
                 >
                   <button
-                    className='py-4 mt-8 w-full text-sm text-white rounded-md bg-orange-600 hover:bg-orange-500 transition-all mb-6'
+                    className='py-4 px-2 mt-8 w-full text-sm text-white rounded-md bg-orange-600 hover:bg-orange-500 transition-all mb-6'
                     onClick={(event) => event.preventDefault()}
                   >
                     <span className='font-semibold'>{buttonText}</span>
