@@ -15,6 +15,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Alert from '@mui/material/Alert';
 import { styled } from '@mui/material/styles';
 import { orange } from '@mui/material/colors';
 
@@ -38,19 +39,11 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-type TicketsType = {
-  product: string,
-  userName: string,
-  userCategory: string,
-  paymentMethod: string,
-  message: string,
-  status: string,
-  description: string,
-}
-
 export default function MyTickets() {
-  const [identity, setIdentity] = useState('');
-  const [email, setEmail] = useState('');
+  // const [identity, setIdentity] = useState('');
+  // const [email, setEmail] = useState('');
+
+  const [errorMessage, setErrorMessage] = useState('');
 
   const [tickets, setTickets] = useState([]);
 
@@ -80,40 +73,13 @@ export default function MyTickets() {
       console.log(response.data)
       if (response.status === 200) {
         setTickets(response.data)
-        //   if (response.data.transactionResult.errorCode) {
-        //     setDataForm((prev) => {
-        //       return {
-        //         ...prev,
-        //         description: response.data.transactionResult.errorMessage,
-        //         message: "Algo deu errado"
-        //       }
-        //     })
-        //   }
-        //   else {
-        //     setDataForm((prev) => {
-        //       return {
-        //         ...prev,
-        //         description: response.data.transactionResult.description,
-        //         message: response.data.transactionResult.message,
-        //         pixKey: response.data.transactionResult.pixKey,
-        //         idTransaction: response.data.transactionResult.idTransaction,
-        //         statusTransaction: response.data.transactionResult.status,
-        //       }
-        //     })
-
-        //     console.log(response.data.transactionResult.message)
-        //     console.log(response.data.transactionResult.description)
-        //     console.log(response);
-        //     outputData()
-        //   }
-        // }
-        // else {
-        //   console.log(response)
+        setErrorMessage('')
       }
     })
       .catch(error => {
         if (error.code === "ERR_BAD_REQUEST") {
-          console.log(JSON.stringify(error.response.data, null, 2));
+          // console.log(JSON.stringify(error.response.data, null, 2));
+          setErrorMessage(error.response.data.message);
         }
         else {
           console.log(error);
@@ -137,12 +103,12 @@ export default function MyTickets() {
             id='identity'
             name='identity'
             {...register('identity')}
-            value={identity}
+            // value={identity}
             mask={'999.999.999-99'}
             maskChar=" "
-            onChange={
-              (e: React.ChangeEvent<HTMLInputElement>) => setIdentity(e.target.value)
-            }
+            // onChange={
+            //   (e: React.ChangeEvent<HTMLInputElement>) => setIdentity(e.target.value)
+            // }
             className={`py-3 px-4 border-2 border-gray-200 outline-gray-400 rounded bg-gray-200 text-gray-700 placeholder-gray-500  focus:outline-none focus:bg-white focus:border-orange-500 block w-full disabled:bg-gray-300 disabled:text-gray-500 disabled:border-gray-300 focus:invalid:border-red-500 ${errors.identity ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-orange-500 mb-4'}`}
           />
           {errors.identity && (
@@ -157,10 +123,10 @@ export default function MyTickets() {
             id='email'
             name='email'
             {...register('email')}
-            value={email}
-            onChange={
-              (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)
-            }
+            // value={email}
+            // onChange={
+            //   (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)
+            // }
             className={`py-3 px-4 border-2 outline-gray-400 rounded bg-gray-200 text-gray-700 placeholder-gray-500  focus:outline-none focus:bg-white block w-full disabled:bg-gray-300 disabled:text-gray-500 disabled:border-gray-300 focus:invalid:border-red-500 ${errors.email ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-orange-500'}`}
           />
           {errors.email && (
@@ -179,40 +145,54 @@ export default function MyTickets() {
         </form>
       </FormProvider>
 
-      <div className='flex items-center justify-center mx-6 pt-4 pb-6'>
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 700 }} aria-label="customized table">
-            <TableHead>
-              <TableRow >
-                <StyledTableCell align="center" className='font-bold'>Curso</StyledTableCell>
-                <StyledTableCell align="center" className='font-bold'>Pagador</StyledTableCell>
-                <StyledTableCell align="center" className='font-bold'>Categoria</StyledTableCell>
-                <StyledTableCell align="center" className='font-bold'>Status</StyledTableCell>
-                <StyledTableCell align="center" className='font-bold'>Descrição do pagamento</StyledTableCell>
 
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {
-                tickets.map((item) => (
-                  item.map((ticketItem) => (
-                    <StyledTableRow key={ticketItem[ticketItem]}>
-                      <StyledTableCell align="center">{ticketItem.product}</StyledTableCell>
-                      <StyledTableCell align="center">{ticketItem.userName}</StyledTableCell>
-                      <StyledTableCell align="center">
-                        {ticketItem.userCategory === "lawyer" && "Advogado"}
-                        {ticketItem.userCategory === "student" && "Estudante"}
-                      </StyledTableCell>
-                      <StyledTableCell align="center">{ticketItem.message}</StyledTableCell>
-                      <StyledTableCell align="center">{ticketItem.description}</StyledTableCell>
-                    </StyledTableRow>
-                  ))
-                ))
-              }
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </div>
+
+      {errorMessage !== ''
+        ? <Alert variant="filled" severity="error" className='max-w-md mx-6 mb-6'>{errorMessage} Verifique se o <span className='font-bold'>E-MAIL</span> e/ou o <span className='font-bold'>CPF</span> estão corretos.</Alert>
+        : <div className='flex items-center justify-center mx-6 pt-4 pb-6'>
+
+          {tickets.length > 0 &&
+
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                <TableHead>
+                  <TableRow >
+                    <StyledTableCell align="center" className='font-bold'>Curso</StyledTableCell>
+                    <StyledTableCell align="center" className='font-bold'>Pagador</StyledTableCell>
+                    <StyledTableCell align="center" className='font-bold'>Categoria</StyledTableCell>
+                    <StyledTableCell align="center" className='font-bold'>Status</StyledTableCell>
+                    <StyledTableCell align="center" className='font-bold'>Informação do pagamento</StyledTableCell>
+
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {
+                    tickets.map((item) => (
+                      item.map((ticketItem, index) => (
+                        <StyledTableRow key={index}>
+                          <StyledTableCell align="center">{ticketItem.product}</StyledTableCell>
+                          <StyledTableCell align="center">{ticketItem.userName}</StyledTableCell>
+                          <StyledTableCell align="center">
+                            {ticketItem.userCategory === "lawyer" && "Advogado"}
+                            {ticketItem.userCategory === "student" && "Estudante"}
+                          </StyledTableCell>
+                          <StyledTableCell
+                            align="center"
+                            className={`${ticketItem.status === 3 ? 'text-green-600' : ''}`}>
+                            {ticketItem.message}
+                          </StyledTableCell>
+                          <StyledTableCell align="center">{ticketItem.description}</StyledTableCell>
+                        </StyledTableRow>
+                      ))
+                    ))
+                  }
+                </TableBody>
+              </Table>
+            </TableContainer>
+          }
+        </div>
+      }
+
     </div>
 
   )
