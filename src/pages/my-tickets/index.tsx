@@ -16,6 +16,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Alert from '@mui/material/Alert';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 import { styled } from '@mui/material/styles';
 import { orange } from '@mui/material/colors';
 
@@ -47,6 +49,8 @@ export default function MyTickets() {
 
   const [tickets, setTickets] = useState([]);
 
+  const [isBackdropOpen, setIsBackdropOpen] = useState(false);
+
   const createCheckoutSchema = z.object({
     identity: z.string().refine((identity) => isCPF(identity), { message: "Não é um CPF válido" }),
     email: z.string().email({ message: "Informe um e-mail válido" }),
@@ -69,12 +73,14 @@ export default function MyTickets() {
   const onSubmit: SubmitHandler<CreateCheckoutData> = (data) => getTicket(data.identity, data.email);
 
   function getTicket(identity: string, email: string) {
+    setIsBackdropOpen(true)
     TicketsService.tickets(identity, email).then((response) => {
       console.log(response.data)
       if (response.status === 200) {
         setTickets(response.data)
         setErrorMessage('')
       }
+      setIsBackdropOpen(false)
     })
       .catch(error => {
         if (error.code === "ERR_BAD_REQUEST") {
@@ -84,6 +90,7 @@ export default function MyTickets() {
         else {
           console.log(error);
         }
+        setIsBackdropOpen(false)
       });
   }
 
@@ -192,6 +199,14 @@ export default function MyTickets() {
           }
         </div>
       }
+      <div>
+        <Backdrop
+          sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={isBackdropOpen}
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      </div>
 
     </div>
 
