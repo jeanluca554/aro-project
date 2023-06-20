@@ -33,3 +33,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+#test pages
+src/pages/my-tickets/teste.tsx
