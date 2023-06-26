@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import QRCode from 'react-qr-code';
-import { TransactionsService } from 'services/TransactionByIdTransactionService';
+import { TicketService } from 'services/TicketService';
 
 type TicketProps = {
   id: string | string[];
@@ -19,9 +19,10 @@ export function Ticket(props: TicketProps) {
 
   useEffect(() => {
     props.id !== undefined &&
-      TransactionsService.transaction(props.id)
+      TicketService.ticket(props.id)
         .then((response) => {
-          setIdTransaction(response.data.transaction.idTransaction);
+          console.log(response.data.ticket.ticket.ticketId)
+          setIdTransaction(response.data.ticket.ticket.ticketId);
         })
         .catch(error => {
           console.log(error)

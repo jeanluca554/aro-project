@@ -164,6 +164,7 @@ export default function MyTickets() {
               <Table sx={{ minWidth: 700 }} aria-label="customized table">
                 <TableHead>
                   <TableRow >
+                    <StyledTableCell align="center" className='font-bold'>Ingresso</StyledTableCell>
                     <StyledTableCell align="center" className='font-bold'>Curso</StyledTableCell>
                     <StyledTableCell align="center" className='font-bold'>Pagador</StyledTableCell>
                     <StyledTableCell align="center" className='font-bold'>Categoria</StyledTableCell>
@@ -174,23 +175,25 @@ export default function MyTickets() {
                 </TableHead>
                 <TableBody>
                   {
-                    tickets.map((item) => (
-                      item.map((ticketItem, index) => (
-                        <StyledTableRow key={index}>
-                          <StyledTableCell align="center">{ticketItem.product}</StyledTableCell>
-                          <StyledTableCell align="center">{ticketItem.userName}</StyledTableCell>
-                          <StyledTableCell align="center">
-                            {ticketItem.userCategory === "lawyer" && "Advogado"}
-                            {ticketItem.userCategory === "student" && "Estudante"}
-                          </StyledTableCell>
-                          <StyledTableCell
-                            align="center"
-                            className={`${ticketItem.status === 3 ? 'text-green-600' : ''}`}>
-                            {ticketItem.message}
-                          </StyledTableCell>
-                          <StyledTableCell align="center">{ticketItem.description}</StyledTableCell>
-                        </StyledTableRow>
-                      ))
+                    tickets.map((ticket, index) => (
+                      <StyledTableRow key={index}>
+                        <StyledTableCell align="center">
+                          <a href={`/ticket/${ticket.ticket}`} target='_blank' className='underline cursor-pointer font-bold'>Visualizar</a>
+                        </StyledTableCell>
+                        <StyledTableCell align="center">{ticket.product}</StyledTableCell>
+                        <StyledTableCell align="center">{ticket.userName}</StyledTableCell>
+                        <StyledTableCell align="center">
+                          {ticket.userCategory === "lawyer" && "Advogado"}
+                          {ticket.userCategory === "student" && "Estudante"}
+                        </StyledTableCell>
+                        <StyledTableCell
+                          align="center"
+                          className={`${ticket.status === 3 ? 'text-green-700' : ''}`}
+                        >
+                          {ticket.message}
+                        </StyledTableCell>
+                        <StyledTableCell align="center">{ticket.description}</StyledTableCell>
+                      </StyledTableRow>
                     ))
                   }
                 </TableBody>
