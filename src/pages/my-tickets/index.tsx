@@ -75,7 +75,6 @@ export default function MyTickets() {
   function getTicket(identity: string, email: string) {
     setIsBackdropOpen(true)
     TicketsService.tickets(identity, email).then((response) => {
-      console.log(response.data)
       if (response.status === 200) {
         setTickets(response.data)
         setErrorMessage('')
@@ -166,9 +165,9 @@ export default function MyTickets() {
                   <TableRow >
                     <StyledTableCell align="center" className='font-bold'>Ingresso</StyledTableCell>
                     <StyledTableCell align="center" className='font-bold'>Curso</StyledTableCell>
+                    <StyledTableCell align="center" className='font-bold'>Status</StyledTableCell>
                     <StyledTableCell align="center" className='font-bold'>Pagador</StyledTableCell>
                     <StyledTableCell align="center" className='font-bold'>Categoria</StyledTableCell>
-                    <StyledTableCell align="center" className='font-bold'>Status</StyledTableCell>
                     <StyledTableCell align="center" className='font-bold'>Informação do pagamento</StyledTableCell>
 
                   </TableRow>
@@ -178,19 +177,19 @@ export default function MyTickets() {
                     tickets.map((ticket, index) => (
                       <StyledTableRow key={index}>
                         <StyledTableCell align="center">
-                          <a href={`/ticket/${ticket.ticket}`} target='_blank' className='underline cursor-pointer font-bold'>Visualizar</a>
+                          <a href={`/ticket/${ticket.ticket}`} target='_blank' className='underline cursor-pointer font-bold text-blue-600'>Visualizar</a>
                         </StyledTableCell>
                         <StyledTableCell align="center">{ticket.product}</StyledTableCell>
+                        <StyledTableCell
+                          align="center"
+                          className={`${ticket.status === 3 ? 'text-green-700' : 'text-orange-600'}`}
+                        >
+                          {ticket.message}
+                        </StyledTableCell>
                         <StyledTableCell align="center">{ticket.userName}</StyledTableCell>
                         <StyledTableCell align="center">
                           {ticket.userCategory === "lawyer" && "Advogado"}
                           {ticket.userCategory === "student" && "Estudante"}
-                        </StyledTableCell>
-                        <StyledTableCell
-                          align="center"
-                          className={`${ticket.status === 3 ? 'text-green-700' : ''}`}
-                        >
-                          {ticket.message}
                         </StyledTableCell>
                         <StyledTableCell align="center">{ticket.description}</StyledTableCell>
                       </StyledTableRow>
