@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import QRCode from 'react-qr-code';
-import { TicketService } from 'services/TicketService';
 
 type TicketProps = {
-  id: string | string[];
+  id: string;
 }
 
 export function Ticket(props: TicketProps) {
@@ -16,29 +15,12 @@ export function Ticket(props: TicketProps) {
     return shortId[0];
   }
 
-
-  useEffect(() => {
-    props.id !== undefined &&
-      TicketService.ticket(props.id)
-        .then((response) => {
-          console.log(response.data.ticket.ticket.ticketId)
-          setIdTransaction(response.data.ticket.ticket.ticketId);
-        })
-        .catch(error => {
-          console.log(error)
-          // if (error.code === "ERR_BAD_REQUEST") {
-          //   console.log(JSON.stringify(error.response.data, null, 2));
-          // }
-          // else {
-          //   console.log(error);
-          // }
-        });
-  }, [props.id])
   return (
 
     // <div className='flex justify-center items-center min-w-max min-h-screen rotate-90'>
     // <div className='flex h-64 w-[784px] rotate-90 -translate-x-40 translate-y-72'>
     // <div className='flex h-64 w-[784px] origin-[25%_75%] rotate-90 '>
+
     <div className='flex h-64 w-[750px] '>
       <div className='border border-gray-500 flex flex-col h-64 w-56 rounded-tl-lg rounded-bl-lg border-r-0 bg-orange-100'>
         < div className='flex justify-center my-auto' >
@@ -46,7 +28,7 @@ export function Ticket(props: TicketProps) {
 
         </div >
         <div className='flex justify-end'>
-          <span className="text-xs text-gray-400 font-semibold pb-2 pr-2">#{getShortId(idTransaction)}</span>
+          <span className="text-xs text-gray-400 font-semibold pb-2 pr-2">#{getShortId(props.id)}</span>
         </div>
 
       </div >
@@ -102,10 +84,11 @@ export function Ticket(props: TicketProps) {
         </div>
 
         <div className='flex justify-center my-4'>
-          <span className="text-xs text-gray-400 font-semibold">#{getShortId(idTransaction)}</span>
+          <span className="text-xs text-gray-400 font-semibold">#{getShortId(props.id)}</span>
         </div>
 
       </div>
     </div >
+
   )
 }
