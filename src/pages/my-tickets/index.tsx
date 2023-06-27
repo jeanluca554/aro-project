@@ -20,6 +20,7 @@ import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import { styled } from '@mui/material/styles';
 import { orange } from '@mui/material/colors';
+import Header from 'components/Header';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -94,10 +95,11 @@ export default function MyTickets() {
   }
 
   return (
-    <div className='flex flex-col w-full h-screen bg-gray-100'>
+    <div className='flex flex-col w-full bg-gray-100'>
+      <Header />
       <FormProvider {...createCheckoutForm}>
         <form
-          className='mt-8 mx-6 max-w-md'
+          className='mt-8 mx-6 max-w-md md:ml-16'
           onSubmit={handleSubmit(onSubmit)}
         >
 
@@ -154,8 +156,8 @@ export default function MyTickets() {
 
 
       {errorMessage !== ''
-        ? <Alert variant="filled" severity="error" className='max-w-md mx-6 mb-6'>{errorMessage} Verifique se o <span className='font-bold'>E-MAIL</span> e/ou o <span className='font-bold'>CPF</span> estão corretos.</Alert>
-        : <div className='flex items-center justify-center mx-6 pt-4 pb-6'>
+        ? <Alert variant="filled" severity="error" className='max-w-md mx-6 md:mx-16 mb-6'>{errorMessage} Verifique se o <span className='font-bold'>E-MAIL</span> e/ou o <span className='font-bold'>CPF</span> estão corretos.</Alert>
+        : <div className='flex items-center justify-center mx-6 pt-4 pb-6 md:mx-16'>
 
           {tickets.length > 0 &&
 
@@ -177,7 +179,10 @@ export default function MyTickets() {
                     tickets.map((ticket, index) => (
                       <StyledTableRow key={index}>
                         <StyledTableCell align="center">
-                          <a href={`/ticket/${ticket.ticket}`} target='_blank' className='underline cursor-pointer font-bold text-blue-600'>Visualizar</a>
+                          {ticket.status === 3
+                            ? <a href={`/ticket/${ticket.ticket}`} target='_blank' className='underline cursor-pointer font-bold text-blue-600'>Visualizar</a>
+                            : <span className='underline cursor-not-allowed font-bold text-blue-600'>Visualizar</span>}
+
                         </StyledTableCell>
                         <StyledTableCell align="center">{ticket.product}</StyledTableCell>
                         <StyledTableCell
