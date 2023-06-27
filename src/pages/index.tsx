@@ -121,6 +121,12 @@ export default function Home() {
                         text='Contato'
                       />
 
+                      <a
+                        href={`/my-tickets`}
+                        className=' px-3 py-2 rounded-md font-poppins font-medium text-xl transition duration-100 text-gray-800 hover:text-gray-500'>
+                        Meus ingressos
+                      </a>
+
                     </div>
                   </div>
                 </div>
@@ -174,13 +180,20 @@ export default function Home() {
                     section="contact"
                     text='Contato'
                   />
+
+                  <a
+                    href={`/my-tickets`}
+                    className='px-3 py-2  rounded-md block text-base text-left transition duration-700 text-gray-500 hover:bg-gray-700 hover:text-white font-normal'>
+                    Meus ingressos
+                  </a>
                 </div>
               </Transition>
 
             </Disclosure.Panel>
           </div>
-        )}
-      </Disclosure>
+        )
+        }
+      </Disclosure >
 
       <main>
         <div>
