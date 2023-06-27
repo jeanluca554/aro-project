@@ -97,115 +97,117 @@ export default function MyTickets() {
   return (
     <div className='flex flex-col w-full bg-gray-100'>
       <Header />
-      <FormProvider {...createCheckoutForm}>
-        <form
-          className='mt-8 mx-6 max-w-md md:ml-16'
-          onSubmit={handleSubmit(onSubmit)}
-        >
-
-          <h2 className='font-medium text-gray-600 pb-6 text-lg'>Preencha os campos para visualizar os ingressos:</h2>
-
-          <label htmlFor="" className='text-gray-700 ml-2'>Insira o CPF informado no momento da compra</label>
-          <InputMask
-            placeholder='000.000.000-00'
-            id='identity'
-            name='identity'
-            {...register('identity')}
-            // value={identity}
-            mask={'999.999.999-99'}
-            maskChar=" "
-            // onChange={
-            //   (e: React.ChangeEvent<HTMLInputElement>) => setIdentity(e.target.value)
-            // }
-            className={`py-3 px-4 border-2 border-gray-200 outline-gray-400 rounded bg-gray-200 text-gray-700 placeholder-gray-500  focus:outline-none focus:bg-white focus:border-orange-500 block w-full disabled:bg-gray-300 disabled:text-gray-500 disabled:border-gray-300 focus:invalid:border-red-500 ${errors.identity ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-orange-500 mb-4'}`}
-          />
-          {errors.identity && (
-            <p className="text-xs italic text-red-500 mb-4 mt-1">
-              {errors.identity?.message}
-            </p>
-          )}
-
-          <label htmlFor="" className='text-gray-700 ml-2 '>Insira o email informado no momento da compra</label>
-          <input
-            placeholder='E-mail'
-            id='email'
-            name='email'
-            {...register('email')}
-            // value={email}
-            // onChange={
-            //   (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)
-            // }
-            className={`py-3 px-4 border-2 outline-gray-400 rounded bg-gray-200 text-gray-700 placeholder-gray-500  focus:outline-none focus:bg-white block w-full disabled:bg-gray-300 disabled:text-gray-500 disabled:border-gray-300 focus:invalid:border-red-500 ${errors.email ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-orange-500'}`}
-          />
-          {errors.email && (
-            <p className="text-xs italic text-red-500 mt-1">
-              {errors.email?.message}
-            </p>
-          )}
-
-          <button
-            className='py-4 mt-8 font-bold w-full text-white rounded-md bg-orange-600 hover:bg-orange-500 transition-all mb-6 disabled:cursor-not-allowed'
-            type='submit'
+      <div className='md:max-w-5xl md:mx-auto px-8 md:px-0'>
+        <FormProvider {...createCheckoutForm}>
+          <form
+            className='mt-8 max-w-md md:ml-16'
+            onSubmit={handleSubmit(onSubmit)}
           >
-            BUSCAR
-          </button>
 
-        </form>
-      </FormProvider>
+            <h2 className='font-medium text-gray-600 pb-6 text-lg'>Preencha os campos para visualizar seus ingressos:</h2>
+
+            <label htmlFor="" className='text-gray-700 ml-2'>Insira o CPF informado no momento da compra</label>
+            <InputMask
+              placeholder='000.000.000-00'
+              id='identity'
+              name='identity'
+              {...register('identity')}
+              // value={identity}
+              mask={'999.999.999-99'}
+              maskChar=" "
+              // onChange={
+              //   (e: React.ChangeEvent<HTMLInputElement>) => setIdentity(e.target.value)
+              // }
+              className={`py-3 px-4 border-2 border-gray-200 outline-gray-400 rounded bg-gray-200 text-gray-700 placeholder-gray-500  focus:outline-none focus:bg-white focus:border-orange-500 block w-full disabled:bg-gray-300 disabled:text-gray-500 disabled:border-gray-300 focus:invalid:border-red-500 ${errors.identity ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-orange-500 mb-4'}`}
+            />
+            {errors.identity && (
+              <p className="text-xs italic text-red-500 mb-4 mt-1">
+                {errors.identity?.message}
+              </p>
+            )}
+
+            <label htmlFor="" className='text-gray-700 ml-2 '>Insira o email informado no momento da compra</label>
+            <input
+              placeholder='E-mail'
+              id='email'
+              name='email'
+              {...register('email')}
+              // value={email}
+              // onChange={
+              //   (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)
+              // }
+              className={`py-3 px-4 border-2 outline-gray-400 rounded bg-gray-200 text-gray-700 placeholder-gray-500  focus:outline-none focus:bg-white block w-full disabled:bg-gray-300 disabled:text-gray-500 disabled:border-gray-300 focus:invalid:border-red-500 ${errors.email ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-orange-500'}`}
+            />
+            {errors.email && (
+              <p className="text-xs italic text-red-500 mt-1">
+                {errors.email?.message}
+              </p>
+            )}
+
+            <button
+              className='py-4 mt-8 font-bold w-full text-white rounded-md bg-orange-600 hover:bg-orange-500 transition-all mb-6 disabled:cursor-not-allowed'
+              type='submit'
+            >
+              BUSCAR
+            </button>
+
+          </form>
+        </FormProvider>
 
 
 
-      {errorMessage !== ''
-        ? <Alert variant="filled" severity="error" className='max-w-md mx-6 md:mx-16 mb-6'>{errorMessage} Verifique se o <span className='font-bold'>E-MAIL</span> e/ou o <span className='font-bold'>CPF</span> estão corretos.</Alert>
-        : <div className='flex items-center justify-center mx-6 pt-4 pb-6 md:mx-16'>
+        {errorMessage !== ''
+          ? <Alert variant="filled" severity="error" className='max-w-md mx-6 md:mx-16 mb-6'>{errorMessage} Verifique se o <span className='font-bold'>E-MAIL</span> e/ou o <span className='font-bold'>CPF</span> estão corretos.</Alert>
+          : <div className='flex items-center justify-center pt-4 pb-6 md:px-16'>
 
-          {tickets.length > 0 &&
+            {tickets.length > 0 &&
 
-            <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                <TableHead>
-                  <TableRow >
-                    <StyledTableCell align="center" className='font-bold'>Ingresso</StyledTableCell>
-                    <StyledTableCell align="center" className='font-bold'>Curso</StyledTableCell>
-                    <StyledTableCell align="center" className='font-bold'>Status</StyledTableCell>
-                    <StyledTableCell align="center" className='font-bold'>Pagador</StyledTableCell>
-                    <StyledTableCell align="center" className='font-bold'>Categoria</StyledTableCell>
-                    <StyledTableCell align="center" className='font-bold'>Informação do pagamento</StyledTableCell>
+              <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                  <TableHead>
+                    <TableRow >
+                      <StyledTableCell align="center" className='font-bold'>Ingresso</StyledTableCell>
+                      <StyledTableCell align="center" className='font-bold'>Curso</StyledTableCell>
+                      <StyledTableCell align="center" className='font-bold'>Status</StyledTableCell>
+                      <StyledTableCell align="center" className='font-bold'>Pagador</StyledTableCell>
+                      <StyledTableCell align="center" className='font-bold'>Categoria</StyledTableCell>
+                      <StyledTableCell align="center" className='font-bold'>Informação do pagamento</StyledTableCell>
 
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {
-                    tickets.map((ticket, index) => (
-                      <StyledTableRow key={index}>
-                        <StyledTableCell align="center">
-                          {ticket.status === 3
-                            ? <a href={`/ticket/${ticket.ticket}`} target='_blank' className='underline cursor-pointer font-bold text-blue-600'>Visualizar</a>
-                            : <span className='underline cursor-not-allowed font-bold text-blue-600'>Visualizar</span>}
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {
+                      tickets.map((ticket, index) => (
+                        <StyledTableRow key={index}>
+                          <StyledTableCell align="center">
+                            {ticket.status === 3
+                              ? <a href={`/ticket/${ticket.ticket}`} target='_blank' className='underline cursor-pointer font-bold text-blue-600'>Visualizar</a>
+                              : <span className='underline cursor-not-allowed font-bold text-blue-600'>Visualizar</span>}
 
-                        </StyledTableCell>
-                        <StyledTableCell align="center">{ticket.product}</StyledTableCell>
-                        <StyledTableCell
-                          align="center"
-                          className={`${ticket.status === 3 ? 'text-green-700' : 'text-orange-600'}`}
-                        >
-                          {ticket.message}
-                        </StyledTableCell>
-                        <StyledTableCell align="center">{ticket.userName}</StyledTableCell>
-                        <StyledTableCell align="center">
-                          {ticket.userCategory === "lawyer" && "Advogado"}
-                          {ticket.userCategory === "student" && "Estudante"}
-                        </StyledTableCell>
-                        <StyledTableCell align="center">{ticket.description}</StyledTableCell>
-                      </StyledTableRow>
-                    ))
-                  }
-                </TableBody>
-              </Table>
-            </TableContainer>
-          }
-        </div>
-      }
+                          </StyledTableCell>
+                          <StyledTableCell align="center">{ticket.product}</StyledTableCell>
+                          <StyledTableCell
+                            align="center"
+                            className={`${ticket.status === 3 ? 'text-green-700' : 'text-orange-600'}`}
+                          >
+                            {ticket.message}
+                          </StyledTableCell>
+                          <StyledTableCell align="center">{ticket.userName}</StyledTableCell>
+                          <StyledTableCell align="center">
+                            {ticket.userCategory === "lawyer" && "Advogado"}
+                            {ticket.userCategory === "student" && "Estudante"}
+                          </StyledTableCell>
+                          <StyledTableCell align="center">{ticket.description}</StyledTableCell>
+                        </StyledTableRow>
+                      ))
+                    }
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            }
+          </div>
+        }
+      </div>
       <div>
         <Backdrop
           sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -214,7 +216,6 @@ export default function MyTickets() {
           <CircularProgress color="inherit" />
         </Backdrop>
       </div>
-
     </div>
 
   )
