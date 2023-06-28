@@ -4,7 +4,7 @@ import QRCode from 'react-qr-code';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 export function ReviewForm({ data }) {
-  const [buttonText, setButtonText] = useState('Clique aqui e copie o código PIX');
+  const [buttonText, setButtonText] = useState('Copiar código PIX');
   { console.log(data) }
 
   return (
@@ -32,7 +32,7 @@ export function ReviewForm({ data }) {
             data.statusTransaction === 1
               ?
               <div className='flex flex-col'>
-                <h2 className='font-medium text-gray-600 py-2'>Utilize o QR Code abaixo para realizar o pagamento ou clique no botão para copiar o código PIX.</h2>
+                <span className='font-medium text-gray-600 py-2'>Utilize o QR Code abaixo para realizar o pagamento ou clique no botão para copiar o código PIX.</span>
                 <QRCode
                   value={data.pixKey}
                   size={180}
@@ -52,7 +52,11 @@ export function ReviewForm({ data }) {
                   >
                     <span className='font-semibold'>{buttonText}</span>
                   </button>
+
                 </CopyToClipboard>
+                <span className='text-gray-600 py-2 border border-orange-400 rounded-md p-4'>
+                  Você pode conferir seus ingressos disponíveis para download na página principal do site no menu "Meus ingressos" ou apenas <a href={`/my-tickets/`} className='underline cursor-pointer font-bold'>clicando aqui.</a>
+                </span>
               </div>
               :
               <div className='flex flex-col'>
