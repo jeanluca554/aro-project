@@ -15,7 +15,8 @@ export function CourseInformationBannerRightSide({ data, currentStep }) {
   }, [data.category]);
 
   return (
-    <div className='hidden border-2 border-orange-600 border-opacity-50 sm:rounded-lg w-96 md:block'>
+    <div className='hidden border-2 border-orange-600 border-opacity-50 sm:rounded-lg md:w-72 lg:w-96 md:block'>
+      {/* <div className='hidden border-2 border-orange-600 border-opacity-50 sm:rounded-lg w-96 md:block'> */}
       <div className='m-5 text-center'>
         <div className='font-semibold text-gray-600 text-xl'>
           <a className='text-orange-600'>Curso</a> Tribunal do Júri
