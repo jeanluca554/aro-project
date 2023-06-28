@@ -26,7 +26,7 @@ export function CourseInformationBannerRightSide({ data, currentStep }) {
           <a className='font-semibold'>Aprenda </a>na prática o julgamento popular e como atuar <a className='font-semibold'>com excelência</a>
         </div>
         {
-          currentStep === 1 && (
+          currentStep !== 0 && currentStep !== 4 && (
             <div className=' border-t border-b border-orange-600 border-opacity-50 mt-4 text-gray-600 text-sm py-4'>
               <div className='flex justify-between'>
                 <p>Valor do produto</p>
