@@ -8,6 +8,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { isCPF } from 'brazilian-values';
 
+import QRCode from 'react-qr-code';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
@@ -21,6 +24,11 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { styled } from '@mui/material/styles';
 import { orange } from '@mui/material/colors';
 import Header from 'components/Header';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -43,8 +51,18 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export default function MyTickets() {
-  // const [identity, setIdentity] = useState('');
-  // const [email, setEmail] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [pixKey, setPixKey] = useState('');
+  const [buttonText, setButtonText] = useState('Copiar código PIX');
+
+  function handleClickOpen(pixKey: string) {
+    setPixKey(pixKey)
+    setIsModalOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsModalOpen(false);
+  };
 
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -182,7 +200,7 @@ export default function MyTickets() {
                           <StyledTableCell align="center">
                             {ticket.status === 3
                               ? <a href={`/ticket/${ticket.ticket}`} target='_blank' className='underline cursor-pointer font-bold text-blue-600'>Visualizar</a>
-                              : <span className='underline cursor-not-allowed font-bold text-blue-600'>Visualizar</span>}
+                              : ticket.status === 1 && <button onClick={() => handleClickOpen(ticket.pixKey)} className='underline font-bold text-blue-600'>Visualizar</button>}
 
                           </StyledTableCell>
                           <StyledTableCell align="center">{ticket.product}</StyledTableCell>
@@ -216,8 +234,50 @@ export default function MyTickets() {
           <CircularProgress color="inherit" />
         </Backdrop>
       </div>
-    </div>
+      <div>
+        <Dialog
+          open={isModalOpen}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title" className='text-orange-500'>
+            {"Pagamento pendente"}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description" className='md:px-8'>
+              <span className='font-medium text-gray-600 py-2'>Utilize o QR Code abaixo para realizar o pagamento ou clique no botão para copiar o código PIX.</span>
+              <QRCode
+                value={pixKey}
+                size={180}
+                className='mx-auto mt-3'
+                bgColor='#fff'
+                fgColor='#000'
+              // fgColor='#4b5563'
+              />
 
+              <CopyToClipboard
+                text={pixKey}
+                onCopy={() => setButtonText('Código copiado!')}
+              >
+                <button
+                  className='py-4 px-2 mt-8 w-full font-bold text-white rounded-md bg-orange-600 hover:bg-orange-500 transition-all mb-6'
+                  onClick={(event) => event.preventDefault()}
+                >
+                  <span className='font-semibold'>{buttonText}</span>
+                </button>
+
+              </CopyToClipboard>
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <button
+              className='p-2 font-bold text-white rounded-md bg-orange-600 hover:bg-orange-500 transition-all'
+              onClick={handleClose}>Fechar</button>
+          </DialogActions>
+        </Dialog>
+      </div>
+    </div >
   )
 }
 
