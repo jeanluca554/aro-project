@@ -41,6 +41,7 @@ export function AuthProvider({ children }) {
       })
         .catch(function (error) {
           console.log(error);
+          Router.push('/login');
         });
     }
   }, [])
@@ -52,7 +53,7 @@ export function AuthProvider({ children }) {
       email: email,
       password: password
     })
-      .then(function (response) {
+      .then((response) => {
         console.log(response);
         // setTeste(response);
 
@@ -68,7 +69,7 @@ export function AuthProvider({ children }) {
         Router.push('/dashboard');
 
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error.response.data.message);
       });
   }
