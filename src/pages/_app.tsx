@@ -8,14 +8,9 @@ import Layout from '../layouts/Layout';
 function MyApp({ Component, pageProps }) {
   if (Component.getLayout) {
     return (
-      <AuthProvider>
-        <Component {...pageProps} />
-      </AuthProvider>
+      <Component {...pageProps} />
     )
   }
-  // if (Component.Login) {
-  //   return Component.Login(<Component {...pageProps} />)
-  // }
 
   return (
     <AuthProvider>
