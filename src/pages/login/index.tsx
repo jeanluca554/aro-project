@@ -1,48 +1,42 @@
 import Head from 'next/head'
 import { LockClosedIcon } from '@heroicons/react/solid'
 import { useForm } from 'react-hook-form'
-import { useContext } from 'react'
-import { AuthContext } from '../../contexts/AuthContext'
+import { useContext, useState } from 'react'
+import { AuthContext, AuthProvider } from '../../contexts/AuthContext'
 
 export default function Login() {
-  const { register, handleSubmit } = useForm()
-  const { signIn } = useContext(AuthContext)
+  const { register, handleSubmit } = useForm();
+  const { signIn } = useContext(AuthContext);
+  const [loginError, setLoginError] = useState(false);
 
   async function handleSigIn(data) {
-    // console.log(data);
-
-    // develop some solution to present the error:
     try {
       await signIn(data)
     } catch (error) {
-      // console.log(error)
-      console.log(error.message)
+      setLoginError(true);
+      // console.log(error.message)
     }
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4 py-12 sm:px-6 lg:px-8">
       <Head>
         <title>Home</title>
       </Head>
 
-      <div className="max-w-sm w-full space-y-8">
+      <div className="w-full max-w-sm space-y-8">
         <div>
-          <img
-            className="mx-auto h-12 w-auto"
-            src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-            alt="Workflow"
-          />
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Sign in to your account
+          <img className="mx-auto h-40 w-auto" src="logo2.png" alt="Workflow" />
+          <h2 className="mt-6 text-center text-2xl font-extrabold text-gray-900">
+            Informe suas credenciais
           </h2>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit(handleSigIn)}>
           <input type="hidden" name="remember" defaultValue="true" />
-          <div className="rounded-md shadow-sm -space-y-px">
+          <div className={`-space-y-px rounded-md ${!loginError && 'shadow-sm'}`}>
             <div>
               <label htmlFor="email-address" className="sr-only">
-                Email address
+                E-mail
               </label>
               <input
                 {...register('email')}
@@ -51,13 +45,13 @@ export default function Login() {
                 type="email"
                 autoComplete="email"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Email address"
+                className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-orange-500 focus:outline-none focus:ring-orange-500 sm:text-sm"
+                placeholder="E-mail"
               />
             </div>
             <div>
               <label htmlFor="password" className="sr-only">
-                Password
+                Senha
               </label>
               <input
                 {...register('password')}
@@ -66,34 +60,22 @@ export default function Login() {
                 type="password"
                 autoComplete="current-password"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Password"
+                className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-orange-500 focus:outline-none focus:ring-orange-500 sm:text-sm"
+                placeholder="Senha"
               />
             </div>
+            {loginError && 
+            <p className='text-xs pt-2 text-red-500'>O email ou a senha fornecidos estão incorretos.</p>
+          }
           </div>
 
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <input
-                id="remember_me"
-                name="remember_me"
-                type="checkbox"
-                className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-              />
-              <label
-                htmlFor="remember_me"
-                className="ml-2 block text-sm text-gray-900"
-              >
-                Remember me
-              </label>
-            </div>
-
+          <div className="flex items-center justify-center">
             <div className="text-sm">
               <a
                 href="#"
-                className="font-medium text-indigo-600 hover:text-indigo-500"
+                className="font-medium text-orange-500 hover:text-orange-400"
               >
-                Forgot your password?
+                Esqueceu sua senha?
               </a>
             </div>
           </div>
@@ -101,15 +83,15 @@ export default function Login() {
           <div>
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="group relative flex w-full justify-center rounded-md border border-transparent bg-orange-500 px-4 py-2 text-sm font-medium text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2"
             >
-              <span className="absolute left-0 inset-y-0 flex items-center pl-3">
+              <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                 <LockClosedIcon
-                  className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
+                  className="h-5 w-5 text-orange-300 group-hover:text-orange-400"
                   aria-hidden="true"
                 />
               </span>
-              Sign in
+              Entrar
             </button>
           </div>
         </form>
@@ -119,5 +101,7 @@ export default function Login() {
 }
 
 Login.getLayout = function PageLayout(page) {
-  return <>{page}</>
+  return <>
+    {page}
+  </>
 }
