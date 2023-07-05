@@ -38,7 +38,7 @@ const Sidebar = () => {
     <>
 
       {/* Mobile menu */}
-      <div className='flex items-center h-16 w-full px-4 bg-purple-900 md:hidden'>
+      <div className='flex items-center h-16 w-full px-4 bg-orange-500 md:hidden'>
         <List
           size={32}
           className='text-white'
@@ -79,7 +79,7 @@ const Sidebar = () => {
                 enterTo="opacity-100 translate-y-0 sm:scale-100"
                 leave="-translate-x-72 duration-500"
               >
-                <Dialog.Panel className="flex flex-col transform overflow-hidden bg-purple-900 shadow-xl transition-all pt-8 p-4 w-full">
+                <Dialog.Panel className="flex flex-col transform overflow-hidden bg-orange-500 shadow-xl transition-all pt-8 p-4 w-full">
                   <div className='flex gap-x-4 items-center'>
                     <img src="aro-logo-white.png"
                       alt="logo"
@@ -94,7 +94,7 @@ const Sidebar = () => {
                     {Menus.map((menu, index) => (
                       <li
                         key={index}
-                        className={`text-gray-300 text-sm flex items-center  gap-x-4 cursor-pointer p-2 hover:bg-purple-300 hover:bg-opacity-25 rounded-md ${menu.gap ? "mt-9" : "mt-2"} ${index === 0 && 'bg-purple-300 bg-opacity-50 text-white'} `}
+                        className={`text-gray-100 text-sm flex items-center  gap-x-4 cursor-pointer p-2 hover:bg-orange-300 hover:bg-opacity-25 rounded-md ${menu.gap ? "mt-9" : "mt-2"} ${index === 0 && 'bg-orange-200 bg-opacity-50 text-white'} `}
                       >
                         {menu.src}
                         <span className={``}>{menu.title}</span>
