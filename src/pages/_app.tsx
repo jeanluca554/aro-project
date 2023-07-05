@@ -6,7 +6,11 @@ import Layout from '../layouts/Layout'
 
 function MyApp({ Component, pageProps }) {
   if (Component.getLayout) {
-    return <Component {...pageProps} />
+    return (
+      <AuthProvider>
+        <Component {...pageProps} />
+      </AuthProvider>
+    )
   }
 
   return (
