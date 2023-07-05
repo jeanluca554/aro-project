@@ -20,7 +20,6 @@ type AuthContextType = {
   signIn: (data: SignInData) => Promise<void>
 }
 
-
 export const AuthContext = createContext({} as AuthContextType)
 
 export function AuthProvider({ children }) {
@@ -54,8 +53,7 @@ export function AuthProvider({ children }) {
       password: password
     })
       .then((response) => {
-        console.log(response);
-        // setTeste(response);
+        // console.log(response);
 
         setCookie(undefined, 'aro.token', response.data.access_token, {
           maxAge: 60 * 60 * 1, //1 hour
@@ -69,9 +67,9 @@ export function AuthProvider({ children }) {
         Router.push('/dashboard');
 
       })
-      .catch((error) => {
-        console.log(error.response.data.message);
-      });
+      // .catch((error) => {
+      //   console.log(error.response.data.message);
+      // });
   }
 
   return (
