@@ -28,20 +28,24 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const { 'aro.token': token } = parseCookies();
+    console.log('o token é: ', token);
 
     if (token) {
       const auth = {
         headers: { "Authorization": `Bearer ${token}` }
       }
       axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/me`, auth).then(function (response) {
-        console.log(response.data.user);
+        console.log('data user: ', response.data.user);
         setUser(response.data.user);
 
       })
         .catch(function (error) {
-          console.log(error);
+          console.log('erro data user', error);
           Router.push('/login');
         });
+    }
+    else {
+      Router.push('/login');
     }
   }, [])
 
@@ -63,7 +67,7 @@ export function AuthProvider({ children }) {
 
         setUser(response.data.user);
         //console.log(infoUser)
-        console.log(response.data.access_token)
+        console.log('access token', response.data.access_token)
         Router.push('/dashboard');
 
       })
