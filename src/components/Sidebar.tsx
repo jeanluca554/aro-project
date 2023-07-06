@@ -31,7 +31,7 @@ const Sidebar = () => {
 
       return splitName[0];
     }
-    console.log(name)
+    console.log('first name', name)
   }
 
   return (
@@ -81,7 +81,7 @@ const Sidebar = () => {
               >
                 <Dialog.Panel className="flex flex-col transform overflow-hidden bg-orange-500 shadow-xl transition-all pt-8 p-4 w-full">
                   <div className='flex gap-x-4 items-center'>
-                    <img src="aro-logo-white.png"
+                    <img src="/aro-logo-white.png"
                       alt="logo"
                       className='w-10 cursor-pointer duration-500'
                     />
@@ -136,21 +136,21 @@ const Sidebar = () => {
       </Transition.Root>
 
       {/* desktop Menu */}
-      <div className={`${open ? 'w-72 ' : 'w-20'} hidden relative duration-300 pt-8 p-4 h-screen bg-purple-900 md:flex flex-col `}>
+      <div className={`${open ? 'w-72 ' : 'w-20'} hidden relative duration-300 pt-8 p-4 h-screen bg-orange-500 md:flex flex-col `}>
 
         <div
-          className={`hidden md:flex items-center justify-center absolute cursor-pointer rounded-full -right-3 top-9 w-7 h-7 border-2 border-purple-900 bg-white ${!open && 'rotate-180'}`}
+          className={`hidden md:flex items-center justify-center absolute cursor-pointer rounded-full -right-3 top-9 w-7 h-7 border-2 border-orange-300 bg-white ${!open && 'rotate-180'}`}
           onClick={() => setOpen(!open)}
         >
           <CaretLeft
             size={14}
-            color="#c084fc"
+            color="#fb923c"
             weight="bold"
           />
         </div >
 
         <div className='flex gap-x-4 items-center'>
-          <img src="aro-logo-white.png"
+          <img src="/aro-logo-white.png"
             alt="logo"
             className='w-10 cursor-pointer duration-500'
           />
@@ -163,7 +163,7 @@ const Sidebar = () => {
           {Menus.map((menu, index) => (
             <li
               key={index}
-              className={`text-gray-300 text-sm flex items-center  gap-x-4 cursor-pointer p-2 hover:bg-purple-300 hover:bg-opacity-25 rounded-md ${menu.gap ? "mt-9" : "mt-2"} ${index === 0 && 'bg-purple-300 bg-opacity-50 text-white'} ${!open && 'justify-center w-10'}`}
+              className={`text-gray-100 text-sm flex items-center  gap-x-4 cursor-pointer p-2 hover:bg-orange-300 hover:bg-opacity-25 rounded-md ${menu.gap ? "mt-9" : "mt-2"} ${index === 0 && 'bg-orange-300 bg-opacity-50 text-white'} ${!open && 'justify-center w-10'}`}
             >
               {menu.src}
               <span className={`${!open && 'hidden'} origin-left duration-1000`}>{menu.title}</span>
