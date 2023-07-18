@@ -21,38 +21,38 @@ export default function Dashboard() {
   }
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const apiClient = getAPIClient(ctx);
-  const { ['aro.token']: token } = parseCookies(ctx);
+// export const getServerSideProps: GetServerSideProps = async (ctx) => {
+//   const apiClient = getAPIClient(ctx);
+//   const { ['aro.token']: token } = parseCookies(ctx);
 
-  if (token) {
-    const auth = {
-      headers: { "Authorization": `Bearer ${token}` }
-    }
-    apiClient.get(`/me`, auth).then((response) => {
-      // console.log(response.data.user);
+//   if (token) {
+//     const auth = {
+//       headers: { "Authorization": `Bearer ${token}` }
+//     }
+//     apiClient.get(`/me`, auth).then((response) => {
+//       // console.log(response.data.user);
 
-    })
-      .catch(function (error) {
-        // console.log(error);
-        return {
-          redirect: {
-            destination: '/login',
-            permanent: false,
-          }
-        }
-      });
-  }
-  else {
-    return {
-      redirect: {
-        destination: '/login',
-        permanent: false,
-      }
-    }
-  }
+//     })
+//       .catch(function (error) {
+//         // console.log(error);
+//         return {
+//           redirect: {
+//             destination: '/login',
+//             permanent: false,
+//           }
+//         }
+//       });
+//   }
+//   else {
+//     return {
+//       redirect: {
+//         destination: '/login',
+//         permanent: false,
+//       }
+//     }
+//   }
 
-  return {
-    props: {}
-  }
-}
+//   return {
+//     props: {}
+//   }
+// }

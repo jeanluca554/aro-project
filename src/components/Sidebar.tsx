@@ -31,7 +31,7 @@ const Sidebar = () => {
 
       return splitName[0];
     }
-    console.log('first name', name)
+    console.log('first name: ', name)
   }
 
   return (
