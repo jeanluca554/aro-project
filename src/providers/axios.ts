@@ -1,16 +1,16 @@
-import axios from "axios";
-import { parseCookies } from "nookies";
+import axios from 'axios'
+import { parseCookies } from 'nookies'
 
 export function getAPIClient(ctx?: any) {
-  const { 'aro.token': token } = parseCookies(ctx);
+  const { aroToken: token } = parseCookies(ctx)
 
-  const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+  const baseURL = process.env.NEXT_PUBLIC_BASE_URL
 
-  const api = axios.create({ baseURL: baseURL });
+  const api = axios.create({ baseURL })
 
   if (token) {
-    api.defaults.headers['Authorization'] = `Bearer ${token}`;
+    api.defaults.headers.Authorization = `Bearer ${token}`
   }
 
-  return api;
+  return api
 }

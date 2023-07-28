@@ -1,3 +1,3 @@
-import { getAPIClient } from "providers/axios";
+import { getAPIClient } from '@/providers/axios'
 
-export const api = getAPIClient();
+export const api = getAPIClient()

@@ -1,12 +1,15 @@
 import { useContext, useState } from "react";
-import { AuthContext } from "contexts/AuthContext";
+// import { AuthContext } from "contexts/AuthContext";
 import { GetServerSideProps } from "next";
 import { parseCookies } from 'nookies';
-import { getAPIClient } from "providers/axios";
+// import { getAPIClient } from "providers/axios";
 import { Router } from "next/router";
 
 export default function Dashboard() {
-  const { user } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);
+  const user = {
+    name: 'Jean'
+  }
 
   if (user) {
     return (

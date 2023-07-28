@@ -1,8 +1,19 @@
+'use client'
+
 import { createContext, useEffect, useState } from "react";
 import axios from 'axios';
 import { setCookie, parseCookies } from 'nookies';
 import Router from 'next/router';
-import { api } from "../providers/Api";
+// import { api } from "../providers/Api";
+
+import { getUserName } from '../lib/auth';
+
+import { AuthError } from "../lib/auth";
+import { jwtVerify } from "jose";
+import { getJwtSecretKey } from "@/lib/constants";
+
+import { verify } from 'jsonwebtoken'
+
 
 type User = {
   name: string;
@@ -17,67 +28,45 @@ type SignInData = {
 type AuthContextType = {
   isAuthenticated: boolean;
   user: User;
-  signIn: (data: SignInData) => Promise<void>
+  // signIn: (data: SignInData) => Promise<void>
 }
 
 export const AuthContext = createContext({} as AuthContextType)
 
-export function AuthProvider({ children }) {
+export async function AuthProvider({ children }) {
   const [user, setUser] = useState<User | null>(null)
   const isAuthenticated = !!user; //if user exists or not
 
   useEffect(() => {
-    const { 'aro.token': token } = parseCookies();
+
+    const { 'aroToken': token } = parseCookies();
     console.log('o token é: ', token);
 
-    if (token) {
-      const auth = {
-        headers: { "Authorization": `Bearer ${token}` }
-      }
-      axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/me`, auth).then(function (response) {
-        console.log('data user: ', response.data.user);
-        setUser(response.data.user);
+    const secret = process.env.NEXT_PUBLIC_BASE_JWT_SECRET_KEY;
+     console.log('o secrete é: ', secret)
 
-      })
-        .catch(function (error) {
-          console.log('erro data user', error);
-          Router.push('/login');
-        });
-    }
-    else {
-      Router.push('/login');
-    }
+    var decoded = verify(token, 'secret');
+    console.log(decoded) // bar
+
+    // try {
+    //   async function verifyJWT() {
+    //     const verified = await jwtVerify(
+    //     token,
+    //     new TextEncoder().encode(getJwtSecretKey())
+    //     )
+    //     console.log('o payload é: ', verified.payload)
+    //     setUser(verified.payload as User)
+    //   }
+    //   verifyJWT()
+    // } catch (err) {
+    //   console.log('error to get name in token', err)
+    //   throw new AuthError('Your token has expired.')
+    // }
+
   }, [])
 
-
-  async function signIn({ email, password }: SignInData) {
-
-    await api.post('/login', {
-      email: email,
-      password: password
-    })
-      .then((response) => {
-        // console.log(response);
-
-        setCookie(undefined, 'aro.token', response.data.access_token, {
-          maxAge: 60 * 60 * 1, //1 hour
-        })
-
-        api.defaults.headers['Authorization'] = `Bearer ${response.data.access_token}`;
-
-        setUser(response.data.user);
-        //console.log(infoUser)
-        console.log('access token', response.data.access_token)
-        Router.push('/dashboard');
-
-      })
-      // .catch((error) => {
-      //   console.log(error.response.data.message);
-      // });
-  }
-
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, signIn }}>
+    <AuthContext.Provider value={{ user, isAuthenticated }}>
       {children}
     </AuthContext.Provider>
   )

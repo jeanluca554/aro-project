@@ -1,33 +1,45 @@
-import Head from 'next/head'
+'use client'
+
+import axios from 'axios'
 import { LockClosedIcon } from '@heroicons/react/solid'
 import { useForm } from 'react-hook-form'
-import { useContext, useState } from 'react'
-import { AuthContext, AuthProvider } from '../../contexts/AuthContext'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+
+type FormValues = {
+  email: string
+  password: string
+}
 
 export default function Login() {
-  const { register, handleSubmit } = useForm();
-  const { signIn } = useContext(AuthContext);
+  const { register, handleSubmit } = useForm<FormValues>();
+  // const { signIn } = useContext(AuthContext);
   const [loginError, setLoginError] = useState(false);
+  const { push } = useRouter();
 
-  async function handleSigIn(data) {
+  async function handleSigIn(data: FormValues) {
     try {
-      await signIn(data)
+      // await axios.post('/api/auth/login', data)
+      const response = await axios.post('/api/auth/login', data)
+      console.log('a response é: ', response)
+
+      response.data.error === 'Request failed with status code 401' && setLoginError(true)
+
+      const redirectURL = response.data.redirectTo ?? '/dashboard'
+
+      response.data.message === 'authenticated' && push(redirectURL)
     } catch (error) {
-      setLoginError(true);
-      // console.log(error.message)
+      setLoginError(true)
+      console.log(error)
     }
   }
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4 py-12 sm:px-6 lg:px-8">
-      <Head>
-        <title>Home</title>
-      </Head>
-
       <div className="w-full max-w-sm space-y-8">
         <div>
           <img className="mx-auto h-40 w-auto" src="logo2.png" alt="Workflow" />
-          <h2 className="mt-6 text-center text-2xl font-extrabold text-gray-900">
+          <h2 className="mt-6 text-center text-2xl font-extrabold text-gray-600">
             Informe suas credenciais
           </h2>
         </div>
@@ -100,8 +112,3 @@ export default function Login() {
   )
 }
 
-Login.getLayout = function PageLayout(page) {
-  return <>
-    {page}
-  </>
-}

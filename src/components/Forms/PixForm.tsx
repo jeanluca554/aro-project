@@ -1,5 +1,5 @@
-import React from 'react';
-import { ErrorMessage, Input } from 'components';
+import React from 'react'
+import { ErrorMessage, Input } from '@/components'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -8,20 +8,22 @@ function classNames(...classes) {
 export function PixForm({ data, updateFieldHandler }) {
   return (
     <>
-      <h2 className='font-medium text-gray-600 pt-2'>Informe o seu CPF para finalizarmos:</h2>
-      <div className='mt-8'>
+      <h2 className="pt-2 font-medium text-gray-600">
+        Informe o seu CPF para finalizarmos:
+      </h2>
+      <div className="mt-8">
         <Input
-          placeholder='Seu CPF'
-          id='identity'
-          name='identity'
-          value={data.identity || ""}
+          placeholder="Seu CPF"
+          id="identity"
+          name="identity"
+          value={data.identity || ''}
           mask={'999.999.999-99'}
           maskChar=" "
-          onChange={
-            (e: React.ChangeEvent<HTMLInputElement>) => updateFieldHandler("identity", e.target.value)
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            updateFieldHandler('identity', e.target.value)
           }
         />
-        <ErrorMessage field='identity' />
+        <ErrorMessage field="identity" />
       </div>
     </>
   )
