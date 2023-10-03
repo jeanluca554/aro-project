@@ -236,6 +236,24 @@ export default function Home() {
                         <p>(Inscrições de <strong> 06/10</strong> a <strong> 27/10 </strong>)</p>
                       </div>
 
+                      <span className='flex items-center my-2 font-medium text-base mt-4'>
+                        <CurrencyDollarIcon className="h-6 w-6 mr-2 text-orange-600 opacity-50" aria-hidden="true" /><span className='opacity-50'>2º Lote de inscrições: </span>&nbsp;(em breve)
+                      </span>
+
+                      <div className='text-xs opacity-50'>
+                        <p>De R$380,00 por<strong className='text-sm'> R$250,00</strong> em até 3x no cartão</p>
+                        <p>(Inscrições de <strong> 28/10</strong> a <strong> 18/11 </strong>)</p>
+                      </div>
+
+                      <span className='flex items-center my-2 font-medium text-base mt-4'>
+                        <CurrencyDollarIcon className="h-6 w-6 mr-2 text-orange-600 opacity-50" aria-hidden="true" /><span className='opacity-50'>3º Lote de inscrições: </span>&nbsp;(em breve)
+                      </span>
+
+                      <div className='text-xs opacity-50'>
+                        <p><strong className='text-sm'> R$380,00</strong> em até 3x no cartão</p>
+                        <p>(Inscrições de <strong> 19/11</strong> a <strong> 27/11 </strong>)</p>
+                      </div>
+
                       <div className='my-6 mr-auto'>
                         <span className='flex items-center my-2 font-medium text-base'>
                           <CreditCardIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Formas de Pagamento:
@@ -263,8 +281,68 @@ export default function Home() {
           </div>
         </div>
 
-        <div className='about bg-orange-50' id="about">
-          <div className='max-w-md md:max-w-none md:max-w-5xl mx-auto pt-12 px-6 py-6 lg:px-8 md:flex md:flex-row md:mt-0'>
+        <div className='gallery bg-orange-50' id='contact'>
+          <div className='max-w-md mx-auto pt-12 px-6 py-6 md:max-w-5xl'>
+            <div className='flex flex-col items-center md:py-10'>
+              <Fade direction='down' duration={2500} delay={600} triggerOnce>
+                <p className=' font-normal text-base text-orange-500 '>Nossos eventos recentes</p>
+              </Fade>
+            </div>
+
+            <Fade direction='down' duration={1500} delay={400} triggerOnce>
+              <h1 className='pt-5 font-semibold text-4xl text-center text-gray-800 md:font-bold md:text-5xl md:pt-5' >
+                Nossos <a className='text-orange-600'>Incríveis Eventos </a>Mais Recentes
+              </h1>
+            </Fade>
+
+         
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 my-12">
+                <div>
+                    <img className="h-auto max-w-full rounded-lg hover:scale-125 transition duration-500" src="event1.jpg" alt="" />
+                </div>
+                <div>
+                    <img className="h-auto max-w-full rounded-lg hover:scale-125 transition duration-500" src="event2.jpg" alt="" />
+                </div>
+                <div>
+                    <img className="h-auto max-w-full rounded-lg hover:scale-125 transition duration-500" src="event3.jpg" alt="" />
+                </div>
+                <div>
+                    <img className="h-auto max-w-full rounded-lg hover:scale-125 transition duration-500" src="event4.jpg" alt="" />
+                </div>
+                <div>
+                    <img className="h-auto max-w-full rounded-lg hover:scale-125 transition duration-500" src="event5.jpg" alt="" />
+                </div>
+                <div>
+                    <img className="h-auto max-w-full rounded-lg hover:scale-125 transition duration-500" src="event1.jpg" alt="" />
+                </div>
+                <div>
+                    <img className="h-auto max-w-full rounded-lg hover:scale-125 transition duration-500" src="event2.jpg" alt="" />
+                </div>
+                <div>
+                    <img className="h-auto max-w-full rounded-lg hover:scale-125 transition duration-500" src="event3.jpg" alt="" />
+                </div>
+                <div>
+                    <img className="h-auto max-w-full rounded-lg hover:scale-125 transition duration-500" src="event4.jpg" alt="" />
+                </div>
+                <div>
+                    <img className="h-auto max-w-full rounded-lg hover:scale-125 transition duration-500" src="event5.jpg" alt="" />
+                </div>
+                <div>
+                    <img className="h-auto max-w-full rounded-lg hover:scale-125 transition duration-500" src="event1.jpg" alt="" />
+                </div>
+                <div>
+                    <img className="h-auto max-w-full rounded-lg hover:scale-125 transition duration-500" src="event2.jpg" alt="" />
+                </div>
+                
+            </div>
+
+            
+
+          </div>
+        </div>
+
+        <div className='about bg-white' id="about">
+          <div className='max-w-md md:max-w-5xl mx-auto pt-12 px-6 py-6 lg:px-8 md:flex md:flex-row md:mt-0'>
             <div className='md:w-3/5 pb-12 md:pt-12'>
               <Fade direction='down' duration={1000} delay={400} triggerOnce>
                 <img src="success_factors.svg" alt="" />
@@ -334,7 +412,7 @@ export default function Home() {
 
         {/*<Consultants />*/}
 
-        <div className='contact bg-white' id='contact'>
+        <div className='contact bg-orange-50' id='contact'>
           <div className='max-w-md mx-auto pt-12 px-6 py-6 md:max-w-5xl'>
             <div className='flex flex-col items-center md:py-10'>
               <Fade direction='down' duration={2500} delay={400} triggerOnce>
