@@ -196,7 +196,7 @@ export default function Home() {
                   Participe do nosso Curso que é dividido em 3 módulos com diversos conteúdos que vão da prática à teoria.
                 </p>
               </Fade>
-              <a href="https://forms.gle/NFZxEV5hfrpMBLuz8" target="_blank" >
+              <a href="https://forms.gle/vRGEUrBsXkLztKEK6" target="_blank" >
                 <Fade direction='down' duration={1000} delay={400} triggerOnce>
                   <button className='mx-auto mr-auto mt-10 mb-14 bg-orange-600 text-white font-medium text-xl py-3 px-6 rounded focus:outline-none hover:bg-orange-400 transition duration-500 sm:ml-0'>
                     Inscreva-se
@@ -214,26 +214,26 @@ export default function Home() {
                     <div className='text-sm '>
 
                       <span className='flex items-center my-2'>
-                        <CalendarIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />24 de junho (sábado)
+                        <CalendarIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />02 e 03 de dezembro de 2023
                       </span>
                       <span className='flex items-center my-2'>
-                        <MapIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Em Volta Redonda - RJ
+                        <MapIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Em Campos do Jordão - SP
                       </span>
 
                       <span className='flex items-center my-2'>
                         <CheckCircleIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />
                         <a>Curso <strong className='text-orange-600'>presencial</strong></a>
                       </span>
-                      <a href={'https://forms.gle/NFZxEV5hfrpMBLuz8'} target='_blank'>
+                      <a href='https://forms.gle/vRGEUrBsXkLztKEK6' target='_blank'>
                         <button className='flex items-center bg-orange-600 my-8 mx-auto font-medium text-xs py-2 px-4 rounded text-white focus:outline-none hover:bg-orange-400 transition duration-500'><TicketIcon className="h-6 w-6 mr-2 " aria-hidden="true" />Quero me inscrever</button>
                       </a>
                       <span className='flex items-center my-2 font-medium text-base'>
-                        <CurrencyDollarIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Investimento:
+                        <CurrencyDollarIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />1º Lote de inscrições:
                       </span>
 
                       <div className='text-xs'>
-                        <p> <strong> R$400,00</strong> em até 3x para <strong> ADVOGADOS </strong></p>
-                        <p> <strong> R$300,00</strong> em até 3x para <strong> ESTUDANTES DE DIREITO </strong></p>
+                        <p>De R$380,00 por<strong className='text-sm'> R$180,00</strong> em até 2x no cartão</p>
+                        <p>(Inscrições de <strong> 06/10</strong> a <strong> 27/10 </strong>)</p>
                       </div>
 
                       <div className='my-6 mr-auto'>
@@ -241,7 +241,7 @@ export default function Home() {
                           <CreditCardIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Formas de Pagamento:
                         </span>
                         <div className='text-xs '>
-                          <p><strong>Cartão de Crédito ou Pix.</strong></p>
+                          <p><strong>Cartão de Crédito, Pix ou transferência.</strong></p>
                         </div>
                       </div>
 
@@ -249,8 +249,10 @@ export default function Home() {
                         <LocationMarkerIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Local do curso:
                       </span>
                       <div className='text-xs'>
-                        <p>Rua <strong>Simão da Cunha Gago</strong>, <strong>19</strong> - <strong>Aterrado</strong> </p>
-                        <p>CEP <strong>27213-170</strong></p>
+                        <p><strong>Hotel Platanus</strong></p>
+                        <p><strong>Av. Frei Orestes Girardi</strong>, <strong>03</strong> - <strong>Abernéssia</strong> </p>
+                        <p><strong>Campos do Jordão</strong> - <strong>SP</strong></p>
+                        <p>CEP <strong>12460-000</strong></p>
                       </div>
 
                     </div>
