@@ -32,6 +32,7 @@ import {
   UserGroupIcon
 
 } from '@heroicons/react/outline';
+import Carousel from '../components/Carousel';
 
 
 
@@ -191,15 +192,15 @@ export default function Home() {
 
       <main>
         <div>
-          <div className='home max-w-md sm:max-w-none sm:gap-8 lg:max-w-5xl mx-auto mb-12 px-6 py-6 lg:px-8 sm:flex sm:flex-row sm:pt-28' id='home'>
-            <div className='flex flex-col items-center sm:w-2/3 mt-20 sm:items-start'>
+          <div className='home max-w-md md:max-w-none md:gap-12 lg:max-w-5xl mx-auto mb-12 px-6 py-6 lg:px-8 md:flex md:flex-row md:pt-28' id='home'>
+            <div className='flex flex-col items-center lg:w-2/3 md:w-7/12 mt-20 md:items-start'>
               <Fade direction='down' duration={2500} delay={400} triggerOnce>
-                <h1 className='font-semibold text-5xl text-center text-gray-800 sm:font-bold sm:text-left' >
+                <h1 className='font-semibold text-5xl text-center text-gray-800 sm:font-bold md:text-left' >
                   <a className='text-orange-600'>Curso</a> Tribunal do Júri: Teoria e Prática
                 </h1>
               </Fade>
               <Fade direction='down' duration={1000} delay={400} triggerOnce>
-                <p className='mt-4 font-normal text-sm text-center sm:mt-10 text-gray-500 sm:font-normal sm:text-base sm:text-left'>
+                <p className='mt-4 font-normal text-sm text-center sm:mt-10 text-gray-500 sm:font-normal sm:text-base md:text-left'>
                   Participe do nosso Curso que é dividido em 3 módulos com diversos conteúdos que vão da prática à teoria.
                 </p>
               </Fade>
@@ -211,7 +212,7 @@ export default function Home() {
                 </Fade>
               </a>
             </div>
-            <div className='sm:w-2/5'>
+            <div className='lg:w-2/5 md:w-6/12'>
               <Fade direction='down' duration={1500} delay={600} triggerOnce>
                 <div className='border-2 border-orange-600 border-opacity-50 shadow-2xl '>
                   <div className='m-5'>
@@ -289,7 +290,7 @@ export default function Home() {
         </div>
 
         <div className='gallery bg-orange-50' id='contact'>
-          <div className='max-w-md mx-auto pt-12 px-6 py-6 md:max-w-5xl'>
+          <div className='max-w-md mx-auto pt-6 px-6 py-6 md:max-w-5xl'>
             <div className='flex flex-col items-center md:py-10'>
               <Fade direction='down' duration={2500} delay={600} triggerOnce>
                 <p className=' font-normal text-base text-orange-500 '>Nossos eventos recentes</p>
@@ -301,49 +302,8 @@ export default function Home() {
                 Nossos <a className='text-orange-600'>Incríveis Eventos </a>Mais Recentes
               </h1>
             </Fade>
-
          
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 my-12">
-                <div>
-                    <img className="h-auto max-w-full rounded-lg hover:scale-125 transition duration-500" src="event1.jpg" alt="" />
-                </div>
-                <div>
-                    <img className="h-auto max-w-full rounded-lg hover:scale-125 transition duration-500" src="event2.jpg" alt="" />
-                </div>
-                <div>
-                    <img className="h-auto max-w-full rounded-lg hover:scale-125 transition duration-500" src="event3.jpg" alt="" />
-                </div>
-                <div>
-                    <img className="h-auto max-w-full rounded-lg hover:scale-125 transition duration-500" src="event4.jpg" alt="" />
-                </div>
-                <div>
-                    <img className="h-auto max-w-full rounded-lg hover:scale-125 transition duration-500" src="event5.jpg" alt="" />
-                </div>
-                <div>
-                    <img className="h-auto max-w-full rounded-lg hover:scale-125 transition duration-500" src="event1.jpg" alt="" />
-                </div>
-                <div>
-                    <img className="h-auto max-w-full rounded-lg hover:scale-125 transition duration-500" src="event2.jpg" alt="" />
-                </div>
-                <div>
-                    <img className="h-auto max-w-full rounded-lg hover:scale-125 transition duration-500" src="event3.jpg" alt="" />
-                </div>
-                <div>
-                    <img className="h-auto max-w-full rounded-lg hover:scale-125 transition duration-500" src="event4.jpg" alt="" />
-                </div>
-                <div>
-                    <img className="h-auto max-w-full rounded-lg hover:scale-125 transition duration-500" src="event5.jpg" alt="" />
-                </div>
-                <div>
-                    <img className="h-auto max-w-full rounded-lg hover:scale-125 transition duration-500" src="event1.jpg" alt="" />
-                </div>
-                <div>
-                    <img className="h-auto max-w-full rounded-lg hover:scale-125 transition duration-500" src="event2.jpg" alt="" />
-                </div>
-                
-            </div>
-
-            
+            <Carousel />
 
           </div>
         </div>
