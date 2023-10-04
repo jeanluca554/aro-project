@@ -38,6 +38,7 @@ import {
 export default function Home() {
   const [currentSection, setCurrentSection] = useState('home');
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [currentYear, setCurrentYear] = useState(2022)
 
   {/*Get the scroll position*/ }
   useEffect(() => {
@@ -49,6 +50,12 @@ export default function Home() {
     updatePosition();
 
     return () => window.removeEventListener('scroll', updatePosition);
+
+  }, []);
+
+  useEffect(() => {
+    const date = new Date()
+    setCurrentYear(date.getFullYear())
 
   }, []);
 
@@ -236,8 +243,8 @@ export default function Home() {
                         <p>(Inscrições de <strong> 06/10</strong> a <strong> 27/10 </strong>)</p>
                       </div>
 
-                      <span className='flex items-center my-2 font-medium text-base mt-4'>
-                        <CurrencyDollarIcon className="h-6 w-6 mr-2 text-orange-600 opacity-50" aria-hidden="true" /><span className='opacity-50'>2º Lote de inscrições: </span>&nbsp;(em breve)
+                      <span className='flex items-center my-2 font-medium text-sm mt-4'>
+                        <CurrencyDollarIcon className="h-6 w-6 mr-2 text-orange-600 opacity-50" aria-hidden="true" /><span className='opacity-50'>2º Lote de inscrições:&nbsp;</span><span className='text-xs text-white bg-red-700 px-1'>em breve</span>
                       </span>
 
                       <div className='text-xs opacity-50'>
@@ -245,8 +252,8 @@ export default function Home() {
                         <p>(Inscrições de <strong> 28/10</strong> a <strong> 18/11 </strong>)</p>
                       </div>
 
-                      <span className='flex items-center my-2 font-medium text-base mt-4'>
-                        <CurrencyDollarIcon className="h-6 w-6 mr-2 text-orange-600 opacity-50" aria-hidden="true" /><span className='opacity-50'>3º Lote de inscrições: </span>&nbsp;(em breve)
+                      <span className='flex items-center my-2 font-medium text-sm mt-4'>
+                        <CurrencyDollarIcon className="h-6 w-6 mr-2 text-orange-600 opacity-50" aria-hidden="true" /><span className='opacity-50'>3º Lote de inscrições:&nbsp;</span><span className='text-xs text-white bg-red-700 px-1'>em breve</span>
                       </span>
 
                       <div className='text-xs opacity-50'>
@@ -511,7 +518,7 @@ export default function Home() {
               />
             </div>
             <div className=' text-sm text-center text-white'>
-              Copyright © - Instituto Aro - 2022
+              Instituto Aro - {currentYear}
             </div>
           </div>
         </div>
