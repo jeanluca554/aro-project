@@ -3,25 +3,23 @@ import "pure-react-carousel/dist/react-carousel.es.css";
 
 import {ChevronLeftIcon, ChevronRightIcon} from '@heroicons/react/outline'
 
-/* Install pure-react-carousel using -> npm i pure-react-carousel */
-
 const images = [
   'event1.jpg',
-  'event3.jpg',
   'event2.jpg',
   'event4.jpg',
   'event5.jpg',
-  'event1.jpg',
-  'event2.jpg',
-  'event3.jpg',
-  'event4.jpg',
-  'event5.jpg',
+  'event6.jpg',
+  'event7.jpg',
+  'event8.jpg',
+  'event9.jpg',
+  'event10.jpg',
+  'event11.jpg',
 ]
 
 export default function Carousel() {
     return (
         <div className="container mx-auto">
-            <div className="flex items-center justify-center w-full h-full py-24 sm:py-8 ">
+            <div className="flex items-center justify-center w-full h-full py-8 sm:py-8 ">
                 {/* Carousel for desktop and large size devices */}
                 <CarouselProvider className="lg:block hidden" naturalSlideWidth={160} isIntrinsicHeight={true} totalSlides={images.length} visibleSlides={3} step={1} infinite={true} naturalSlideHeight={120}>
                     <div className="w-full relative flex items-center justify-center">

@@ -289,8 +289,8 @@ export default function Home() {
           </div>
         </div>
 
-        <div className='gallery bg-orange-50' id='contact'>
-          <div className='max-w-md mx-auto pt-6 px-6 py-6 md:max-w-5xl'>
+        <div className='gallery bg-gray-50' id='contact'>
+          <div className='max-w-md mx-auto pt-6 px-6 md:max-w-5xl'>
             <div className='flex flex-col items-center md:py-10'>
               <Fade direction='down' duration={2500} delay={600} triggerOnce>
                 <p className=' font-normal text-base text-orange-500 '>Nossos eventos recentes</p>
@@ -354,7 +354,7 @@ export default function Home() {
           />
         </div> */}
 
-        <div className=' px-6 pt-6 mb-12 lg:px-8 space-y-9 lg:max-w-5xl md:flex md:flex-row md:space-y-0 md:space-x-9  md:mx-auto md:-mt-24 '>
+        <div className=' px-6 pt-6 mb-12 lg:px-8 space-y-9 lg:max-w-5xl md:flex md:flex-row md:space-y-0 md:space-x-9 md:mx-auto md:-mt-16 md:-mb-16 '>
           <div className=' md:w-1/2'>
             <Fade direction='down' duration={1000} delay={400} triggerOnce>
               <AreaCard
@@ -380,7 +380,7 @@ export default function Home() {
         {/*<Consultants />*/}
 
         <div className='contact bg-orange-50' id='contact'>
-          <div className='max-w-md mx-auto pt-12 px-6 py-6 md:max-w-5xl'>
+          <div className='max-w-md mx-auto pt-24 px-6 py-6 md:max-w-5xl'>
             <div className='flex flex-col items-center md:py-10'>
               <Fade direction='down' duration={2500} delay={400} triggerOnce>
                 <hr className='border-orange-400 w-10' />
