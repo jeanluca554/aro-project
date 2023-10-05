@@ -32,12 +32,14 @@ import {
   UserGroupIcon
 
 } from '@heroicons/react/outline';
+import Carousel from '../components/Carousel';
 
 
 
 export default function Home() {
   const [currentSection, setCurrentSection] = useState('home');
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [currentYear, setCurrentYear] = useState(2022)
 
   {/*Get the scroll position*/ }
   useEffect(() => {
@@ -49,6 +51,12 @@ export default function Home() {
     updatePosition();
 
     return () => window.removeEventListener('scroll', updatePosition);
+
+  }, []);
+
+  useEffect(() => {
+    const date = new Date()
+    setCurrentYear(date.getFullYear())
 
   }, []);
 
@@ -184,15 +192,15 @@ export default function Home() {
 
       <main>
         <div>
-          <div className='home max-w-md sm:max-w-none sm:gap-8 lg:max-w-5xl mx-auto mb-12 px-6 py-6 lg:px-8 sm:flex sm:flex-row sm:pt-28' id='home'>
-            <div className='flex flex-col items-center sm:w-2/3 mt-20 sm:items-start'>
+          <div className='home max-w-md md:max-w-none md:gap-12 lg:max-w-5xl mx-auto mb-12 px-6 py-6 lg:px-8 md:flex md:flex-row md:pt-28' id='home'>
+            <div className='flex flex-col items-center lg:w-2/3 md:w-7/12 mt-20 md:items-start'>
               <Fade direction='down' duration={2500} delay={400} triggerOnce>
-                <h1 className='font-semibold text-5xl text-center text-gray-800 sm:font-bold sm:text-left' >
+                <h1 className='font-semibold text-5xl text-center text-gray-800 sm:font-bold md:text-left' >
                   <a className='text-orange-600'>Curso</a> Tribunal do Júri: Teoria e Prática
                 </h1>
               </Fade>
               <Fade direction='down' duration={1000} delay={400} triggerOnce>
-                <p className='mt-4 font-normal text-sm text-center sm:mt-10 text-gray-500 sm:font-normal sm:text-base sm:text-left'>
+                <p className='mt-4 font-normal text-sm text-center sm:mt-10 text-gray-500 sm:font-normal sm:text-base md:text-left'>
                   Participe do nosso Curso que é dividido em 3 módulos com diversos conteúdos que vão da prática à teoria.
                 </p>
               </Fade>
@@ -204,7 +212,7 @@ export default function Home() {
                 </Fade>
               </a>
             </div>
-            <div className='sm:w-2/5'>
+            <div className='lg:w-2/5 md:w-6/12'>
               <Fade direction='down' duration={1500} delay={600} triggerOnce>
                 <div className='border-2 border-orange-600 border-opacity-50 shadow-2xl '>
                   <div className='m-5'>
@@ -236,6 +244,24 @@ export default function Home() {
                         <p>(Inscrições de <strong> 06/10</strong> a <strong> 27/10 </strong>)</p>
                       </div>
 
+                      <span className='flex items-center my-2 font-medium text-sm mt-4'>
+                        <CurrencyDollarIcon className="h-6 w-6 mr-2 text-orange-600 opacity-50" aria-hidden="true" /><span className='opacity-50'>2º Lote de inscrições:&nbsp;</span><span className='text-xs text-white bg-red-700 px-1'>em breve</span>
+                      </span>
+
+                      <div className='text-xs opacity-50'>
+                        <p>De R$380,00 por<strong className='text-sm'> R$250,00</strong> em até 3x no cartão</p>
+                        <p>(Inscrições de <strong> 28/10</strong> a <strong> 18/11 </strong>)</p>
+                      </div>
+
+                      <span className='flex items-center my-2 font-medium text-sm mt-4'>
+                        <CurrencyDollarIcon className="h-6 w-6 mr-2 text-orange-600 opacity-50" aria-hidden="true" /><span className='opacity-50'>3º Lote de inscrições:&nbsp;</span><span className='text-xs text-white bg-red-700 px-1'>em breve</span>
+                      </span>
+
+                      <div className='text-xs opacity-50'>
+                        <p><strong className='text-sm'> R$380,00</strong> em até 3x no cartão</p>
+                        <p>(Inscrições de <strong> 19/11</strong> a <strong> 27/11 </strong>)</p>
+                      </div>
+
                       <div className='my-6 mr-auto'>
                         <span className='flex items-center my-2 font-medium text-base'>
                           <CreditCardIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />Formas de Pagamento:
@@ -263,8 +289,27 @@ export default function Home() {
           </div>
         </div>
 
-        <div className='about bg-orange-50' id="about">
-          <div className='max-w-md md:max-w-none md:max-w-5xl mx-auto pt-12 px-6 py-6 lg:px-8 md:flex md:flex-row md:mt-0'>
+        <div className='gallery bg-gray-50' id='contact'>
+          <div className='max-w-md mx-auto pt-6 px-6 md:max-w-5xl'>
+            <div className='flex flex-col items-center md:py-10'>
+              <Fade direction='down' duration={2500} delay={600} triggerOnce>
+                <p className=' font-normal text-base text-orange-500 '>Nossos eventos recentes</p>
+              </Fade>
+            </div>
+
+            <Fade direction='down' duration={1500} delay={400} triggerOnce>
+              <h1 className='pt-5 font-semibold text-4xl text-center text-gray-800 md:font-bold md:text-5xl md:pt-5' >
+                Nossos <a className='text-orange-600'>Incríveis Eventos </a>Mais Recentes
+              </h1>
+            </Fade>
+         
+            <Carousel />
+
+          </div>
+        </div>
+
+        <div className='about bg-white' id="about">
+          <div className='max-w-md md:max-w-5xl mx-auto pt-12 px-6 py-6 lg:px-8 md:flex md:flex-row md:mt-0'>
             <div className='md:w-3/5 pb-12 md:pt-12'>
               <Fade direction='down' duration={1000} delay={400} triggerOnce>
                 <img src="success_factors.svg" alt="" />
@@ -309,7 +354,7 @@ export default function Home() {
           />
         </div> */}
 
-        <div className=' px-6 pt-6 mb-12 lg:px-8 space-y-9 lg:max-w-5xl md:flex md:flex-row md:space-y-0 md:space-x-9  md:mx-auto md:-mt-24 '>
+        <div className=' px-6 pt-6 mb-12 lg:px-8 space-y-9 lg:max-w-5xl md:flex md:flex-row md:space-y-0 md:space-x-9 md:mx-auto md:-mt-16 md:-mb-16 '>
           <div className=' md:w-1/2'>
             <Fade direction='down' duration={1000} delay={400} triggerOnce>
               <AreaCard
@@ -334,8 +379,8 @@ export default function Home() {
 
         {/*<Consultants />*/}
 
-        <div className='contact bg-white' id='contact'>
-          <div className='max-w-md mx-auto pt-12 px-6 py-6 md:max-w-5xl'>
+        <div className='contact bg-orange-50' id='contact'>
+          <div className='max-w-md mx-auto pt-24 px-6 py-6 md:max-w-5xl'>
             <div className='flex flex-col items-center md:py-10'>
               <Fade direction='down' duration={2500} delay={400} triggerOnce>
                 <hr className='border-orange-400 w-10' />
@@ -433,7 +478,7 @@ export default function Home() {
               />
             </div>
             <div className=' text-sm text-center text-white'>
-              Copyright © - Instituto Aro - 2022
+              Instituto Aro - {currentYear}
             </div>
           </div>
         </div>
