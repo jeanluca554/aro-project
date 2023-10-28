@@ -235,25 +235,25 @@ export default function Home() {
                       <a href='https://forms.gle/vRGEUrBsXkLztKEK6' target='_blank'>
                         <button className='flex items-center bg-orange-600 my-8 mx-auto font-medium text-xs py-2 px-4 rounded text-white focus:outline-none hover:bg-orange-400 transition duration-500'><TicketIcon className="h-6 w-6 mr-2 " aria-hidden="true" />Quero me inscrever</button>
                       </a>
-                      <span className='flex items-center my-2 font-medium text-base'>
-                        <CurrencyDollarIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />1º Lote de inscrições:
+                      <span className='flex items-center font-medium text-sm mt-4'>
+                        <CurrencyDollarIcon className="h-6 w-6 mr-2 text-orange-600 opacity-50" aria-hidden="true" /><span className='opacity-50'>1º Lote de inscrições:&nbsp;</span><span className='text-xs text-white bg-red-700 px-1'>encerrado</span>
                       </span>
 
-                      <div className='text-xs'>
+                      <div className='text-xs opacity-50'>
                         <p>De R$380,00 por<strong className='text-sm'> R$180,00</strong> em até 2x no cartão</p>
                         <p>(Inscrições de <strong> 06/10</strong> a <strong> 27/10 </strong>)</p>
                       </div>
 
-                      <span className='flex items-center my-2 font-medium text-sm mt-4'>
-                        <CurrencyDollarIcon className="h-6 w-6 mr-2 text-orange-600 opacity-50" aria-hidden="true" /><span className='opacity-50'>2º Lote de inscrições:&nbsp;</span><span className='text-xs text-white bg-red-700 px-1'>em breve</span>
+                      <span className='flex items-center font-medium text-base mt-6'>
+                        <CurrencyDollarIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />2º Lote de inscrições:
                       </span>
 
-                      <div className='text-xs opacity-50'>
+                      <div className='text-xs'>
                         <p>De R$380,00 por<strong className='text-sm'> R$250,00</strong> em até 3x no cartão</p>
                         <p>(Inscrições de <strong> 28/10</strong> a <strong> 18/11 </strong>)</p>
                       </div>
 
-                      <span className='flex items-center my-2 font-medium text-sm mt-4'>
+                      <span className='flex items-center mt-6 font-medium text-sm'>
                         <CurrencyDollarIcon className="h-6 w-6 mr-2 text-orange-600 opacity-50" aria-hidden="true" /><span className='opacity-50'>3º Lote de inscrições:&nbsp;</span><span className='text-xs text-white bg-red-700 px-1'>em breve</span>
                       </span>
 
@@ -289,7 +289,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className='gallery bg-gray-50' id='contact'>
+        <div className='gallery bg-gray-50' id='galary'>
           <div className='max-w-md mx-auto pt-6 px-6 md:max-w-5xl'>
             <div className='flex flex-col items-center md:py-10'>
               <Fade direction='down' duration={2500} delay={600} triggerOnce>
