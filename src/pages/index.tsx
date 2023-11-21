@@ -245,19 +245,19 @@ export default function Home() {
                       </div>
 
                       <span className='flex items-center font-medium text-base mt-6'>
-                        <CurrencyDollarIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />2º Lote de inscrições:
+                        <CurrencyDollarIcon className="h-6 w-6 mr-2 text-orange-600 opacity-50" aria-hidden="true" /><span className='opacity-50'>2º Lote de inscrições:&nbsp;</span><span className='text-xs text-white bg-red-700 px-1'>encerrado</span>
                       </span>
 
-                      <div className='text-xs'>
+                      <div className='text-xs opacity-50'>
                         <p>De R$380,00 por<strong className='text-sm'> R$250,00</strong> em até 3x no cartão</p>
                         <p>(Inscrições de <strong> 28/10</strong> a <strong> 18/11 </strong>)</p>
                       </div>
 
                       <span className='flex items-center mt-6 font-medium text-sm'>
-                        <CurrencyDollarIcon className="h-6 w-6 mr-2 text-orange-600 opacity-50" aria-hidden="true" /><span className='opacity-50'>3º Lote de inscrições:&nbsp;</span><span className='text-xs text-white bg-red-700 px-1'>em breve</span>
+                        <CurrencyDollarIcon className="h-6 w-6 mr-2 text-orange-600" aria-hidden="true" />3º Lote de inscrições:
                       </span>
 
-                      <div className='text-xs opacity-50'>
+                      <div className='text-xs'>
                         <p><strong className='text-sm'> R$380,00</strong> em até 3x no cartão</p>
                         <p>(Inscrições de <strong> 19/11</strong> a <strong> 27/11 </strong>)</p>
                       </div>
